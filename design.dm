@@ -1,0 +1,2 @@
+# Ievads
+# Līdzīgo risinājumu pārskats
