@@ -11,6 +11,10 @@
 | [Meta Nutrition - Meal Planner](https://www.metnu.com/) |	<ul><li>Ērti lietojams UI</li><li>Iebūvētas receptes</li><li>Plaša datubāze ar produktiem / to uzturvielu informāciju</li><li>Iespēja izmantot personalizētus diētas plānus</li><li>Iebūvēta statistikas funkcionalitāte</li></ul>	| <ul><li>Vairāk pielāgota tieši optimālu recepšu atrašanai nevis optimālu produktu kombināciju.</li><li>Daļa funkcionalitātes pieejama tikai maksas versijā</li></ul>
 # Tehniskais risinājums
 ## Prasības
+| Nr. 	| Lietotāju stāsts 	| Prioritāte 	|
+|-----	|------------------	|------------	|
+|     	|                  	|            	|
+|     	|                  	|            	|
 ## Algoritms
 ## Konceptu modelis
 ## Tehnoloģiju steks
