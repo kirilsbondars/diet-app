@@ -1,4 +1,4 @@
-# Ievads 1
+# Ievads
 ## Problēmas nostādne
 ## Darba un novērtēšanas mērķis
 # Līdzīgo risinājumu pārskats
