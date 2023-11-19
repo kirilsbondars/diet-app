@@ -1,0 +1,18 @@
+{%  extends 'base.html' %}
+
+{% block head %}
+    <title>Tasks</title>
+{% endblock %}
+
+{% block body %}
+    <p>Hello, here you gonna see tasks</p>
+    {% if current_user.is_authenticated %}
+        name: {{ current_user.email }}
+    {% endif %}
+    {% for task in tasks %}
+        <p>id: {{ task.id }}, description: {{ task.description }}</p>
+    {% endfor %}
+    {% for address in person.addresses %}
+        <p>id: {{ address.id }}, address: {{ address.email }}</p>
+    {% endfor %}
+{% endblock %}
