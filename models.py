@@ -11,7 +11,7 @@ class Users(UserMixin, db.Model):
     email = db.Column(db.String(250), nullable=False)
 
 
-class Tasks(UserMixin, db.Model):
+class Tasks(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     description = db.Column(db.String(250), nullable=False)
 

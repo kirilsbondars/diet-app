@@ -1,8 +1,8 @@
 from flask import Flask
 from flask_login import LoginManager
 
-from import_data import import_data
 from models import db, Users
+from import_data import import_data
 
 from auth import auth
 from tasks import tasks
