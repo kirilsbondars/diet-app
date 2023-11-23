@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import login_user, logout_user
 from flask_bcrypt import Bcrypt
-from models import db, Users
+from models.models import db, Users
 
 auth = Blueprint('auth', __name__)
 bcrypt = Bcrypt()
@@ -16,7 +16,7 @@ def register():
         db.session.add(user)
         db.session.commit()
         return redirect(url_for("auth.login"))
-    return render_template("sign_up.html")
+    return render_template("auth/sign_up.html")
 
 @auth.route("/login", methods=["GET", "POST"])
 def login():
@@ -25,7 +25,7 @@ def login():
         if user and bcrypt.check_password_hash(user.password, request.form.get("password")):
             login_user(user)
             return redirect(url_for("home.view"))
-    return render_template("login.html")
+    return render_template("auth/login.html")
 
 @auth.route("/logout")
 def logout():

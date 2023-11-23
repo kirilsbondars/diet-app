@@ -1,8 +1,8 @@
 from flask import Flask
 from flask_login import LoginManager
 
-from models import db, Users
-from import_data import import_data
+from models.models import db, Users, Tasks
+from models.import_data import import_data
 
 from auth import auth
 from tasks import tasks
@@ -19,7 +19,7 @@ app.config["SECRET_KEY"] = "abc"
 db.init_app(app)
 with app.app_context():
     db.create_all()
-    import_data()
+    import_data(db, Tasks)
 
 
 login_manager = LoginManager()
@@ -28,7 +28,7 @@ login_manager.init_app(app)
 
 @login_manager.user_loader
 def loader_user(user_id):
-    return Users.query.get(user_id)
+    return db.session.get(Users, user_id)
 
 
 app.register_blueprint(auth)
