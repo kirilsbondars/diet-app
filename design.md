@@ -22,8 +22,10 @@
 |7.|Lietotājs grib ievadīt datus par sevi, jo grib iegūt personalizēto kaloriju un uzturvielu daudzumu|S|
 ## Algoritms
 ## Konceptu modelis
-![Konceptu modelis](/konceptu_modelis_jaunais.png "Konceptu modelis")
+![Konceptu modelis](/konceptu_modelis_jaunais.png)
 ## Tehnoloģiju steks
+![Tehnoloģiju steks - servera puse](/tehnologiju_steks_servera_puse.png)
+![Tehnoloģiju steks - klienta puse](/tehnologiju_steks_klienta_puse.png)
 ## Programmatūras apraksts
 # Novērtējums
 ## Novērtēšanas plāns
