@@ -20,6 +20,7 @@
 |5.|Lietotājs vēlas iegūt optimālo ēdienkarti, jo grib minimizēt ēdiena izmaksas|M|
 |6.|Lietotājs vēlas iespēju izvēlēties produktu preferences, jo lietotājam var būt alerģijas vai dietāri ierobežojumi|S|
 |7.|Lietotājs grib ievadīt datus par sevi, jo grib iegūt personalizēto kaloriju un uzturvielu daudzumu|S|
+|8.|Lietotājs grib, lai ēdieniem būtu bildes, jo tā ir vieglāk uztvērt|C|
 ## Algoritms
 ## Konceptu modelis
 ![Konceptu modelis](/konceptu_modelis_jaunais.png)
