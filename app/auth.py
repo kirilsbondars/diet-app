@@ -18,16 +18,16 @@ def register():
         return redirect(url_for("auth.login"))
     return render_template("auth/sign_up.html")
 
-@auth.route("/login", methods=["GET", "POST"])
+@auth.route("/", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
         user = Users.query.filter_by(username=request.form.get("username")).first()
         if user and bcrypt.check_password_hash(user.password, request.form.get("password")):
             login_user(user)
-            return redirect(url_for("home.view"))
+            return redirect(url_for("menu.view"))
     return render_template("auth/login.html")
 
 @auth.route("/logout")
 def logout():
     logout_user()
-    return redirect(url_for("home.view"))
+    return redirect(url_for("auth/login.html"))

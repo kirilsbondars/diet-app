@@ -6,7 +6,8 @@ from models.import_data import import_data
 
 from auth import auth
 from tasks import tasks
-from home import home
+from menu import menu
+
 from flask_bootstrap import Bootstrap5
 
 app = Flask(__name__)
@@ -32,8 +33,8 @@ def loader_user(user_id):
 
 
 app.register_blueprint(auth)
-app.register_blueprint(home)
 app.register_blueprint(tasks, url_prefix='/tasks')
+app.register_blueprint(menu, url_prefix='/menu')
 
 if __name__ == "__main__":
     app.run(debug=True)
