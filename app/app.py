@@ -4,7 +4,7 @@ from flask_login import LoginManager
 from models.models import db, Users, Tasks
 from models.import_data import import_data
 
-from auth import auth
+from routes.auth import auth
 from tasks import tasks
 from menu import menu
 
