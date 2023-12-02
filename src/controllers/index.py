@@ -1,7 +1,8 @@
 from flask import render_template
-from models.models import db, Tasks
+from src.models.models import db, Tasks
 
-def index():
+
+def render_page_index():
     tasks = Tasks(
         description='This is a test task'
     )
@@ -9,4 +10,4 @@ def index():
     db.session.commit()
 
     task_list = Tasks.query.all()
-    return render_template('menu/index.html', tasks=task_list)
+    return render_template('index.html', tasks=task_list)
