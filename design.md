@@ -23,10 +23,10 @@
 |8.|Lietotājs grib, lai ēdieniem būtu bildes, jo tā ir vieglāk uztvert|C|
 ## Algoritms
 ## Konceptu modelis
-![Konceptu modelis](/konceptu_modelis_jaunais.png)
+![Konceptu modelis](/images/konceptu_modelis.png)
 ## Tehnoloģiju steks
-![Tehnoloģiju steks - servera puse](/tehnologiju_steks_servera_puse.png)
-![Tehnoloģiju steks - klienta puse](/tehnologiju_steks_klienta_puse.png)
+![Tehnoloģiju steks - servera puse](/images/tehnologiju_steks_servera_puse.png)
+![Tehnoloģiju steks - klienta puse](/images/tehnologiju_steks_klienta_puse.png)
 ## Programmatūras apraksts
 # Novērtējums
 ## Novērtēšanas plāns
