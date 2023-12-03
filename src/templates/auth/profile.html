@@ -1,0 +1,75 @@
+{%  extends 'base.html' %}
+
+{% block head %}
+    <title>Profile</title>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="mt-5">Profile</h1>
+        <form>
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="surname">Surname:</label>
+                <input type="text" class="form-control" id="surname" name="surname" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+
+            <div class="form-group">
+                <label for="confirm-password">Confirm Password:</label>
+                <input type="password" class="form-control" id="confirm-password" name="confirm-password" required>
+            </div>
+
+            <div class="form-group">
+                <label for="gender">Gender:</label>
+                <select class="form-control" id="gender" name="gender">
+                    <option value="woman">Woman</option>
+                    <option value="man">Man</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" class="form-control" id="age" name="age" required>
+            </div>
+
+            <div class="form-group">
+                <label for="weight">Weight:</label>
+                <input type="number" class="form-control" id="weight" name="weight" required>
+            </div>
+
+            <div class="form-group">
+                <label for="height">Height:</label>
+                <input type="number" class="form-control" id="height" name="height" required>
+            </div>
+
+            <div class="form-group">
+                <label for="food-preferences">Food Preferences:</label><br>
+                <input type="checkbox" id="gluten-free" name="gluten-free">
+                <label for="gluten-free">Gluten-free</label><br>
+                <input type="checkbox" id="vegan" name="vegan">
+                <label for="vegan">Vegan</label><br>
+                <input type="checkbox" id="vegetarian" name="vegetarian">
+                <label for="vegetarian">Vegetarian</label><br>
+                <input type="checkbox" id="dairy-free" name="dairy-free">
+                <label for="dairy-free">Dairy-free</label><br>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+    </div>
+{% endblock %}
