@@ -7,6 +7,7 @@ bcrypt = Bcrypt()
 
 
 def profile():
+    print('skmskm')
     return render_template("auth/profile.html")
 
 
