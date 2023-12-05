@@ -21,7 +21,15 @@ def sing_up():
                     age=1,
                     weight=1,
                     height=1,
-                    gender_id=1)
+                    gender='Male',
+                    calories=100,
+                    proteins=100,
+                    fats=20,
+                    carbohydrates=30,
+                    gluten_free=True,
+                    vegan=True,
+                    vegeratian=False,
+                    dairy_free=True)
         db.session.add(user)
         db.session.commit()
         return redirect(url_for("auth.login"))
