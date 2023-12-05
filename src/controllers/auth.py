@@ -12,7 +12,6 @@ def profile():
 
 
 def sing_up():
-    print('sign up')
     if request.method == "POST":
         hashed_password = bcrypt.generate_password_hash(request.form.get("password")).decode('utf-8')
         user = User(username=request.form.get("username"),
