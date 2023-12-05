@@ -6,6 +6,6 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 DEBUG = True
 
-SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:dietapp1-@localhost/diet_app'
+SQLALCHEMY_DATABASE_URI = 'sqlite:///db.sqlite'
 
 SQLALCHEMY_TRACK_MODIFICATIONS = False
