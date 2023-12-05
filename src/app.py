@@ -5,7 +5,8 @@ from flask_bootstrap import Bootstrap5
 from routes.index import index_blueprint
 from routes.auth import auth_blueprint
 from routes.menu import menu_blueprint
-from src.models.models import db, Users
+from src.models.models import db, User
+from src.models.import_data import import_data
 
 
 def create_app():
@@ -21,9 +22,13 @@ def create_app():
 
     @login_manager.user_loader
     def loader_user(user_id):
-        return db.session.get(Users, user_id)
+        return db.session.get(User, user_id)
 
     Bootstrap5(app)
+
+    #fill db
+    with app.app_context():
+        import_data()
 
     return app
 

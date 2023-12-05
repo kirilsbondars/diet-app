@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, url_for
 from flask_login import login_user, logout_user
 from flask_bcrypt import Bcrypt
-from src.models.models import db, Users
+from src.models.models import db, User
 
 bcrypt = Bcrypt()
 
@@ -13,9 +13,15 @@ def profile():
 def sing_up():
     if request.method == "POST":
         hashed_password = bcrypt.generate_password_hash(request.form.get("password")).decode('utf-8')
-        user = Users(username=request.form.get("username"),
-                     password=hashed_password,
-                     email=request.form.get("email"))
+        user = User(username=request.form.get("username"),
+                    password=hashed_password,
+                    email='jj@jjj.jj',
+                    name='aa',
+                    surname='aa',
+                    age=1,
+                    weight=1,
+                    height=1,
+                    gender_id=1)
         db.session.add(user)
         db.session.commit()
         return redirect(url_for("auth.login"))
@@ -24,7 +30,7 @@ def sing_up():
 
 def login():
     if request.method == "POST":
-        user = Users.query.filter_by(username=request.form.get("username")).first()
+        user = User.query.filter_by(username=request.form.get("username")).first()
         if user and bcrypt.check_password_hash(user.password, request.form.get("password")):
             login_user(user)
             return redirect(url_for("index.render_page_index"))
