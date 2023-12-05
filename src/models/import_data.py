@@ -9,7 +9,7 @@ def import_meals():
     if Meal.query.first() is None:
         meal = Meal(id=1, name='Pasta', calories=100, portion=100,
                     proteins=100, fats=20, carbohydrates=30, gluten_free=True,
-                    vegan=True, vegeratian=False, dairy_free=True)
+                    vegan=True, vegeratian=False, dairy_free=True, mealtime='Breakfast')
         db.session.add(meal)
         db.session.commit()
 

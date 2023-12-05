@@ -3,7 +3,7 @@ from flask_login import UserMixin
 
 db = SQLAlchemy()
 
-meals = db.Table('meals',
+meals = db.Table('user_meal',
                  db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
                  db.Column('meal_id', db.Integer, db.ForeignKey('meal.id'), primary_key=True),
                  db.Column('date', db.Date, primary_key=True),
@@ -51,3 +51,4 @@ class Meal(db.Model):
     vegan = db.Column(db.Boolean, nullable=False)
     vegeratian = db.Column(db.Boolean, nullable=False)
     dairy_free = db.Column(db.Boolean, nullable=False)
+    mealtime = db.Column(db.Enum('Breakfast', 'Lunch', 'Dinner'), nullable=False)
