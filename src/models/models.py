@@ -42,6 +42,7 @@ class User(UserMixin, db.Model):
 class Meal(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(250), nullable=False)
+    image_src = db.Column(db.String(250), nullable=True)
     calories = db.Column(db.Integer, nullable=False)
     portion = db.Column(db.Integer, nullable=False)
     proteins = db.Column(db.Integer, nullable=False)
