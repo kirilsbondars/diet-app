@@ -44,13 +44,18 @@ class Meal(db.Model):
     name = db.Column(db.String(250), nullable=False)
     image_src = db.Column(db.String(250), nullable=True)
     price = db.Column(db.Float, nullable=False)
+
     calories = db.Column(db.Integer, nullable=False)
     portion = db.Column(db.Integer, nullable=False)
     proteins = db.Column(db.Integer, nullable=False)
     fats = db.Column(db.Integer, nullable=False)
     carbohydrates = db.Column(db.Integer, nullable=False)
+
     gluten_free = db.Column(db.Boolean, nullable=False)
     vegan = db.Column(db.Boolean, nullable=False)
     vegeratian = db.Column(db.Boolean, nullable=False)
     dairy_free = db.Column(db.Boolean, nullable=False)
-    mealtime = db.Column(db.Enum('Breakfast', 'Lunch', 'Dinner'), nullable=False)
+
+    for_breakfast = db.Column(db.Boolean, nullable=False)
+    for_lunch = db.Column(db.Boolean, nullable=False)
+    for_dinner = db.Column(db.Boolean, nullable=False)
