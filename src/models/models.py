@@ -46,7 +46,6 @@ class Meal(db.Model):
     price = db.Column(db.Float, nullable=False)
 
     calories = db.Column(db.Integer, nullable=False)
-    portion = db.Column(db.Integer, nullable=False)
     proteins = db.Column(db.Integer, nullable=False)
     fats = db.Column(db.Integer, nullable=False)
     carbohydrates = db.Column(db.Integer, nullable=False)
