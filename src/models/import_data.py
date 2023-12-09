@@ -7,7 +7,7 @@ bcrypt = Bcrypt()
 
 def import_meals():
     if Meal.query.first() is None:
-        meal = Meal(id=1, name='Pasta', price=100, calories=100, portion=100,
+        meal = Meal(id=1, name='Pasta', price=100, calories=100,
                     proteins=100, fats=20, carbohydrates=30, gluten_free=True,
                     vegan=True, vegeratian=False, dairy_free=True,
                     for_breakfast=True, for_lunch=True, for_dinner=True)
