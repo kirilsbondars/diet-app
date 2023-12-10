@@ -13,9 +13,8 @@ meals = db.Table('user_meal',
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(250), unique=True, nullable=False)
-    password = db.Column(db.String(250), nullable=False)
     email = db.Column(db.String(250), nullable=False)
+    password = db.Column(db.String(250), unique=True, nullable=False)
 
     name = db.Column(db.String(250), nullable=False)
     surname = db.Column(db.String(250), nullable=False)
@@ -32,7 +31,7 @@ class User(UserMixin, db.Model):
 
     gluten_free = db.Column(db.Boolean, nullable=False)
     vegan = db.Column(db.Boolean, nullable=False)
-    vegeratian = db.Column(db.Boolean, nullable=False)
+    vegetarian = db.Column(db.Boolean, nullable=False)
     dairy_free = db.Column(db.Boolean, nullable=False)
 
     meals = db.relationship('Meal', secondary=meals, lazy='subquery',

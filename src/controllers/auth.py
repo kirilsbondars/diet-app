@@ -11,29 +11,62 @@ def profile():
 
 
 def sing_up():
+    print(request.form)
+    errors = {}
+    form_data = {}
     if request.method == "POST":
-        hashed_password = bcrypt.generate_password_hash(request.form.get("password")).decode('utf-8')
-        user = User(username=request.form.get("username"),
-                    password=hashed_password,
-                    email='jj@jjj.jj',
-                    name='aa',
-                    surname='aa',
-                    age=1,
-                    weight=1,
-                    height=1,
-                    gender='Male',
-                    calories=100,
-                    proteins=100,
-                    fats=20,
-                    carbohydrates=30,
-                    gluten_free=True,
-                    vegan=True,
-                    vegeratian=False,
-                    dairy_free=True)
+        name = request.form.get("name")
+        surname = request.form.get("surname")
+        email = request.form.get("email")
+        password = request.form.get("password")
+        confirm_password = request.form.get("confirm-password")
+        gender = request.form.get("gender")
+        age = request.form.get("age")
+        weight = request.form.get("weight")
+        height = request.form.get("height")
+        gluten_free = request.form.get("gluten-free") == 'on'
+        vegan = request.form.get("vegan") == 'on'
+        vegetarian = request.form.get("vegetarian") == 'on'
+        dairy_free = request.form.get("dairy-free") == 'on'
+
+        form_data = {
+            "name": name,
+            "surname": surname,
+            "email": email,
+            "password": password,
+            "confirm_password": confirm_password,
+            "gender": gender,
+            "age": age,
+            "weight": weight,
+            "height": height,
+            "gluten_free": gluten_free,
+            "vegan": vegan,
+            "vegetarian": vegetarian,
+            "dairy_free": dairy_free
+        }
+
+        # Validate the data
+        if password != confirm_password:
+            errors['confirm_password'] = 'Passwords do not match'
+
+        existing_user = User.query.filter_by(surname=surname).first()
+        if existing_user:
+            errors['email'] = 'Email already used by someone else'
+        # ... (add other validation checks as needed)
+
+        if errors:
+            # If there are errors, return them to the template
+            return render_template('auth/sign_up.html', errors=errors, form_data=form_data)
+
+        # If the data is valid, hash the password and save it to the database
+        hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
+        user = User(name=name, surname=surname, email=email, password=hashed_password, gender=gender,
+                    age=age, weight=weight, height=height, gluten_free=gluten_free, vegan=vegan,
+                    vegetarian=vegetarian, dairy_free=dairy_free)
         db.session.add(user)
         db.session.commit()
         return redirect(url_for("auth.login"))
-    return render_template("auth/sign_up.html")
+    return render_template("auth/sign_up.html", errors=errors, form_data=form_data)
 
 
 def login():
