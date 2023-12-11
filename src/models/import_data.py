@@ -47,8 +47,7 @@ def import_meals(csv_filename='models/meals.csv'):  # change file name
 def import_users():
     if User.query.first() is None:
         hashed_password = bcrypt.generate_password_hash('123').decode('utf-8')
-        user = User(username='123',
-                    password=hashed_password,
+        user = User(password=hashed_password,
                     email='jj@jjj.jj',
                     name='aa',
                     surname='aa',
@@ -62,7 +61,7 @@ def import_users():
                     carbohydrates=30,
                     gluten_free=True,
                     vegan=True,
-                    vegeratian=False,
+                    vegetarian=False,
                     dairy_free=True)
         db.session.add(user)
         db.session.commit()
