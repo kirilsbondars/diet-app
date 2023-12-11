@@ -12,7 +12,6 @@ def profile():
 
 
 def sing_up():
-    print(request.form)
     errors = {}
     form_data = {}
     if request.method == "POST":
@@ -46,26 +45,23 @@ def sing_up():
             "dairy_free": dairy_free
         }
 
-        # Validate the data
         if password != confirm_password:
             errors['confirm_password'] = 'Passwords do not match'
 
-        existing_user = User.query.filter_by(surname=surname).first()
+        existing_user = User.query.filter_by(email=email).first()
         if existing_user:
             errors['email'] = 'Email already used by someone else'
-        # ... (add other validation checks as needed)
 
         if errors:
-            # If there are errors, return them to the template
             return render_template('auth/sign_up.html', errors=errors, form_data=form_data)
 
-        # If the data is valid, hash the password and save it to the database
         hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
         user = User(name=name, surname=surname, email=email, password=hashed_password, gender=gender,
                     age=age, weight=weight, height=height, gluten_free=gluten_free, vegan=vegan,
                     vegetarian=vegetarian, dairy_free=dairy_free)
         db.session.add(user)
         db.session.commit()
+
         return redirect(url_for("auth.login"))
     return render_template("auth/sign_up.html", errors=errors, form_data=form_data)
 
