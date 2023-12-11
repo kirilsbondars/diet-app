@@ -42,6 +42,8 @@ def login():
         if user and bcrypt.check_password_hash(user.password, request.form.get("password")):
             login_user(user)
             return redirect(url_for("index.render_page_index"))
+        else:
+            return render_template("auth/login_error.html")
     return render_template("auth/login.html")
 
 
