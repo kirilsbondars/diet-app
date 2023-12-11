@@ -51,7 +51,7 @@ def import_meal_user():
 
 def import_data():
     import_meals()
-    import_users()
-    import_meal_user()
+    # import_users()
+    # import_meal_user()
 
 
