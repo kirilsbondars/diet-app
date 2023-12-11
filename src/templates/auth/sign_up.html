@@ -61,7 +61,7 @@
             <div class="form-group mb-2">
                 <label for="weight">Weight:</label>
                 <div class="input-group">
-                    <input type="number" class="form-control" id="weight" name="weight" value="{{ form_data.weight }}" required>
+                    <input type="number" class="form-control" id="weight" name="weight" min="1" max="150" value="{{ form_data.weight }}" required>
                     <div class="input-group-append">
                         <span class="input-group-text">kg</span>
                     </div>
@@ -71,7 +71,7 @@
             <div class="form-group mb-2">
                 <label for="height">Height:</label>
                 <div class="input-group">
-                    <input type="number" class="form-control" id="height" name="height" value="{{ form_data.height }}" required>
+                    <input type="number" class="form-control" id="height" name="height" min="1" max="250" value="{{ form_data.height }}" required>
                     <div class="input-group-append">
                         <span class="input-group-text">cm</span>
                     </div>
