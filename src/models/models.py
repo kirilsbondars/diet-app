@@ -45,14 +45,13 @@ class Meal(db.Model):
     price = db.Column(db.Float, nullable=False)
 
     calories = db.Column(db.Integer, nullable=False)
-    # portion = db.Column(db.Integer, nullable=False)
     proteins = db.Column(db.Integer, nullable=False)
     fats = db.Column(db.Integer, nullable=False)
     carbohydrates = db.Column(db.Integer, nullable=False)
 
     gluten_free = db.Column(db.Boolean, nullable=False)
     vegan = db.Column(db.Boolean, nullable=False)
-    vegeratian = db.Column(db.Boolean, nullable=False)
+    vegetarian = db.Column(db.Boolean, nullable=False)
     dairy_free = db.Column(db.Boolean, nullable=False)
 
     for_breakfast = db.Column(db.Boolean, nullable=False)

@@ -6,15 +6,6 @@ from datetime import datetime
 
 bcrypt = Bcrypt()
 
-#
-# def import_meals():
-#     if Meal.query.first() is None:
-#         meal = Meal(id=1, name='Pasta', price=100, calories=100, portion=100,
-#                     proteins=100, fats=20, carbohydrates=30, gluten_free=True,
-#                     vegan=True, vegetarian=False, dairy_free=True,
-#                     for_breakfast=True, for_lunch=True, for_dinner=True)
-#         db.session.add(meal)
-#         db.session.commit()
 
 def import_meals(csv_filename='models/meals.csv'):  # change file name
     if Meal.query.first() is None:
@@ -47,7 +38,8 @@ def import_meals(csv_filename='models/meals.csv'):  # change file name
 def import_users():
     if User.query.first() is None:
         hashed_password = bcrypt.generate_password_hash('123').decode('utf-8')
-        user = User(password=hashed_password,
+        user = User(username='123',
+                    password=hashed_password,
                     email='jj@jjj.jj',
                     name='aa',
                     surname='aa',
