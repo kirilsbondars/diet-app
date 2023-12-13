@@ -7,7 +7,7 @@
 {% block body %}
     <h1>Hello</h1>
     {% if current_user.is_authenticated %}
-        You are login as {{ current_user.username }}<br>
+        You are login as {{ current_user.email }}<br>
         <a href="/logout">Logout</a>
     {% else %}
         You are not login

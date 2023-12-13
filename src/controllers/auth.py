@@ -7,25 +7,8 @@ from src.models.models import db, User
 bcrypt = Bcrypt()
 
 
-
 def profile():
-    # Pass the existing user data to the template
-    form_data = {
-        "name": current_user.name,
-        "surname": current_user.surname,
-        "gender": current_user.gender,
-        "age": current_user.age,
-        "weight": current_user.weight,
-        "height": current_user.height,
-        "gluten_free": current_user.gluten_free,
-        "vegan": current_user.vegan,
-        "vegetarian": current_user.vegetarian,
-        "dairy_free": current_user.dairy_free
-    }
-
     if request.method == "POST":
-        print("Form submitted")
-        # Retrieve form data
         name = request.form.get("name")
         surname = request.form.get("surname")
         gender = request.form.get("gender")
@@ -37,7 +20,6 @@ def profile():
         vegetarian = request.form.get("vegetarian") == 'on'
         dairy_free = request.form.get("dairy-free") == 'on'
 
-        # Update the user object with the new data
         current_user.name = name
         current_user.surname = surname
         current_user.gender = gender
@@ -49,12 +31,11 @@ def profile():
         current_user.vegetarian = vegetarian
         current_user.dairy_free = dairy_free
 
-        # Commit the changes to the database
         db.session.commit()
 
         return redirect(url_for("auth.profile"))
 
-    return render_template("auth/profile.html",form_data=form_data)
+    return render_template("auth/profile.html")
 
 
 def sing_up():
