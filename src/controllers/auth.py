@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, flash
 from flask_login import login_user, logout_user, current_user
 from flask_bcrypt import Bcrypt
 
@@ -32,6 +32,8 @@ def profile():
         current_user.dairy_free = dairy_free
 
         db.session.commit()
+
+        flash('Your data has been saved.', 'success')
 
         return redirect(url_for("auth.profile"))
 
