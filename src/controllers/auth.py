@@ -58,6 +58,7 @@ def profile():
 
 
 def sing_up():
+    errors = {}
     form_data = {}
     if request.method == "POST":
         name = request.form.get("name")
@@ -89,6 +90,16 @@ def sing_up():
             "vegetarian": vegetarian,
             "dairy_free": dairy_free
         }
+
+        if password != confirm_password:
+            errors['confirm_password'] = 'Passwords do not match'
+
+        existing_user = User.query.filter_by(email=email).first()
+        if existing_user:
+            errors['email'] = 'Email already used by someone else'
+
+        if errors:
+            return render_template('auth/sign_up.html', errors=errors, form_data=form_data)
 
         hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
         user = User(name=name, surname=surname, email=email, password=hashed_password, gender=gender,
