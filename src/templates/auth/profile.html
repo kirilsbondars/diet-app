@@ -5,71 +5,86 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container">
-        <h1 class="mt-5">Profile</h1>
-        <form>
-            <div class="form-group">
+    <div class="container w-50 p-3">
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <h1 class="mx-auto text-center p-2">Profile</h1>
+        <form method="POST">
+
+            <div class="form-group mb-2">
+                <label for="staticEmail">Email:</label>
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="{{ current_user.email }}">
+            </div>
+
+            <div class="form-group mb-2">
                 <label for="name">Name:</label>
-                <input type="text" class="form-control" id="name" name="name" required>
+                <input type="text" class="form-control" id="name" name="name" value="{{ current_user.name }}" required>
             </div>
 
-            <div class="form-group">
+            <div class="form-group mb-2">
                 <label for="surname">Surname:</label>
-                <input type="text" class="form-control" id="surname" name="surname" required>
+                <input type="text" class="form-control" id="surname" name="surname" value="{{ current_user.surname }}" required>
             </div>
 
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" class="form-control" id="email" name="email" required>
-            </div>
-
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" class="form-control" id="password" name="password" required>
-            </div>
-
-            <div class="form-group">
-                <label for="confirm-password">Confirm Password:</label>
-                <input type="password" class="form-control" id="confirm-password" name="confirm-password" required>
-            </div>
-
-            <div class="form-group">
+            <div class="form-group mb-2">
                 <label for="gender">Gender:</label>
                 <select class="form-control" id="gender" name="gender">
-                    <option value="woman">Woman</option>
-                    <option value="man">Man</option>
-                    <option value="other">Other</option>
+                    <option value="Female" {% if current_user.gender == 'Female' %} selected {% endif %}>Female</option>
+                    <option value="Male" {% if current_user.gender == 'Male' %} selected {% endif %}>Male</option>
                 </select>
             </div>
 
-            <div class="form-group">
-                <label for="age">Age:</label>
-                <input type="number" class="form-control" id="age" name="age" required>
+            <div class="form-group mb-2">
+                <label for="age">Birth year:</label>
+                <input type="number" class="form-control" id="age" name="age" min="1900" max="2023" value="{{ current_user.age }}" required>
             </div>
 
-            <div class="form-group">
+            <div class="form-group mb-2">
                 <label for="weight">Weight:</label>
-                <input type="number" class="form-control" id="weight" name="weight" required>
+                <div class="input-group">
+                    <input type="number" class="form-control" id="weight" name="weight" min="1" max="500" value="{{ current_user.weight }}" required>
+                    <div class="input-group-append">
+                        <span class="input-group-text">kg</span>
+                    </div>
+                </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group mb-2">
                 <label for="height">Height:</label>
-                <input type="number" class="form-control" id="height" name="height" required>
+                <div class="input-group">
+                    <input type="number" class="form-control" id="height" name="height" min="1" max="250" value="{{ current_user.height }}" required>
+                    <div class="input-group-append">
+                        <span class="input-group-text">cm</span>
+                    </div>
+                </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group mb-4">
                 <label for="food-preferences">Food Preferences:</label><br>
-                <input type="checkbox" id="gluten-free" name="gluten-free">
+                <input type="checkbox" id="gluten-free" name="gluten-free" {% if current_user.gluten_free %} checked {% endif %}>
                 <label for="gluten-free">Gluten-free</label><br>
-                <input type="checkbox" id="vegan" name="vegan">
+                <input type="checkbox" id="vegan" name="vegan" {% if current_user.vegan %} checked {% endif %}>
                 <label for="vegan">Vegan</label><br>
-                <input type="checkbox" id="vegetarian" name="vegetarian">
+                <input type="checkbox" id="vegetarian" name="vegetarian" {% if current_user.vegetarian %} checked {% endif %}>
                 <label for="vegetarian">Vegetarian</label><br>
-                <input type="checkbox" id="dairy-free" name="dairy-free">
+                <input type="checkbox" id="dairy-free" name="dairy-free" {% if current_user.dairy_free %} checked {% endif %}>
                 <label for="dairy-free">Dairy-free</label><br>
             </div>
 
-            <button type="submit" class="btn btn-primary">Update</button>
+            <div class="d-grid gap-2 col-2 mx-auto">
+              <button type="submit" class="btn btn-primary">Update profile</button>
+              <button type="reset" class="btn btn-secondary">Cancel</button>
+            </div>
         </form>
     </div>
 {% endblock %}
