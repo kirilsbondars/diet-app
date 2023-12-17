@@ -20,8 +20,6 @@ def profile():
         vegetarian = request.form.get("vegetarian") == 'on'
         dairy_free = request.form.get("dairy-free") == 'on'
 
-        calories, fats, proteins, carbohydrates = calculate_calories(weight, height, age, gender)
-
         current_user.name = name
         current_user.surname = surname
         current_user.gender = gender
@@ -32,6 +30,8 @@ def profile():
         current_user.vegan = vegan
         current_user.vegetarian = vegetarian
         current_user.dairy_free = dairy_free
+
+        calories, fats, proteins, carbohydrates = calculate_nutrients(weight, height, age, gender)
         current_user.calories = calories
         current_user.fats = fats
         current_user.proteins = proteins
@@ -64,8 +64,6 @@ def sing_up():
         vegetarian = request.form.get("vegetarian") == 'on'
         dairy_free = request.form.get("dairy-free") == 'on'
 
-        calories, fats, proteins, carbohydrates = calculate_calories(weight, height, age, gender)
-
         form_data = {
             "name": name,
             "surname": surname,
@@ -93,6 +91,7 @@ def sing_up():
             return render_template('auth/sign_up.html', errors=errors, form_data=form_data)
 
         hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
+        calories, fats, proteins, carbohydrates = calculate_nutrients(weight, height, age, gender)
         user = User(name=name, surname=surname, email=email, password=hashed_password, gender=gender,
                     age=age, weight=weight, height=height, gluten_free=gluten_free, vegan=vegan,
                     vegetarian=vegetarian, dairy_free=dairy_free, calories=calories, fats=fats, proteins=proteins, carbohydrates=carbohydrates)
@@ -117,7 +116,7 @@ def logout():
     return redirect(url_for("index.render_page_index"))
 
 
-def calculate_calories(weight, height, age, gender):
+def calculate_nutrients(weight, height, age, gender):
     if gender == "male":
         calories = (88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age)) * 1.375
     else:
