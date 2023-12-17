@@ -1,9 +1,122 @@
-{%  extends 'base.html' %}
+{% extends 'base.html' %}
 
 {% block head %}
     <title>History</title>
+    <style>
+        .meal-entry {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .meal-image {
+            max-width: 200px;
+            height: auto;
+        }
+        .meal-info {
+            margin-left: 220px;
+        }
+        .total {
+            font-weight: bold;
+            padding-left: 20px;
+        }
+        h1 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .history-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .navigation {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        .date-form {
+            margin-top: 10px; /* or any value that suits your design */
+            text-align: center;
+        }
+        .navigation {
+            display: flex;
+            justify-content: center;
+            gap: 15px; /* This adds space between your buttons */
+            margin-top: 10px; /* Adjust spacing as necessary */
+        }
+        .nav-button {
+            text-decoration: none;
+            font-size: 24px; /* Adjust the size as necessary */
+            color: #000; /* Adjust arrow color as necessary */
+            padding: 5px 10px; /* Adjust padding as necessary for touch targets */
+            border: 1px solid #ddd; /* Optional: adds a border */
+            border-radius: 5px; /* Optional: rounds the corners of the border */
+        }
+    </style>
 {% endblock %}
 
 {% block body %}
-    <h1>History</h1>
+<div class="history-header">
+    <h1>History for {{ date }}</h1>
+    <form class="date-form" id="dateForm" action="{{ url_for('menu.history') }}" method="get">
+        <input type="text" id="dateInput" name="date_str" placeholder={{today}}>
+        <button type="submit">Go to Date</button>
+    </form>
+    <div class="navigation">
+        <a class="nav-button" href="{{ url_for('menu.history', date_str=prev_date) }}">&#8592;</a>
+        {% if next_date <= today %}
+            <a class="nav-button" href="{{ url_for('menu.history', date_str=next_date) }}">&#8594;</a>
+        {% endif %}
+    </div>
+
+</div>
+         <div class="totals">
+        <p class="total">Total Calories: {{ '%.2f' | format(total_calories) }} kcal</p>
+        <p class="total">Total Proteins: {{ '%.2f' | format(total_proteins) }} g</p>
+        <p class="total">Total Fats: {{ '%.2f' | format(total_fats) }} g</p>
+        <p class="total">Total Carbohydrates: {{ '%.2f' | format(total_carbohydrates) }} g</p>
+        <p class="total">Total Price: ${{ '%.2f' | format(total_price) }}</p>
+    </div>
+<!--    <form id="dateForm" action="{{ url_for('menu.history') }}" method="get">-->
+<!--&lt;!&ndash;        <input type="date" id="dateInput" name="date_str">&ndash;&gt;-->
+<!--        <input type="text" id="dateInput" name="date_str" placeholder={{today}}>-->
+<!--        <button type="submit">Go to Date</button>-->
+<!--    </form>-->
+
+<!--<script>-->
+<!--    document.getElementById('dateForm').addEventListener('submit', function(e) {-->
+<!--        e.preventDefault();-->
+
+<!--        var dateInput = document.getElementById('dateInput');-->
+<!--        var dateValue = dateInput.value;-->
+
+<!--        var parts = dateValue.split('-');-->
+<!--        var formattedDate = parts[2] + '.' + parts[1] + '.' + parts[0];-->
+
+<!--        var hiddenInput = document.createElement('input');-->
+<!--        hiddenInput.type = 'hidden';-->
+<!--        hiddenInput.name = 'date_str';-->
+<!--        hiddenInput.value = formattedDate;-->
+
+<!--        this.appendChild(hiddenInput);-->
+<!--        this.submit();-->
+<!--    });-->
+<!--</script>-->
+
+    {% for meal in meals %}
+    <div class="meal-entry">
+        <img class="meal-image" src="{{ meal.image_src }}" alt="Meal Image" />
+        <div class="meal-info">
+            <h2>{{ meal.name }}</h2>
+            <p>Price: ${{ '%.2f' | format(meal.price) }}</p>
+            <p>Calories: {{ '%.2f' | format(meal.calories) }} kcal</p>
+            <p>Proteins: {{ '%.2f' | format(meal.proteins) }} g</p>
+            <p>Fats: {{ '%.2f' | format(meal.fats) }} g</p>
+            <p>Carbohydrates: {{ '%.2f' | format(meal.carbohydrates) }} g</p>
+        </div>
+    </div>
+    {% else %}
+    <p>No meals found for this date.</p>
+    {% endfor %}
 {% endblock %}
