@@ -5,12 +5,22 @@
 {% endblock %}
 
 {% block body %}
-    <h1>Login to your account</h1>
-    <form action="#" method="post">
-        <label for="email">Email:</label>
-        <input type="text" name="email"/>
-        <label for="password">Password:</label>
-        <input type="password" name="password"/>
-        <button type="submit">Submit</button>
-    </form>
+    <div class="container w-50 p-3">
+        <h1 class="mx-auto text-center p-2">Log in</h1>
+
+        <form action="#" method="post">
+          <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" name="password" class="form-control" id="password">
+          </div>
+            <div class="form-text" id="basic-addon4">
+                {{error}}
+            </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
 {% endblock %}
