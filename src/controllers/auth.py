@@ -107,3 +107,20 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for("index.render_page_index"))
+
+
+def calculate_calories(weight, height, age, gender):
+    if gender == "male":
+        calories = (88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age)) * 1.375
+    else:
+        calories = (447.593 + (9.247 * weight) + (3.098 * height) - (4.33 * age)) * 1.375
+
+    fat_percentage = 30
+    protein_percentage = 20
+    carb_percentage = 50
+
+    fats = (fat_percentage / 100) * calories / 9
+    proteins = (protein_percentage / 100) * calories / 4
+    carbs = (carb_percentage / 100) * calories / 4
+
+    return calories, fats, proteins, carbs
