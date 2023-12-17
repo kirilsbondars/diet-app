@@ -20,6 +20,8 @@ def profile():
         vegetarian = request.form.get("vegetarian") == 'on'
         dairy_free = request.form.get("dairy-free") == 'on'
 
+        calories, fats, proteins, carbohydrates = calculate_calories(weight, height, age, gender)
+
         current_user.name = name
         current_user.surname = surname
         current_user.gender = gender
@@ -30,6 +32,10 @@ def profile():
         current_user.vegan = vegan
         current_user.vegetarian = vegetarian
         current_user.dairy_free = dairy_free
+        current_user.calories = calories
+        current_user.fats = fats
+        current_user.proteins = proteins
+        current_user.carbohydrates = carbohydrates
 
         db.session.commit()
 
@@ -57,6 +63,8 @@ def sing_up():
         vegan = request.form.get("vegan") == 'on'
         vegetarian = request.form.get("vegetarian") == 'on'
         dairy_free = request.form.get("dairy-free") == 'on'
+
+        calories, fats, proteins, carbohydrates = calculate_calories(weight, height, age, gender)
 
         form_data = {
             "name": name,
@@ -87,7 +95,7 @@ def sing_up():
         hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
         user = User(name=name, surname=surname, email=email, password=hashed_password, gender=gender,
                     age=age, weight=weight, height=height, gluten_free=gluten_free, vegan=vegan,
-                    vegetarian=vegetarian, dairy_free=dairy_free)
+                    vegetarian=vegetarian, dairy_free=dairy_free, calories=calories, fats=fats, proteins=proteins, carbohydrates=carbohydrates)
         db.session.add(user)
         db.session.commit()
 
@@ -121,6 +129,6 @@ def calculate_calories(weight, height, age, gender):
 
     fats = (fat_percentage / 100) * calories / 9
     proteins = (protein_percentage / 100) * calories / 4
-    carbs = (carb_percentage / 100) * calories / 4
+    carbohydrates = (carb_percentage / 100) * calories / 4
 
-    return calories, fats, proteins, carbs
+    return calories, fats, proteins, carbohydrates
