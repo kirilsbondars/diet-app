@@ -125,7 +125,7 @@ def calculate_nutrients(weight, height, date_of_birth, gender):
     today = datetime.today()
     age = today.year - date_of_birth.year - ((today.month, today.day) < (date_of_birth.month, date_of_birth.day))
 
-    if gender == "male":
+    if gender == "Male":
         calories = (88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age)) * 1.375
     else:
         calories = (447.593 + (9.247 * weight) + (3.098 * height) - (4.33 * age)) * 1.375
