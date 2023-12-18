@@ -104,16 +104,25 @@ def sing_up():
 
 
 def login():
+    form_data = {}
     error = ''
 
     if request.method == "POST":
-        user = User.query.filter_by(email=request.form.get("email")).first()
-        if user and bcrypt.check_password_hash(user.password, request.form.get("password")):
+        email = request.form.get("email")
+        password = request.form.get("password")
+
+        form_data = {
+            "email": email,
+            "password": password
+        }
+
+        user = User.query.filter_by(email=email).first()
+        if user and bcrypt.check_password_hash(user.password, password):
             login_user(user)
             return redirect(url_for("index.render_page_index"))
         else:
             error = 'Invalid username or password'
-    return render_template("auth/login.html", error=error)
+    return render_template("auth/login.html", form_data=form_data, error=error)
 
 
 def logout():
