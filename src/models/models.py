@@ -8,6 +8,7 @@ meals = db.Table('user_meal',
                  db.Column('meal_id', db.Integer, db.ForeignKey('meal.id'), primary_key=True),
                  db.Column('date', db.Date, primary_key=True),
                  db.Column('mealtime', db.Enum('Breakfast', 'Lunch', 'Dinner'), primary_key=True),
+                 db.Column('portion', db.Float, nullable=False),
                  )
 
 
@@ -19,15 +20,15 @@ class User(UserMixin, db.Model):
     name = db.Column(db.String(250), nullable=False)
     surname = db.Column(db.String(250), nullable=False)
 
-    age = db.Column(db.Integer, nullable=False)
+    date_of_birth = db.Column(db.Date, nullable=False)
     weight = db.Column(db.Float, nullable=False)
     height = db.Column(db.Float, nullable=False)
     gender = db.Column(db.Enum('Male', 'Female'), nullable=False)
 
-    calories = db.Column(db.Integer, nullable=True)
-    proteins = db.Column(db.Integer, nullable=True)
-    fats = db.Column(db.Integer, nullable=True)
-    carbohydrates = db.Column(db.Integer, nullable=True)
+    calories = db.Column(db.Float, nullable=True)
+    proteins = db.Column(db.Float, nullable=True)
+    fats = db.Column(db.Float, nullable=True)
+    carbohydrates = db.Column(db.Float, nullable=True)
 
     gluten_free = db.Column(db.Boolean, nullable=False)
     vegan = db.Column(db.Boolean, nullable=False)
@@ -44,10 +45,10 @@ class Meal(db.Model):
     image_src = db.Column(db.String(250), nullable=True)
     price = db.Column(db.Float, nullable=False)
 
-    calories = db.Column(db.Integer, nullable=False)
-    proteins = db.Column(db.Integer, nullable=False)
-    fats = db.Column(db.Integer, nullable=False)
-    carbohydrates = db.Column(db.Integer, nullable=False)
+    calories = db.Column(db.Float, nullable=False)
+    proteins = db.Column(db.Float, nullable=False)
+    fats = db.Column(db.Float, nullable=False)
+    carbohydrates = db.Column(db.Float, nullable=False)
 
     gluten_free = db.Column(db.Boolean, nullable=False)
     vegan = db.Column(db.Boolean, nullable=False)
