@@ -8,7 +8,7 @@ meals = db.Table('user_meal',
                  db.Column('meal_id', db.Integer, db.ForeignKey('meal.id'), primary_key=True),
                  db.Column('date', db.Date, primary_key=True),
                  db.Column('mealtime', db.Enum('Breakfast', 'Lunch', 'Dinner'), primary_key=True),
-                 db.Column('portion', db.Float(2), nullable=False),
+                 db.Column('portion', db.Float, nullable=False),
                  )
 
 
@@ -21,14 +21,14 @@ class User(UserMixin, db.Model):
     surname = db.Column(db.String(250), nullable=False)
 
     date_of_birth = db.Column(db.Date, nullable=False)
-    weight = db.Column(db.Float(2), nullable=False)
-    height = db.Column(db.Float(2), nullable=False)
+    weight = db.Column(db.Float, nullable=False)
+    height = db.Column(db.Float, nullable=False)
     gender = db.Column(db.Enum('Male', 'Female'), nullable=False)
 
-    calories = db.Column(db.Float(2), nullable=True)
-    proteins = db.Column(db.Float(2), nullable=True)
-    fats = db.Column(db.Float(2), nullable=True)
-    carbohydrates = db.Column(db.Float(2), nullable=True)
+    calories = db.Column(db.Float, nullable=True)
+    proteins = db.Column(db.Float, nullable=True)
+    fats = db.Column(db.Float, nullable=True)
+    carbohydrates = db.Column(db.Float, nullable=True)
 
     gluten_free = db.Column(db.Boolean, nullable=False)
     vegan = db.Column(db.Boolean, nullable=False)
@@ -43,12 +43,12 @@ class Meal(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(250), nullable=False)
     image_src = db.Column(db.String(250), nullable=True)
-    price = db.Column(db.Float(2), nullable=False)
+    price = db.Column(db.Float, nullable=False)
 
-    calories = db.Column(db.Float(2), nullable=False)
-    proteins = db.Column(db.Float(2), nullable=False)
-    fats = db.Column(db.Float(2), nullable=False)
-    carbohydrates = db.Column(db.Float(2), nullable=False)
+    calories = db.Column(db.Float, nullable=False)
+    proteins = db.Column(db.Float, nullable=False)
+    fats = db.Column(db.Float, nullable=False)
+    carbohydrates = db.Column(db.Float, nullable=False)
 
     gluten_free = db.Column(db.Boolean, nullable=False)
     vegan = db.Column(db.Boolean, nullable=False)
