@@ -8,6 +8,7 @@ meals = db.Table('user_meal',
                  db.Column('meal_id', db.Integer, db.ForeignKey('meal.id'), primary_key=True),
                  db.Column('date', db.Date, primary_key=True),
                  db.Column('mealtime', db.Enum('Breakfast', 'Lunch', 'Dinner'), primary_key=True),
+                 db.Column('portion', db.Float(2), nullable=False),
                  )
 
 
