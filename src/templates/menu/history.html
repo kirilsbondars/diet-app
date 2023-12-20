@@ -1,122 +1,62 @@
 {% extends 'base.html' %}
 
-{% block head %}
-    <title>History</title>
-    <style>
-        .meal-entry {
-            border: 1px solid #ddd;
-            padding: 10px;
-            margin-bottom: 10px;
-        }
-        .meal-image {
-            max-width: 200px;
-            height: auto;
-        }
-        .meal-info {
-            margin-left: 220px;
-        }
-        .total {
-            font-weight: bold;
-            padding-left: 20px;
-        }
-        h1 {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
-        .history-header {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .navigation {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 20px;
-        }
-        .date-form {
-            margin-top: 10px; /* or any value that suits your design */
-            text-align: center;
-        }
-        .navigation {
-            display: flex;
-            justify-content: center;
-            gap: 15px; /* This adds space between your buttons */
-            margin-top: 10px; /* Adjust spacing as necessary */
-        }
-        .nav-button {
-            text-decoration: none;
-            font-size: 24px; /* Adjust the size as necessary */
-            color: #000; /* Adjust arrow color as necessary */
-            padding: 5px 10px; /* Adjust padding as necessary for touch targets */
-            border: 1px solid #ddd; /* Optional: adds a border */
-            border-radius: 5px; /* Optional: rounds the corners of the border */
-        }
-    </style>
-{% endblock %}
-
 {% block body %}
-<div class="history-header">
-    <h1>History for {{ date }}</h1>
-    <form class="date-form" id="dateForm" action="{{ url_for('menu.history') }}" method="get">
-        <input type="text" id="dateInput" name="date_str" placeholder={{today}}>
-        <button type="submit">Go to Date</button>
-    </form>
-    <div class="navigation">
-        <a class="nav-button" href="{{ url_for('menu.history', date_str=prev_date) }}">&#8592;</a>
-        {% if next_date <= today %}
-            <a class="nav-button" href="{{ url_for('menu.history', date_str=next_date) }}">&#8594;</a>
-        {% endif %}
-    </div>
+    <div class="container">
+        <div class="row justify-content-center mb-4">
+            <div class="col-lg-8 col-md-12">
+                <h1 class="mt-4 mb-4 text-center">History for {{ date }}</h1>
 
-</div>
-         <div class="totals">
-        <p class="total">Total Calories: {{ '%.2f' | format(total_calories) }} kcal</p>
-        <p class="total">Total Proteins: {{ '%.2f' | format(total_proteins) }} g</p>
-        <p class="total">Total Fats: {{ '%.2f' | format(total_fats) }} g</p>
-        <p class="total">Total Carbohydrates: {{ '%.2f' | format(total_carbohydrates) }} g</p>
-        <p class="total">Total Price: ${{ '%.2f' | format(total_price) }}</p>
-    </div>
-<!--    <form id="dateForm" action="{{ url_for('menu.history') }}" method="get">-->
-<!--&lt;!&ndash;        <input type="date" id="dateInput" name="date_str">&ndash;&gt;-->
-<!--        <input type="text" id="dateInput" name="date_str" placeholder={{today}}>-->
-<!--        <button type="submit">Go to Date</button>-->
-<!--    </form>-->
-
-<!--<script>-->
-<!--    document.getElementById('dateForm').addEventListener('submit', function(e) {-->
-<!--        e.preventDefault();-->
-
-<!--        var dateInput = document.getElementById('dateInput');-->
-<!--        var dateValue = dateInput.value;-->
-
-<!--        var parts = dateValue.split('-');-->
-<!--        var formattedDate = parts[2] + '.' + parts[1] + '.' + parts[0];-->
-
-<!--        var hiddenInput = document.createElement('input');-->
-<!--        hiddenInput.type = 'hidden';-->
-<!--        hiddenInput.name = 'date_str';-->
-<!--        hiddenInput.value = formattedDate;-->
-
-<!--        this.appendChild(hiddenInput);-->
-<!--        this.submit();-->
-<!--    });-->
-<!--</script>-->
-
-    {% for meal in meals %}
-    <div class="meal-entry">
-        <img class="meal-image" src="{{ meal.image_src }}" alt="Meal Image" />
-        <div class="meal-info">
-            <h2>{{ meal.name }}</h2>
-            <p>Price: ${{ '%.2f' | format(meal.price) }}</p>
-            <p>Calories: {{ '%.2f' | format(meal.calories) }} kcal</p>
-            <p>Proteins: {{ '%.2f' | format(meal.proteins) }} g</p>
-            <p>Fats: {{ '%.2f' | format(meal.fats) }} g</p>
-            <p>Carbohydrates: {{ '%.2f' | format(meal.carbohydrates) }} g</p>
+                <form method="get">
+                    <div class="input-group">
+                        <a class="btn btn-primary" href="{{ url_for('menu.history', date=prev_date) }}">&#8592; Previous Day</a>
+                        <span class="input-group-text">Date:</span>
+                        <input type="date" aria-label="Date" class="form-control" id="date" name="date" value="{{ date }}" required>
+                        <button class="btn btn-secondary" type="submit">Go to Date</button>
+                        {% if next_date <= today %}
+                            <a class="btn btn-primary ml-3" href="{{ url_for('menu.history', date=next_date) }}" disabled>Next Day &#8594;</a>
+                        {% else %}
+                            <a class="btn btn-primary ml-3 disabled" href="#">Next Day &#8594;</a>
+                        {% endif %}
+                    </div>
+                </form>
+            </div>
         </div>
+
+        <div class="row mb-4">
+            <div class="col">
+                <h4>Total Nutrients</h4>
+                <p>Total Price: {{ total_price }} €</p>
+                <p>Total Calories: {{ total_calories }} kcal</p>
+                <p>Total Proteins: {{ total_proteins }} g</p>
+                <p>Total Fats: {{ total_fats }} g</p>
+                <p>Total Carbohydrates: {{ total_carbohydrates }} g</p>
+            </div>
+        </div>
+
+        {% for meal in meals %}
+        <div class="row mb-4">
+            <div class="col">
+                <div class="card">
+                    <div class="row g-0">
+                        <div class="col-lg-3 col-md-4">
+                            <img src="https://www.recipetineats.com/wp-content/uploads/2017/05/Lasagne-recipe-3-main-square.jpg" class="card-img-top" alt="Meal image">
+                        </div>
+                        <div class="col-auto">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ meal.name }}</h5>
+                                <p class="card-text">
+                                    Price: {{ meal.price }} € <br>
+                                    Calories: {{ meal.calories }} kcal <br>
+                                    Proteins: {{ meal.proteins }} g <br>
+                                    Fats: {{ meal.fats }} g <br>
+                                    Carbohydrates: {{ meal.carbohydrates }} g
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
     </div>
-    {% else %}
-    <p>No meals found for this date.</p>
-    {% endfor %}
 {% endblock %}
