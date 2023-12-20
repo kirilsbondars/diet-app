@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 
+{% block head %}
+    <title>History for {{ date }}</title>
+{% endblock %}
+
 {% block body %}
     <div class="container">
         <div class="row justify-content-center mb-4">
@@ -9,7 +13,6 @@
                 <form method="get">
                     <div class="input-group">
                         <a class="btn btn-primary" href="{{ url_for('menu.history', date=prev_date) }}">&#8592; Previous Day</a>
-                        <span class="input-group-text">Date:</span>
                         <input type="date" aria-label="Date" class="form-control" id="date" name="date" value="{{ date }}" required>
                         <button class="btn btn-secondary" type="submit">Go to Date</button>
                         {% if next_date <= today %}
@@ -45,10 +48,11 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{ meal.name }}</h5>
                                 <p class="card-text">
-                                    Price: {{ meal.price }} € <br>
-                                    Calories: {{ meal.calories }} kcal <br>
-                                    Proteins: {{ meal.proteins }} g <br>
-                                    Fats: {{ meal.fats }} g <br>
+                                    Portion: {{ meal.portion }} g<br>
+                                    Price: {{ meal.price }} €<br>
+                                    Calories: {{ meal.calories }} kcal<br>
+                                    Proteins: {{ meal.proteins }} g<br>
+                                    Fats: {{ meal.fats }} g<br>
                                     Carbohydrates: {{ meal.carbohydrates }} g
                                 </p>
                             </div>

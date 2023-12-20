@@ -3,13 +3,13 @@ from flask_login import UserMixin
 
 db = SQLAlchemy()
 
-meals = db.Table('user_meal',
-                 db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
-                 db.Column('meal_id', db.Integer, db.ForeignKey('meal.id'), primary_key=True),
-                 db.Column('date', db.Date, primary_key=True),
-                 db.Column('mealtime', db.Enum('Breakfast', 'Lunch', 'Dinner'), primary_key=True),
-                 db.Column('portion', db.Float, nullable=False),
-                 )
+user_meal = db.Table('user_meal',
+                     db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
+                     db.Column('meal_id', db.Integer, db.ForeignKey('meal.id'), primary_key=True),
+                     db.Column('date', db.Date, primary_key=True),
+                     db.Column('mealtime', db.Enum('Breakfast', 'Lunch', 'Dinner'), primary_key=True),
+                     db.Column('portion', db.Float, nullable=False),
+                     )
 
 
 class User(UserMixin, db.Model):
@@ -35,8 +35,8 @@ class User(UserMixin, db.Model):
     vegetarian = db.Column(db.Boolean, nullable=False)
     dairy_free = db.Column(db.Boolean, nullable=False)
 
-    meals = db.relationship('Meal', secondary=meals, lazy='subquery',
-                            backref=db.backref('pages', lazy=True))
+    meals = db.relationship('Meal', secondary=user_meal, lazy='subquery',
+                            backref=db.backref('users', lazy=True))
 
 
 class Meal(db.Model):
