@@ -1,6 +1,6 @@
-from flask import render_template, session, Flask, redirect, url_for, Blueprint, request
+from flask import render_template, redirect, url_for, request
 from flask_login import current_user
-from src.models.models import db, User, Meal, user_meal
+from src.models.models import db, Meal, user_meal
 from datetime import datetime, timedelta
 
 
@@ -32,7 +32,6 @@ def history():
                 'carbohydrates': round(meal.carbohydrates * (portion_size / 100), 2),
                 'price': round(meal.price * (portion_size / 100), 2)
             }
-            print(meal.price)
             meals_data.append(meal_data)
 
     total_calories = sum(meal['calories'] for meal in meals_data)
