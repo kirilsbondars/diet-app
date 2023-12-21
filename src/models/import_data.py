@@ -1,5 +1,7 @@
-from src.models.models import db, Meal
+from src.models.models import db, Meal, User, user_meal
 from flask_bcrypt import Bcrypt
+from datetime import datetime
+from sqlalchemy import insert, select
 import csv
 
 bcrypt = Bcrypt()
@@ -33,8 +35,47 @@ def import_meals(csv_filename='models/meals.csv'):  # change file name
         db.session.commit()
 
 
+def import_test_user():
+    if User.query.first() is None:
+        print("Importing test user...")
+        test_user = User(
+            email="test@test.test",
+            password=bcrypt.generate_password_hash("123").decode('utf-8'),
+            name="Test",
+            surname="Test",
+            date_of_birth=datetime(1990, 1, 1),
+            weight=70.0,
+            height=170.0,
+            gender="Male",
+            gluten_free=False,
+            vegan=False,
+            vegetarian=False,
+            dairy_free=False,
+            calories=2000,
+            proteins=100,
+            fats=100,
+            carbohydrates=100
+        )
+        db.session.add(test_user)
+        db.session.commit()
+
+
+def import_test_user_meal():
+    if db.session.execute(select(user_meal)).first() is None:
+        print("Importing test user meal...")
+        user = User.query.first()
+        meal = Meal.query.first()
+        user_meal_record = insert(user_meal).values(user_id=user.id, meal_id=meal.id, date=datetime.now(),
+                                                    mealtime='Breakfast', portion=200)
+
+        db.session.execute(user_meal_record)
+        db.session.commit()
+
+
 def import_data():
     import_meals()
+    import_test_user()
+    import_test_user_meal()
 
 
 

@@ -3,13 +3,13 @@ from flask_login import UserMixin
 
 db = SQLAlchemy()
 
-meals = db.Table('user_meal',
-                 db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
-                 db.Column('meal_id', db.Integer, db.ForeignKey('meal.id'), primary_key=True),
-                 db.Column('date', db.Date, primary_key=True),
-                 db.Column('mealtime', db.Enum('Breakfast', 'Lunch', 'Dinner'), primary_key=True),
-                 db.Column('portion', db.Float, nullable=False),
-                 )
+user_meal = db.Table('user_meal',
+                     db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
+                     db.Column('meal_id', db.Integer, db.ForeignKey('meal.id'), primary_key=True),
+                     db.Column('date', db.Date, primary_key=True),
+                     db.Column('mealtime', db.Enum('Breakfast', 'Lunch', 'Dinner'), primary_key=True),
+                     db.Column('portion', db.Numeric(10, 2), nullable=False),
+                     )
 
 
 class User(UserMixin, db.Model):
@@ -21,34 +21,34 @@ class User(UserMixin, db.Model):
     surname = db.Column(db.String(250), nullable=False)
 
     date_of_birth = db.Column(db.Date, nullable=False)
-    weight = db.Column(db.Float, nullable=False)
-    height = db.Column(db.Float, nullable=False)
+    weight = db.Column(db.Numeric(10, 2), nullable=False)
+    height = db.Column(db.Numeric(10, 2), nullable=False)
     gender = db.Column(db.Enum('Male', 'Female'), nullable=False)
 
-    calories = db.Column(db.Float, nullable=True)
-    proteins = db.Column(db.Float, nullable=True)
-    fats = db.Column(db.Float, nullable=True)
-    carbohydrates = db.Column(db.Float, nullable=True)
+    calories = db.Column(db.Numeric(10, 2), nullable=True)
+    proteins = db.Column(db.Numeric(10, 2), nullable=True)
+    fats = db.Column(db.Numeric(10, 2), nullable=True)
+    carbohydrates = db.Column(db.Numeric(10, 2), nullable=True)
 
     gluten_free = db.Column(db.Boolean, nullable=False)
     vegan = db.Column(db.Boolean, nullable=False)
     vegetarian = db.Column(db.Boolean, nullable=False)
     dairy_free = db.Column(db.Boolean, nullable=False)
 
-    meals = db.relationship('Meal', secondary=meals, lazy='subquery',
-                            backref=db.backref('pages', lazy=True))
+    meals = db.relationship('Meal', secondary=user_meal, lazy='subquery',
+                            backref=db.backref('users', lazy=True))
 
 
 class Meal(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(250), nullable=False)
     image_src = db.Column(db.String(250), nullable=True)
-    price = db.Column(db.Float, nullable=False)
+    price = db.Column(db.Numeric(10, 2), nullable=False)
 
-    calories = db.Column(db.Float, nullable=False)
-    proteins = db.Column(db.Float, nullable=False)
-    fats = db.Column(db.Float, nullable=False)
-    carbohydrates = db.Column(db.Float, nullable=False)
+    calories = db.Column(db.Numeric(10, 2), nullable=False)
+    proteins = db.Column(db.Numeric(10, 2), nullable=False)
+    fats = db.Column(db.Numeric(10, 2), nullable=False)
+    carbohydrates = db.Column(db.Numeric(10, 2), nullable=False)
 
     gluten_free = db.Column(db.Boolean, nullable=False)
     vegan = db.Column(db.Boolean, nullable=False)

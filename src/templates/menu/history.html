@@ -1,9 +1,66 @@
-{%  extends 'base.html' %}
+{% extends 'base.html' %}
 
 {% block head %}
-    <title>History</title>
+    <title>History for {{ date }}</title>
 {% endblock %}
 
 {% block body %}
-    <h1>History</h1>
+    <div class="container">
+        <div class="row justify-content-center mb-4">
+            <div class="col-lg-8 col-md-12">
+                <h1 class="mt-4 mb-4 text-center">History for {{ date }}</h1>
+
+                <form method="get">
+                    <div class="input-group">
+                        <a class="btn btn-primary" href="{{ url_for('menu.history', date=prev_date) }}">&#8592; Previous Day</a>
+                        <input type="date" aria-label="Date" class="form-control" id="date" name="date" value="{{ date }}" required>
+                        <button class="btn btn-secondary" type="submit">Go to Date</button>
+                        {% if next_date <= today %}
+                            <a class="btn btn-primary ml-3" href="{{ url_for('menu.history', date=next_date) }}" disabled>Next Day &#8594;</a>
+                        {% else %}
+                            <a class="btn btn-primary ml-3 disabled" href="#">Next Day &#8594;</a>
+                        {% endif %}
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col">
+                <h4>Total Nutrients</h4>
+                <p>Total Price: {{ total_price }} €</p>
+                <p>Total Calories: {{ total_calories }} kcal</p>
+                <p>Total Proteins: {{ total_proteins }} g</p>
+                <p>Total Fats: {{ total_fats }} g</p>
+                <p>Total Carbohydrates: {{ total_carbohydrates }} g</p>
+            </div>
+        </div>
+
+        {% for meal in meals %}
+        <div class="row mb-4">
+            <div class="col">
+                <div class="card">
+                    <div class="row g-0">
+                        <div class="col-lg-2 col-md-4">
+                            <img src="https://www.recipetineats.com/wp-content/uploads/2017/05/Lasagne-recipe-3-main-square.jpg" class="card-img-top" alt="Meal image">
+                        </div>
+                        <div class="col-auto">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ meal.name }}</h5>
+                                <p class="card-text">
+                                    Portion: {{ meal.portion }} g<br>
+                                    Price: {{ meal.price }} €<br>
+                                    Calories: {{ meal.calories }} kcal<br>
+                                    Proteins: {{ meal.proteins }} g<br>
+                                    Fats: {{ meal.fats }} g<br>
+                                    Carbohydrates: {{ meal.carbohydrates }} g
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 {% endblock %}

@@ -127,7 +127,7 @@ def login():
 
 def logout():
     logout_user()
-    return redirect(url_for("index.render_page_index"))
+    return redirect(url_for("auth.login"))
 
 
 def calculate_nutrients(weight, height, date_of_birth, gender):
