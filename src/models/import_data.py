@@ -24,13 +24,13 @@ def import_meals(csv_filename='models/meals.csv'):  # change file name
                     proteins=float(row['proteins']),
                     fats=float(row['fats']),
                     carbohydrates=float(row['carbohydrates']),
-                    gluten_free=row['gluten_free'].lower() == 'True',
-                    vegan=row['vegan'].lower() == 'True',
-                    vegetarian=row['vegetarian'].lower() == 'True',
-                    dairy_free=row['dairy_free'].lower() == 'True',
-                    for_breakfast=row['for_breakfast'].lower() == 'True',
-                    for_lunch=row['for_lunch'].lower() == 'True',
-                    for_dinner=row['for_dinner'].lower() == 'True',)
+                    gluten_free=row['gluten_free'].lower() == 'true',
+                    vegan=row['vegan'].lower() == 'true',
+                    vegetarian=row['vegetarian'].lower() == 'true',
+                    dairy_free=row['dairy_free'].lower() == 'true',
+                    for_breakfast=row['for_breakfast'].lower() == 'true',
+                    for_lunch=row['for_lunch'].lower() == 'true',
+                    for_dinner=row['for_dinner'].lower() == 'true',)
                 db.session.add(meal)
         db.session.commit()
 
