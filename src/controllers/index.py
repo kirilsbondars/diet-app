@@ -11,7 +11,7 @@ from datetime import date
 
 
 def render_page_index():
-    #create_one_day_menu()
+    create_one_day_menu()
     # user_meal_record1 = insert(user_meal).values(user_id=current_user.id, meal_id=1, date=datetime.now(),
     #                                              mealtime='Breakfast', portion=200)
     # user_meal_record2 = insert(user_meal).values(user_id=current_user.id, meal_id=2, date=datetime.now(),
@@ -28,21 +28,21 @@ def render_page_index():
     # db.session.commit()
 
     # Get today's date
-    today = date.today()
-
-    # Query for meals with user id = 1 and date = today
-    # Query for meals with user id = 1 and date = today
-    user_meals = db.session.query(Meal.name, user_meal.c.portion, Meal.calories, Meal.proteins, Meal.fats,
-                                  Meal.carbohydrates).join(
-        user_meal, Meal.id == user_meal.c.meal_id
-    ).filter(
-        user_meal.c.user_id == 1,
-        user_meal.c.date == today
-    ).all()
-
-    # Now `user_meals` is a list of tuples with each tuple containing the meal name, portion, and nutrients for meals with user id = 1 and date = today
-    for meal in user_meals:
-        print(meal)
+    # today = date.today()
+    #
+    # # Query for meals with user id = 1 and date = today
+    # # Query for meals with user id = 1 and date = today
+    # user_meals = db.session.query(Meal.name, user_meal.c.portion, Meal.calories, Meal.proteins, Meal.fats,
+    #                               Meal.carbohydrates).join(
+    #     user_meal, Meal.id == user_meal.c.meal_id
+    # ).filter(
+    #     user_meal.c.user_id == 1,
+    #     user_meal.c.date == today
+    # ).all()
+    #
+    # # Now `user_meals` is a list of tuples with each tuple containing the meal name, portion, and nutrients for meals with user id = 1 and date = today
+    # for meal in user_meals:
+    #     print(meal)
         # meal_name, portion, calories, proteins, fats, carbohydrates = meal
         # portion = float(portion)
         # print(f"Meal Name: {meal_name}, Portion: {portion}")
