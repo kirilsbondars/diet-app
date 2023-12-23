@@ -69,7 +69,7 @@ def create_menu(meals, calories, fats, proteins, carbohydrates):
     prob = LpProblem("OptimalMenu", LpMinimize)
 
     # Define the decision variables
-    meal_vars = LpVariable.dicts("Meals", [meal.id for meal in meals], 0)
+    meal_vars = LpVariable.dicts("Meals", [meal.id for meal in meals], 0, 3)
 
     # Define the objective function
     prob += lpSum([meal_vars[meal.id] * meal.price for meal in meals])
