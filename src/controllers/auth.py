@@ -119,7 +119,7 @@ def login():
         user = User.query.filter_by(email=email).first()
         if user and bcrypt.check_password_hash(user.password, password):
             login_user(user)
-            return redirect(url_for("menu.create_menu"))
+            return redirect(url_for("menu.create_menu_view"))
         else:
             error = 'Invalid username or password'
     return render_template("auth/login.html", form_data=form_data, error=error)

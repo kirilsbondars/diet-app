@@ -34,11 +34,11 @@ def history():
             }
             meals_data.append(meal_data)
 
-    total_calories = sum(meal['calories'] for meal in meals_data)
-    total_proteins = sum(meal['proteins'] for meal in meals_data)
-    total_fats = sum(meal['fats'] for meal in meals_data)
-    total_carbohydrates = sum(meal['carbohydrates'] for meal in meals_data)
-    total_price = sum(meal['price'] for meal in meals_data)
+    total_calories = round(sum(meal['calories'] for meal in meals_data), 2)
+    total_proteins = round(sum(meal['proteins'] for meal in meals_data), 2)
+    total_fats = round(sum(meal['fats'] for meal in meals_data), 2)
+    total_carbohydrates = round(sum(meal['carbohydrates'] for meal in meals_data), 2)
+    total_price = round(sum(meal['price'] for meal in meals_data), 2)
 
     prev_date = date - timedelta(days=1)
     next_date = date + timedelta(days=1)
