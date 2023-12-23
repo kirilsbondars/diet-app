@@ -25,19 +25,20 @@ def history():
                 'meal': meal,
                 'name': meal.name,
                 'date': association.date,
-                'portion': portion_size,
-                'calories': round(meal.calories * (portion_size / 100), 2),
-                'proteins': round(meal.proteins * (portion_size / 100), 2),
-                'fats': round(meal.fats * (portion_size / 100), 2),
-                'carbohydrates': round(meal.carbohydrates * (portion_size / 100), 2),
-                'price': round(meal.price * (portion_size / 100), 2)
+                'portion': round(portion_size, 1),
+                'calories': round(meal.calories * portion_size),
+                'proteins': round(meal.proteins * portion_size, 1),
+                'fats': round(meal.fats * portion_size, 1),
+                'carbohydrates': round(meal.carbohydrates * portion_size, 1),
+                'price': round(meal.price * portion_size, 2)
             }
+            print(meal.calories, meal.fats, meal.proteins, meal.carbohydrates)
             meals_data.append(meal_data)
 
-    total_calories = round(sum(meal['calories'] for meal in meals_data), 2)
-    total_proteins = round(sum(meal['proteins'] for meal in meals_data), 2)
-    total_fats = round(sum(meal['fats'] for meal in meals_data), 2)
-    total_carbohydrates = round(sum(meal['carbohydrates'] for meal in meals_data), 2)
+    total_calories = round(sum(meal['calories'] for meal in meals_data))
+    total_proteins = round(sum(meal['proteins'] for meal in meals_data), 1)
+    total_fats = round(sum(meal['fats'] for meal in meals_data), 1)
+    total_carbohydrates = round(sum(meal['carbohydrates'] for meal in meals_data), 1)
     total_price = round(sum(meal['price'] for meal in meals_data), 2)
 
     prev_date = date - timedelta(days=1)

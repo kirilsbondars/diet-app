@@ -152,9 +152,9 @@ def calculate_nutrients(weight, height, date_of_birth, gender):
     carbohydrates = (carb_percentage / 100) * calories / 4
 
     # Round the values
-    calories = round(calories, 2)
-    fats = round(fats, 2)
-    proteins = round(proteins, 2)
-    carbohydrates = round(carbohydrates, 2)
+    calories = round(calories)
+    fats = round(fats, 1)
+    proteins = round(proteins, 1)
+    carbohydrates = round(carbohydrates, 1)
 
     return calories, fats, proteins, carbohydrates
