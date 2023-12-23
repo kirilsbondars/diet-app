@@ -32,7 +32,6 @@ def history():
                 'carbohydrates': round(meal.carbohydrates * portion_size, 1),
                 'price': round(meal.price * portion_size, 2)
             }
-            print(meal.calories, meal.fats, meal.proteins, meal.carbohydrates)
             meals_data.append(meal_data)
 
     total_calories = round(sum(meal['calories'] for meal in meals_data))

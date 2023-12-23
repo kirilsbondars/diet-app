@@ -9,32 +9,40 @@
         <h1 class="mx-auto text-center p-2">Create menu</h1>
 
         <form method="post">
-            <div class="form-group mb-2">
-                <label for="menuDate">Date:</label>
+            <div class="form-group mb-3">
+                <label for="date">Date:</label>
                 <input id="date" name="date" class="form-control" type="date" value="{{ today }}" required/>
             </div>
 
-            <h4 class="mx-auto text-center p-2">Number of meals:</h4>
-
-            <div class="form-group mb-2">
-                <label for="calories">Calories:</label>
-                <input type="number" class="form-control" id="calories" name="calories" min="1" value="{{ current_user.calories }}">
+            <div class="form-group mb-3">
+                <label for="n_days_ago">Do not use meals from last:</label>
+                <select class="form-select" id="n_days_ago" name="n_days_ago" required>
+                    <option value="0" selected>use all meals</option>
+                    <option value="1">day</option>
+                    <option value="2">2 days</option>
+                    <option value="3">3 days</option>
+                </select>
             </div>
 
-            <div class="form-group mb-2">
-                <label for="proteins">Proteins:</label>
-                <input type="number" class="form-control" id="proteins" name="proteins" min="0.1" value="{{ current_user.proteins }}">
-            </div>
-
-            <div class="form-group mb-2">
-                <label for="fats">Fats:</label>
-                <input type="number" class="form-control" id="fats" name="fats" min="0.1" value="{{ current_user.fats }}">
-            </div>
-
-            <div class="form-group mb-2">
-                <label for="carbohydrates">Carbohydrates:</label>
-                <input type="number" class="form-control" id="carbohydrates" name="carbohydrates" min="0.1" value="{{ current_user.carbohydrates }}">
-            </div>
+{#            <div class="form-group mb-2">#}
+{#                <label for="calories">Calories:</label>#}
+{#                <input type="number" class="form-control" id="calories" name="calories" min="1" value="{{ current_user.calories }}">#}
+{#            </div>#}
+{##}
+{#            <div class="form-group mb-2">#}
+{#                <label for="proteins">Proteins:</label>#}
+{#                <input type="number" class="form-control" id="proteins" name="proteins" min="0.1" value="{{ current_user.proteins }}">#}
+{#            </div>#}
+{##}
+{#            <div class="form-group mb-2">#}
+{#                <label for="fats">Fats:</label>#}
+{#                <input type="number" class="form-control" id="fats" name="fats" min="0.1" value="{{ current_user.fats }}">#}
+{#            </div>#}
+{##}
+{#            <div class="form-group mb-2">#}
+{#                <label for="carbohydrates">Carbohydrates:</label>#}
+{#                <input type="number" class="form-control" id="carbohydrates" name="carbohydrates" min="0.1" value="{{ current_user.carbohydrates }}">#}
+{#            </div>#}
 
             <div class="text-center">
             <button type="submit" class="btn btn-primary">Generate menu</button>
