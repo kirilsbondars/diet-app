@@ -51,10 +51,14 @@ def import_test_user():
             vegan=False,
             vegetarian=False,
             dairy_free=False,
-            calories=2000,
-            proteins=100,
-            fats=100,
-            carbohydrates=100
+            min_calories=2000,
+            max_calories=2500,
+            min_proteins=100,
+            max_proteins=150,
+            min_fats=100,
+            max_fats=150,
+            min_carbohydrates=100,
+            max_carbohydrates=150
         )
         db.session.add(test_user)
         db.session.commit()

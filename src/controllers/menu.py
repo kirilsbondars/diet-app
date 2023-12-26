@@ -28,8 +28,7 @@ def create_menu_view():
 
         # creates menus
         if meals:
-            meals_portions = create_menu(meals, user.calories, user.fats, user.proteins,
-                                         user.carbohydrates)
+            meals_portions = create_menu(meals, 2000, 2500, 100, 150, 50, 150, 100, 150)
             delete_menu(user.id, date)
             save_menu(meals_portions, user.id, date, 'Breakfast')
             db.session.commit()
@@ -75,7 +74,8 @@ def save_menu(meals_portions, user_id, date, mealtime):
         db.session.execute(stmt)
 
 
-def create_menu(meals, calories, fats, proteins, carbohydrates):
+def create_menu(meals, min_calories, max_calories, min_fats, max_fats, min_proteins, max_proteins, min_carbohydrates,
+                max_carbohydrates):
     # Define the problem
     prob = LpProblem("OptimalMenu", LpMinimize)
 
@@ -86,17 +86,17 @@ def create_menu(meals, calories, fats, proteins, carbohydrates):
     prob += lpSum([meal_vars[meal.id] * meal.price for meal in meals])
 
     # Define the constraints
-    prob += lpSum([meal_vars[meal.id] * getattr(meal, 'calories') for meal in meals]) >= 2000
-    prob += lpSum([meal_vars[meal.id] * getattr(meal, 'calories') for meal in meals]) <= 2400
+    prob += lpSum([meal_vars[meal.id] * getattr(meal, 'calories') for meal in meals]) >= min_calories
+    prob += lpSum([meal_vars[meal.id] * getattr(meal, 'calories') for meal in meals]) <= max_calories
 
-    prob += lpSum([meal_vars[meal.id] * getattr(meal, 'fats') for meal in meals]) >= 70
-    prob += lpSum([meal_vars[meal.id] * getattr(meal, 'fats') for meal in meals]) <= 100
+    prob += lpSum([meal_vars[meal.id] * getattr(meal, 'fats') for meal in meals]) >= min_fats
+    prob += lpSum([meal_vars[meal.id] * getattr(meal, 'fats') for meal in meals]) <= max_fats
 
-    prob += lpSum([meal_vars[meal.id] * getattr(meal, 'proteins') for meal in meals]) >= 100
-    prob += lpSum([meal_vars[meal.id] * getattr(meal, 'proteins') for meal in meals]) <= 160
+    prob += lpSum([meal_vars[meal.id] * getattr(meal, 'proteins') for meal in meals]) >= min_proteins
+    prob += lpSum([meal_vars[meal.id] * getattr(meal, 'proteins') for meal in meals]) <= max_proteins
 
-    prob += lpSum([meal_vars[meal.id] * getattr(meal, 'carbohydrates') for meal in meals]) >= 250
-    prob += lpSum([meal_vars[meal.id] * getattr(meal, 'carbohydrates') for meal in meals]) <= 300
+    prob += lpSum([meal_vars[meal.id] * getattr(meal, 'carbohydrates') for meal in meals]) >= min_carbohydrates
+    prob += lpSum([meal_vars[meal.id] * getattr(meal, 'carbohydrates') for meal in meals]) <= max_carbohydrates
 
     # Solve the problem
     prob.solve()

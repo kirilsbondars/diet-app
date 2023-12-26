@@ -26,10 +26,14 @@ class User(UserMixin, db.Model):
     height = db.Column(Float(12, False, 2), nullable=False)
     gender = db.Column(db.Enum('Male', 'Female'), nullable=False)
 
-    calories = db.Column(Float(12, False, 2), nullable=True)
-    proteins = db.Column(Float(12, False, 2), nullable=True)
-    fats = db.Column(Float(12, False, 2), nullable=True)
-    carbohydrates = db.Column(Float(12, False, 2), nullable=True)
+    min_calories = db.Column(Float(12, False, 2), nullable=True)
+    max_calories = db.Column(Float(12, False, 2), nullable=True)
+    min_proteins = db.Column(Float(12, False, 2), nullable=True)
+    max_proteins = db.Column(Float(12, False, 2), nullable=True)
+    min_fats = db.Column(Float(12, False, 2), nullable=True)
+    max_fats = db.Column(Float(12, False, 2), nullable=True)
+    min_carbohydrates = db.Column(Float(12, False, 2), nullable=True)
+    max_carbohydrates = db.Column(Float(12, False, 2), nullable=True)
 
     gluten_free = db.Column(db.Boolean, nullable=False)
     vegan = db.Column(db.Boolean, nullable=False)
