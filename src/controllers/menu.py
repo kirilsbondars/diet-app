@@ -30,7 +30,7 @@ def create_menu_view():
         if meals:
             meals_portions = create_menu(meals, 2000, 2500, 100, 150, 50, 150, 100, 150)
             delete_menu(user.id, date)
-            save_menu(meals_portions, user.id, date, 'Breakfast')
+            save_menu(meals_portions, user.id, date)
             db.session.commit()
 
             return redirect(url_for('menu.history', date=date))
@@ -67,10 +67,9 @@ def delete_menu(user_id, date):
     db.session.execute(stmt)
 
 
-def save_menu(meals_portions, user_id, date, mealtime):
+def save_menu(meals_portions, user_id, date):
     for meal_id, portion in meals_portions.items():
-        stmt = insert(user_meal).values(user_id=user_id, meal_id=meal_id, date=date,
-                                        mealtime=mealtime, portion=portion)
+        stmt = insert(user_meal).values(user_id=user_id, meal_id=meal_id, date=date, portion=portion)
         db.session.execute(stmt)
 
 

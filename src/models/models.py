@@ -8,7 +8,6 @@ user_meal = db.Table('user_meal',
                      db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
                      db.Column('meal_id', db.Integer, db.ForeignKey('meal.id'), primary_key=True),
                      db.Column('date', db.Date, primary_key=True),
-                     db.Column('mealtime', db.Enum('Breakfast', 'Lunch', 'Dinner'), primary_key=True),
                      db.Column('portion', Float(12, False, 2), nullable=False),
                      )
 
@@ -59,7 +58,3 @@ class Meal(db.Model):
     vegan = db.Column(db.Boolean, nullable=False)
     vegetarian = db.Column(db.Boolean, nullable=False)
     dairy_free = db.Column(db.Boolean, nullable=False)
-
-    for_breakfast = db.Column(db.Boolean, nullable=False)
-    for_lunch = db.Column(db.Boolean, nullable=False)
-    for_dinner = db.Column(db.Boolean, nullable=False)
