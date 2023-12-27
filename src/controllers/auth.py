@@ -161,10 +161,10 @@ def calculate_min_max_nutrients(weight, height, date_of_birth, gender):
     carbohydrates = (carb_percentage / 100) * calories / 4
 
     # Calculate min and max nutrients
-    min_calories, max_calories = calories * 0.8, calories * 1.2
-    min_fats, max_fats = fats * 0.8, fats * 1.2
-    min_proteins, max_proteins = proteins * 0.8, proteins * 1.2
-    min_carbohydrates, max_carbohydrates = carbohydrates * 0.8, carbohydrates * 1.2
+    min_calories, max_calories = calories * 0.9, calories * 1.1
+    min_fats, max_fats = fats * 0.9, fats * 1.1
+    min_proteins, max_proteins = proteins * 0.9, proteins * 1.1
+    min_carbohydrates, max_carbohydrates = carbohydrates * 0.9, carbohydrates * 1.1
 
     # Round the values
     min_calories, max_calories = round(min_calories), round(max_calories)
