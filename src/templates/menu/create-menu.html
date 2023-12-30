@@ -8,91 +8,22 @@
     <div class="container w-50 p-3">
         <h1 class="mx-auto text-center p-2">Create menu</h1>
 
+        {% from "_formhelpers.html" import render_field %}
         <form method="post">
-            <div class="form-group mb-3">
-                <label for="date">Date:</label>
-                <input id="date" name="date" class="form-control" type="date" value="{{ form_data.date if form_data and form_data.date else today }}" required/>
-            </div>
-
-            <div class="form-group mb-3">
-                <label for="n_days_ago">Exclude meals from last n days</label>
-                <select class="form-select" id="n_days_ago" name="n_days_ago" required>
-                    <option value="0" {{ "" if form_data and form_data.n_days_ago else "selected" }}>Do not exclude any meals</option>
-                    <option value="1" {{ "selected" if form_data and form_data.n_days_ago == "1" }}>1</option>
-                    <option value="2" {{ "selected" if form_data and form_data.n_days_ago == "2" }}>2</option>
-                    <option value="3" {{ "selected" if form_data and form_data.n_days_ago == "3" }}>3</option>
-                </select>
-            </div>
-
-            <div class="row mb-3">
-                <label for="min_calories" class="col-3 col-form-label">Calories min:</label>
-                <div class="col-9">
-                    <input type="number" class="form-control" id="min_calories" name="min_calories" min="1" value="{{ form_data.min_calories if form_data and form_data.min_calories else current_user.min_calories }}" required>
-                </div>
-            </div>
-
-            <div class="row mb-3">
-                <label for="max_calories" class="col-3 col-form-label">Calories max:</label>
-                <div class="col-9">
-                    <input type="number" class="form-control" id="max_calories" name="max_calories" min="1" value="{{ form_data.max_calories if form_data and form_data.max_calories else current_user.max_calories }}" required>
-                </div>
-            </div>
-
-            <div class="row mb-3">
-                <label for="min_proteins" class="col-3 col-form-label">Proteins min:</label>
-                <div class="col-9">
-                    <input type="number" class="form-control" id="min_proteins" name="min_proteins" min="1" value="{{ form_data.min_proteins if form_data and form_data.min_proteins else current_user.min_proteins }}" required>
-                </div>
-            </div>
-
-            <div class="row mb-3">
-                <label for="max_proteins" class="col-3 col-form-label">Proteins max:</label>
-                <div class="col-9">
-                    <input type="number" class="form-control" id="max_proteins" name="max_proteins" min="1" value="{{ form_data.max_proteins if form_data and form_data.max_proteins else current_user.max_proteins }}" required>
-                </div>
-            </div>
-
-            <div class="row mb-3">
-                <label for="min_fats" class="col-3 col-form-label">Fats min:</label>
-                <div class="col-9">
-                    <input type="number" class="form-control" id="min_fats" name="min_fats" min="1" value="{{ form_data.min_fats if form_data and form_data.min_fats else current_user.min_fats }}" required>
-                </div>
-            </div>
-
-            <div class="row mb-3">
-                <label for="max_fats" class="col-3 col-form-label">Fats max:</label>
-                <div class="col-9">
-                    <input type="number" class="form-control" id="max_fats" name="max_fats" min="1" value="{{ form_data.max_fats if form_data and form_data.max_fats else current_user.max_fats }}" required>
-                </div>
-            </div>
-
-            <div class="row mb-3">
-                <label for="min_carbohydrates" class="col-3 col-form-label">Carbohydrates min:</label>
-                <div class="col-9">
-                    <input type="number" class="form-control" id="min_carbohydrates" name="min_carbohydrates" min="1" value="{{ form_data.min_carbohydrates if form_data and form_data.min_carbohydrates else current_user.min_carbohydrates }}" required>
-                </div>
-            </div>
-
-            <div class="row mb-3">
-                <label for="max_carbohydrates" class="col-3 col-form-label">Carbohydrates max:</label>
-                <div class="col-9">
-                    <input type="number" class="form-control" id="max_carbohydrates" name="max_carbohydrates" min="1" value="{{ form_data.max_carbohydrates if form_data and form_data.max_carbohydrates else current_user.max_carbohydrates }}" required>
-                </div>
-            </div>
-
-            {% if errors %}
-                {% for field, error in errors.items() %}
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        {{ error }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                {% endfor %}
-            {% endif %}
-
-            <div class="text-center">
-                <button type="reset" class="btn btn-secondary me-2">Reset</button>
-                <button type="submit" class="btn btn-primary">Generate menu</button>
-            </div>
+          {{ render_field(form.date) }}
+          {{ render_field(form.n_days_ago) }}
+          {{ render_field(form.min_calories) }}
+          {{ render_field(form.max_calories) }}
+          {{ render_field(form.min_proteins) }}
+          {{ render_field(form.max_proteins) }}
+          {{ render_field(form.min_fats) }}
+          {{ render_field(form.max_fats) }}
+          {{ render_field(form.min_carbohydrates) }}
+          {{ render_field(form.max_carbohydrates) }}
+          <div class="form-group">
+            <button type="reset" class="btn btn-secondary">Reset</button>
+            <button type="submit" class="btn btn-primary">Generate menu</button>
+          </div>
         </form>
     </div>
 {% endblock %}
