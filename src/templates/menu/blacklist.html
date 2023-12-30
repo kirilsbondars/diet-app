@@ -6,4 +6,34 @@
 
 {% block body %}
     <h1>Blacklist</h1>
+    <div class="container w-50 p-3">
+
+        {% for meal in meals %}
+        <div class="row mb-4">
+            <div class="col">
+                <div class="card">
+                    <div class="row g-0 d-flex align-items-center">
+                        <div class="col-lg-3 col-md-5">
+                            <img src="{{ url_for('static', filename='images/' + meal.image_src) }}" class="card-img-top" alt="Meal image">
+                        </div>
+                        <div class="col-auto">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ meal.name }}</h5>
+                                <p class="card-text">
+                                    Portion: {{ 100 }} g<br>
+                                    Price: {{ meal.price }} €<br>
+                                    Calories: {{ meal.calories }} kcal<br>
+                                    Proteins: {{ meal.proteins }} g<br>
+                                    Fats: {{ meal.fats }} g<br>
+                                    Carbohydrates: {{ meal.carbohydrates }} g
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
 {% endblock %}
