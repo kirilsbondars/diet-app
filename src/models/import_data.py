@@ -27,10 +27,7 @@ def import_meals(csv_filename='models/meals.csv'):  # change file name
                     gluten_free=row['gluten_free'].lower() == 'true',
                     vegan=row['vegan'].lower() == 'true',
                     vegetarian=row['vegetarian'].lower() == 'true',
-                    dairy_free=row['dairy_free'].lower() == 'true',
-                    for_breakfast=row['for_breakfast'].lower() == 'true',
-                    for_lunch=row['for_lunch'].lower() == 'true',
-                    for_dinner=row['for_dinner'].lower() == 'true',)
+                    dairy_free=row['dairy_free'].lower() == 'true')
                 db.session.add(meal)
         db.session.commit()
 
@@ -51,10 +48,14 @@ def import_test_user():
             vegan=False,
             vegetarian=False,
             dairy_free=False,
-            calories=2000,
-            proteins=100,
-            fats=100,
-            carbohydrates=100
+            min_calories=2000,
+            max_calories=2500,
+            min_proteins=100,
+            max_proteins=150,
+            min_fats=100,
+            max_fats=150,
+            min_carbohydrates=100,
+            max_carbohydrates=150
         )
         db.session.add(test_user)
         db.session.commit()
@@ -65,8 +66,7 @@ def import_test_user_meal():
         print("Importing test user meal...")
         user = User.query.first()
         meal = Meal.query.first()
-        user_meal_record = insert(user_meal).values(user_id=user.id, meal_id=meal.id, date=datetime.now(),
-                                                    mealtime='Breakfast', portion=200)
+        user_meal_record = insert(user_meal).values(user_id=user.id, meal_id=meal.id, date=datetime.now(), portion=200)
 
         db.session.execute(user_meal_record)
         db.session.commit()
@@ -75,7 +75,6 @@ def import_test_user_meal():
 def import_data():
     import_meals()
     import_test_user()
-    import_test_user_meal()
 
 
 

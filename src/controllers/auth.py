@@ -32,11 +32,16 @@ def profile():
         current_user.vegetarian = vegetarian
         current_user.dairy_free = dairy_free
 
-        calories, fats, proteins, carbohydrates = calculate_nutrients(weight, height, date_of_birth, gender)
-        current_user.calories = calories
-        current_user.fats = fats
-        current_user.proteins = proteins
-        current_user.carbohydrates = carbohydrates
+        (min_calories, max_calories, min_fats, max_fats, min_proteins, max_proteins, min_carbohydrates,
+         max_carbohydrates) = calculate_min_max_nutrients(weight, height, date_of_birth, gender)
+        current_user.min_calories = min_calories
+        current_user.max_calories = max_calories
+        current_user.min_fats = min_fats
+        current_user.max_fats = max_fats
+        current_user.min_proteins = min_proteins
+        current_user.max_proteins = max_proteins
+        current_user.min_carbohydrates = min_carbohydrates
+        current_user.max_carbohydrates = max_carbohydrates
 
         db.session.commit()
 
@@ -92,13 +97,17 @@ def sing_up():
             return render_template('auth/sign_up.html', errors=errors, form_data=form_data)
 
         hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
-        calories, fats, proteins, carbohydrates = calculate_nutrients(weight, height, date_of_birth, gender)
+        (min_calories, max_calories, min_fats, max_fats, min_proteins, max_proteins, min_carbohydrates,
+         max_carbohydrates) = calculate_min_max_nutrients(weight, height, date_of_birth, gender)
         user = User(name=name, surname=surname, email=email, password=hashed_password, gender=gender,
                     date_of_birth=date_of_birth, weight=weight, height=height, gluten_free=gluten_free, vegan=vegan,
-                    vegetarian=vegetarian, dairy_free=dairy_free, calories=calories, fats=fats, proteins=proteins, carbohydrates=carbohydrates)
+                    vegetarian=vegetarian, dairy_free=dairy_free, min_calories=min_calories, max_calories=max_calories,
+                    min_fats=min_fats, max_fats=max_fats, min_proteins=min_proteins, max_proteins=max_proteins,
+                    min_carbohydrates=min_carbohydrates, max_carbohydrates=max_carbohydrates)
         db.session.add(user)
         db.session.commit()
 
+        flash('Your account has been created! You are now able to log in', 'success')
         return redirect(url_for("auth.login"))
     return render_template("auth/sign_up.html", errors=errors, form_data=form_data)
 
@@ -130,7 +139,8 @@ def logout():
     return redirect(url_for("auth.login"))
 
 
-def calculate_nutrients(weight, height, date_of_birth, gender):
+def calculate_min_max_nutrients(weight, height, date_of_birth, gender):
+    # Calculate base nutrients
     weight = float(weight)
     height = float(height)
 
@@ -151,10 +161,17 @@ def calculate_nutrients(weight, height, date_of_birth, gender):
     proteins = (protein_percentage / 100) * calories / 4
     carbohydrates = (carb_percentage / 100) * calories / 4
 
-    # Round the values
-    calories = round(calories, 2)
-    fats = round(fats, 2)
-    proteins = round(proteins, 2)
-    carbohydrates = round(carbohydrates, 2)
+    # Calculate min and max nutrients
+    min_calories, max_calories = calories * 0.9, calories * 1.1
+    min_fats, max_fats = fats * 0.9, fats * 1.1
+    min_proteins, max_proteins = proteins * 0.9, proteins * 1.1
+    min_carbohydrates, max_carbohydrates = carbohydrates * 0.9, carbohydrates * 1.1
 
-    return calories, fats, proteins, carbohydrates
+    # Round the values
+    min_calories, max_calories = round(min_calories), round(max_calories)
+    min_fats, max_fats = round(min_fats), round(max_fats)
+    min_proteins, max_proteins = round(min_proteins), round(max_proteins)
+    min_carbohydrates, max_carbohydrates = round(min_carbohydrates), round(max_carbohydrates)
+
+    return (min_calories, max_calories, min_fats, max_fats, min_proteins, max_proteins, min_carbohydrates,
+            max_carbohydrates)

@@ -15,11 +15,7 @@
                         <a class="btn btn-primary" href="{{ url_for('menu.history', date=prev_date) }}">&#8592; Previous Day</a>
                         <input type="date" aria-label="Date" class="form-control" id="date" name="date" value="{{ date }}" required>
                         <button class="btn btn-secondary" type="submit">Go to Date</button>
-                        {% if next_date <= today %}
-                            <a class="btn btn-primary ml-3" href="{{ url_for('menu.history', date=next_date) }}" disabled>Next Day &#8594;</a>
-                        {% else %}
-                            <a class="btn btn-primary ml-3 disabled" href="#">Next Day &#8594;</a>
-                        {% endif %}
+                        <a class="btn btn-primary ml-3" href="{{ url_for('menu.history', date=next_date) }}" disabled>Next Day &#8594;</a>
                     </div>
                 </form>
             </div>
