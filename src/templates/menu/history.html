@@ -32,13 +32,14 @@
             </div>
         </div>
 
+
         {% for meal in meals %}
         <div class="row mb-4">
             <div class="col">
                 <div class="card">
-                    <div class="row g-0">
-                        <div class="col-lg-2 col-md-4">
-                            <img src="https://www.recipetineats.com/wp-content/uploads/2017/05/Lasagne-recipe-3-main-square.jpg" class="card-img-top" alt="Meal image">
+                    <div class="row g-0 d-flex align-items-center">
+                        <div class="col-lg-3 col-md-5">
+                            <img src="{{ meal.image }}" class="card-img-top" alt="Meal image">
                         </div>
                         <div class="col-auto">
                             <div class="card-body">
@@ -58,5 +59,6 @@
             </div>
         </div>
         {% endfor %}
+
     </div>
 {% endblock %}

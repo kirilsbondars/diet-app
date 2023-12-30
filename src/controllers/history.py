@@ -30,8 +30,10 @@ def history():
                 'proteins': round(meal.proteins * portion_size, 1),
                 'fats': round(meal.fats * portion_size, 1),
                 'carbohydrates': round(meal.carbohydrates * portion_size, 1),
-                'price': round(meal.price * portion_size, 2)
+                'price': round(meal.price * portion_size, 2),
+                'image': url_for('static', filename='images/' + meal.image_src)
             }
+            print(meal_data['image'])
             meals_data.append(meal_data)
 
     total_calories = round(sum(meal['calories'] for meal in meals_data))
