@@ -107,6 +107,7 @@ def sing_up():
         db.session.add(user)
         db.session.commit()
 
+        flash('Your account has been created! You are now able to log in', 'success')
         return redirect(url_for("auth.login"))
     return render_template("auth/sign_up.html", errors=errors, form_data=form_data)
 

@@ -11,6 +11,11 @@ def create_menu_view():
     errors = {}
 
     if request.method == 'POST':
+        # validates inputs
+        errors = validate_nutrients()
+        if errors:
+            return render_template('menu/create-menu.html', form_data=request.form, errors=errors)
+
         # gets inputs
         date = datetime.strptime(request.form['date'], '%Y-%m-%d').date()
         n_days_ago = int(request.form['n_days_ago'])
@@ -23,11 +28,6 @@ def create_menu_view():
         min_carbohydrates = float(request.form['min_carbohydrates'])
         max_carbohydrates = float(request.form['max_carbohydrates'])
 
-        # validates inputs
-        errors = validate_nutrients()
-        if errors:
-            return render_template('menu/create-menu.html', form_data=request.form, errors=errors)
-
         # gets meal ids from last n days
         exclude_meal_ids = get_last_n_days_meal_ids(user.id, date, n_days_ago)
 
@@ -39,18 +39,28 @@ def create_menu_view():
 
         # error message if no meals found
         if not meals:
-            flash('No meals found that match your preferences.', 'error')
+            errors['menu'] = 'No meals found that match your food preferences!'
             return render_template('menu/create-menu.html', form_data=request.form, errors=errors)
-
         # creates menu
         if meals:
-            meals_portions = create_menu(meals, min_calories, max_calories, min_fats, max_fats, min_proteins,
-                                         max_proteins, min_carbohydrates, max_carbohydrates)
-            delete_menu(user.id, date)
-            save_menu(meals_portions, user.id, date)
-            db.session.commit()
+            meals_portions = generate_menu(meals, min_calories, max_calories, min_fats, max_fats, min_proteins,
+                                           max_proteins, min_carbohydrates, max_carbohydrates, 5)
 
-            return redirect(url_for('menu.history', date=date))
+            # error message if no optimal menu found
+            is_menu_valid = validate_menu(meals_portions, min_calories, max_calories, min_fats, max_fats, min_proteins,
+                                          max_proteins, min_carbohydrates, max_carbohydrates, 5)
+
+            if is_menu_valid:
+                flash('Menu has been created!', 'success')
+                delete_menu(user.id, date)
+                save_menu(meals_portions, user.id, date)
+
+                db.session.commit()
+
+                return redirect(url_for('menu.history', date=date))
+            else:
+                errors['menu'] = 'No optimal menu found that match your preferences. Please change your preferences!'
+                return render_template('menu/create-menu.html', form_data=request.form, errors=errors)
 
     return render_template('menu/create-menu.html', form_data=request.form, errors=errors, today=d.today())
 
@@ -62,9 +72,11 @@ def validate_nutrients():
     for nutrient in nutrients:
         min_nutrient = request.form.get(f'min_{nutrient}')
         max_nutrient = request.form.get(f'max_{nutrient}')
+
+        # min nutrients should be less than max nutrients
         if not min_nutrient or not max_nutrient or float(min_nutrient) >= float(max_nutrient):
-            errors[nutrient] = ('Invalid input: Min ' + nutrient + ' should be less than Max ' + nutrient +
-                                '.')
+            errors[nutrient] = ('Invalid input: ' + nutrient.capitalize() + ' min should be less than ' +
+                                nutrient.capitalize() + ' max.')
 
     return errors
 
@@ -104,8 +116,8 @@ def save_menu(meals_portions, user_id, date):
         db.session.execute(stmt)
 
 
-def create_menu(meals, min_calories, max_calories, min_fats, max_fats, min_proteins, max_proteins, min_carbohydrates,
-                max_carbohydrates):
+def generate_menu(meals, min_calories, max_calories, min_fats, max_fats, min_proteins, max_proteins, min_carbohydrates,
+                  max_carbohydrates, max_meal_size):
     # Define the problem
     prob = LpProblem("OptimalMenu", LpMinimize)
 
@@ -128,7 +140,6 @@ def create_menu(meals, min_calories, max_calories, min_fats, max_fats, min_prote
     prob += lpSum([meal_vars[meal.id] * getattr(meal, 'carbohydrates') for meal in meals]) >= min_carbohydrates
     prob += lpSum([meal_vars[meal.id] * getattr(meal, 'carbohydrates') for meal in meals]) <= max_carbohydrates
 
-    max_meal_size = 5
     prob += lpSum([meal_vars[meal.id] for meal in meals]) <= max_meal_size
 
     # Solve the problem
@@ -152,3 +163,43 @@ def create_menu(meals, min_calories, max_calories, min_fats, max_fats, min_prote
             meals_portions[meal_id] = v.varValue
 
     return meals_portions
+
+
+def validate_menu(meals_portions, min_calories, max_calories, min_fats, max_fats, min_proteins, max_proteins,
+                  min_carbohydrates, max_carbohydrates, max_meal_size):
+    total_cost = 0
+    total_calories = 0
+    total_fats = 0
+    total_proteins = 0
+    total_carbohydrates = 0
+
+    for meal_id, portion in meals_portions.items():
+        meal = Meal.query.get(meal_id)
+        total_cost += meal.price * portion
+        total_calories += meal.calories * portion
+        total_fats += meal.fats * portion
+        total_proteins += meal.proteins * portion
+        total_carbohydrates += meal.carbohydrates * portion
+
+    total_calories = round(total_calories)
+    total_fats = round(total_fats)
+    total_proteins = round(total_proteins)
+    total_carbohydrates = round(total_carbohydrates)
+    print('>>>>>>>', total_calories, total_fats, total_proteins, total_carbohydrates)
+
+    if len(meals_portions) > max_meal_size:
+        return False
+
+    if not (min_calories <= total_calories <= max_calories):
+        return False
+
+    if not (min_fats <= total_fats <= max_fats):
+        return False
+
+    if not (min_proteins <= total_proteins <= max_proteins):
+        return False
+
+    if not (min_carbohydrates <= total_carbohydrates <= max_carbohydrates):
+        return False
+
+    return True
