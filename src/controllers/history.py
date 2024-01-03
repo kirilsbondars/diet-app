@@ -1,6 +1,6 @@
 from flask import render_template, redirect, url_for, request
 from flask_login import current_user
-from src.models.models import db, Meal, user_meal
+from src.models.models import db, Meal, user_meal, blacklisted_meals
 from datetime import datetime, timedelta
 
 
@@ -19,6 +19,7 @@ def history():
     meals_data = []
     for association in user_meal_associations:
         meal = Meal.query.get(association.meal_id)
+        blacklisted = db.session.query(blacklisted_meals).filter_by(user_id=current_user.id, meal_id=meal.id).first()
         if meal:
             portion_size = association.portion
             meal_data = {
@@ -30,9 +31,9 @@ def history():
                 'fats': round(meal.fats * portion_size, 1),
                 'carbohydrates': round(meal.carbohydrates * portion_size, 1),
                 'price': round(meal.price * portion_size, 2),
-                'image': url_for('static', filename='images/' + meal.image_src)
+                'image': url_for('static', filename='images/' + meal.image_src),
+                'blacklisted': blacklisted is not None
             }
-            print(meal_data['image'])
             meals_data.append(meal_data)
 
     total_calories = round(sum(meal['calories'] for meal in meals_data))

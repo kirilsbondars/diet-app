@@ -30,7 +30,7 @@
                             </div>
                         </div>
                         <div class="col-lg-2 col-md-2 text-center">
-                             <a class="btn btn-danger m-sm-2" href="{{ url_for('blacklist.remove', meal_id=meal.id) }}" role="button" onclick="return confirm('Are you sure you want to remove this meal from the blacklist?')">Remove</a>
+                             <a class="btn btn-danger m-sm-2" href="{{ url_for('blacklist.remove', meal_id=meal.id, return_page='blacklist', history_date='none') }}" role="button" onclick="return confirm('Are you sure you want to remove this meal from the blacklist?')">Remove from blacklist</a>
                         </div>
                     </div>
                 </div>

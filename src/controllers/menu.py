@@ -54,7 +54,7 @@ def create_menu_view():
                                           max_proteins, min_carbohydrates, max_carbohydrates, 5)
 
             if is_menu_valid:
-                flash('Menu has been created!', 'success')
+                flash(f'Menu has for {date} been created!', 'success')
                 delete_menu(user.id, date)
                 save_menu(meals_portions, user.id, date)
 
