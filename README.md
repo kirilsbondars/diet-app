@@ -10,12 +10,14 @@ Grupas dalībnieki:
 # Instalācijas instrukcija (Ubuntu 22.04 LTS)
 ## Install programs
 ```console
-kirils@KirilsPC:~$ sudo apt install python3 git gunicorn mysql-server python3-flask python3-pip -y
+kirils@KirilsPC:~$ sudo apt install python3 git gunicorn mysql-server python3-flask python3-pip python3-venv -y
 ```
 ## Clone git
 ```console
 kirils@KirilsPC:~$ git clone https://github.com/kirilsbondars/diet-app
 kirils@KirilsPC:~$ pip3 install -r diet-app/requirements.txt
+kirils@KirilsPC:~$ cd diet-app
+kirils@KirilsPC:~$ python3 -m venv env
 ```
 ## Set up MySQL
 ```console
