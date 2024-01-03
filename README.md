@@ -14,10 +14,11 @@ kirils@KirilsPC:~$ sudo apt install python3 git gunicorn mysql-server python3-fl
 ```
 ## Clone git
 ```console
-kirils@KirilsPC:~$ git clone https://github.com/kirilsbondars/diet-app
-kirils@KirilsPC:~$ pip3 install -r diet-app/requirements.txt
-kirils@KirilsPC:~$ cd diet-app
-kirils@KirilsPC:~$ python3 -m venv env
+git clone https://github.com/kirilsbondars/diet-app
+cd diet-app
+python3 -m venv .venv
+. .venv/bin/activate
+pip3 install -r requirements.txt
 ```
 ## Set up MySQL
 ```console
