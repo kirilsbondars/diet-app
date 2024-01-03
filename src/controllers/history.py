@@ -23,7 +23,6 @@ def history():
             portion_size = association.portion
             meal_data = {
                 'meal': meal,
-                'name': meal.name,
                 'date': association.date,
                 'portion': round(portion_size * 100, 1),
                 'calories': round(meal.calories * portion_size),

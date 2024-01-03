@@ -41,9 +41,9 @@
                         <div class="col-lg-3 col-md-5">
                             <img src="{{ meal.image }}" class="card-img-top" alt="Meal image">
                         </div>
-                        <div class="col-auto">
+                        <div class="col-lg-7 col-md-5">
                             <div class="card-body">
-                                <h5 class="card-title">{{ meal.name }}</h5>
+                                <h5 class="card-title">{{ meal.meal.name }}</h5>
                                 <p class="card-text">
                                     Portion: {{ meal.portion }} g<br>
                                     Price: {{ meal.price }} €<br>
@@ -53,6 +53,9 @@
                                     Carbohydrates: {{ meal.carbohydrates }} g
                                 </p>
                             </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 text-center">
+                             <a class="btn btn-success mb-sm-2" href="{{ url_for('blacklist.add', meal_id=meal.meal.id) }}" role="button">Add to blacklist</a>
                         </div>
                     </div>
                 </div>

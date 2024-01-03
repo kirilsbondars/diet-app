@@ -5,6 +5,7 @@ from flask_bootstrap import Bootstrap5
 from routes.index import index_blueprint
 from routes.auth import auth_blueprint
 from routes.menu import menu_blueprint
+from routes.blacklist import blacklist_blueprint
 from src.models.models import db, User
 from src.models.import_data import import_data
 
@@ -38,6 +39,7 @@ app = create_app()
 app.register_blueprint(index_blueprint)
 app.register_blueprint(auth_blueprint)
 app.register_blueprint(menu_blueprint)
+app.register_blueprint(blacklist_blueprint)
 
 
 if __name__ == '__main__':
