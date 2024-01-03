@@ -11,6 +11,11 @@ user_meal = db.Table('user_meal',
                      db.Column('portion', Float(12, False, 2), nullable=False),
                      )
 
+blacklisted_meals = db.Table('blacklisted_meals',
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
+    db.Column('meal_id', db.Integer, db.ForeignKey('meal.id'), primary_key=True)
+)
+
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -41,6 +46,8 @@ class User(UserMixin, db.Model):
 
     meals = db.relationship('Meal', secondary=user_meal, lazy='subquery',
                             backref=db.backref('users', lazy=True))
+    blacklisted_meals = db.relationship('Meal', secondary=blacklisted_meals, lazy='subquery',
+                                        backref=db.backref('blacklisted_by', lazy=True))
 
 
 class Meal(db.Model):

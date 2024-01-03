@@ -1,6 +1,6 @@
 from flask import render_template, request, redirect, url_for, flash
 from pulp import LpProblem, LpMinimize, LpVariable, lpSum, value
-from src.models.models import Meal, user_meal, db
+from src.models.models import Meal, user_meal, db, blacklisted_meals
 from datetime import datetime, timedelta, date as d
 from sqlalchemy import insert
 from flask_login import current_user
@@ -31,6 +31,9 @@ def create_menu_view():
         # gets meal ids from last n days
         exclude_meal_ids = get_last_n_days_meal_ids(user.id, date, n_days_ago)
 
+        # gets blacklisted meal ids
+        exclude_meal_ids += get_blacklisted_meal_ids(user.id)
+
         # gets user preferences
         user_preferences = get_user_preferences(user)
 
@@ -51,7 +54,7 @@ def create_menu_view():
                                           max_proteins, min_carbohydrates, max_carbohydrates, 5)
 
             if is_menu_valid:
-                flash('Menu has been created!', 'success')
+                flash(f'Menu has for {date} been created!', 'success')
                 delete_menu(user.id, date)
                 save_menu(meals_portions, user.id, date)
 
@@ -92,6 +95,17 @@ def get_last_n_days_meal_ids(user_id, date, n_days_ago):
         user_meal.c.date < date).all()
     if meals:
         return [meal.meal_id for meal in meals]
+    else:
+        return []
+
+
+def get_blacklisted_meal_ids(user_id):
+    meals = (db.session.query(Meal)
+             .join(blacklisted_meals, Meal.id == blacklisted_meals.c.meal_id)
+             .filter(blacklisted_meals.c.user_id == user_id)
+             .all())
+    if meals:
+        return [meal.id for meal in meals]
     else:
         return []
 

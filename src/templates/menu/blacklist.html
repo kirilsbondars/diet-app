@@ -5,5 +5,38 @@
 {% endblock %}
 
 {% block body %}
-    <h1>Blacklist</h1>
+    <div class="container">
+        <h1 class="mx-auto text-center p-2">Blacklist</h1>
+
+        {% for meal in meals %}
+        <div class="row mb-4">
+            <div class="col">
+                <div class="card">
+                    <div class="row g-0 d-flex align-items-center">
+                        <div class="col-lg-3 col-md-5">
+                            <img src="{{ url_for('static', filename='images/' + meal.image_src) }}" class="card-img-top" alt="Meal image">
+                        </div>
+                        <div class="col-lg-7 col-md-5">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ meal.name }}</h5>
+                                <p class="card-text">
+                                    Portion: {{ 100 }} g<br>
+                                    Price: {{ meal.price }} €<br>
+                                    Calories: {{ meal.calories }} kcal<br>
+                                    Proteins: {{ meal.proteins }} g<br>
+                                    Fats: {{ meal.fats }} g<br>
+                                    Carbohydrates: {{ meal.carbohydrates }} g
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 text-center">
+                             <a class="btn btn-danger m-sm-2" href="{{ url_for('blacklist.remove', meal_id=meal.id, return_page='blacklist', history_date='none') }}" role="button" onclick="return confirm('Are you sure you want to remove this meal from the blacklist?')">Remove from blacklist</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
 {% endblock %}

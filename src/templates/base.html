@@ -19,14 +19,15 @@
             {{ render_nav_item('menu.create_menu_view', 'Menu') }}
             {{ render_nav_item('menu.history', 'History') }}
             {{ render_nav_item('auth.profile', 'Profile') }}
+            {{ render_nav_item('blacklist.view', 'Blacklist') }}
         </div>
     </nav>
 
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
-            <div class="container w-50 p-3">
+            <div class="container w-50">
                 {% for category, message in messages %}
-                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                    <div class="alert alert-{{ category }} alert-dismissible fade show mt-3 mb-0" role="alert">
                         {{ message }}
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
