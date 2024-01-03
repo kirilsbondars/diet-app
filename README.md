@@ -8,33 +8,38 @@ Grupas dalībnieki:
 - Katrīna Kate Mālniece
 
 # Instalācijas instrukcija (Ubuntu 22.04 LTS)
-## Clone rep
+## Install programs
 ```console
-kirils@KirilsPC:~$ sudo apt update
-kirils@KirilsPC:~$ sudo apt install python3 git gunicorn python-flask, mysql
-kirils@KirilsPC:~$ git clone https://github.com/kirilsbondars/diet-app
-kirils@KirilsPC:~$ cd diet-app
-kirils@KirilsPC:~/diet-app$ pip3 install -r requirements.txt
+kirils@KirilsPC:~$ sudo apt install python3 git gunicorn mysql-server python3-flask python3-pip -y
 ```
-setup mysql change file config to be able to connect to mysql
+## Clone git
+```console
+kirils@KirilsPC:~$ git clone https://github.com/kirilsbondars/diet-app
+kirils@KirilsPC:~$ pip3 install -r diet-app/requirements.txt
+```
+## Set up MySQL
+```console
+kirils@KirilsPC:~$ sudo mysql
+mysql> CREATE DATABASE diet_app;
+mysql> CREATE USER 'diet_app_user'@'localhost' IDENTIFIED BY '123';
+mysql> GRANT ALL PRIVILEGES ON *.* TO 'diet_app_user'@'localhost' WITH GRANT OPTION;
+mysql> exit;
+```
+## Change config.py
+```console
+kirils@KirilsPC:~$ nano diet-app/src/config.py
+```
+edit config.py content
+```python
+SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://diet_app_user:123@localhost/diet_app'
+```
 ## Test Flask
 ```console
-kirils@KirilsPC:~/diet-app$ cd src
-kirils@KirilsPC:~/diet-app/src$ flask --app app run
+kirils@KirilsPC:~$ python3 diet-app/src/app.py
 ```
 ## Gunicorn
-```
-import os
-
-workers = int(os.environ.get('GUNICORN_PROCESSES', '2'))
-threads = int(os.environ.get('GUNICORN_THREADS', '4'))
-bind = os.environ.get('GUNICORN_BIND', '0.0.0.0:8080')
-
-forwarded_allow_ips = '*'
-
-secure_scheme_headers = { 'X-Forwarded-Proto': 'https' }
-```
 
 ```console
-gunicorn --config gunicorn_config.py app:app
+kirils@KirilsPC:~$ cd /diet-app/src
+kirils@KirilsPC:~$ gunicorn --config gunicorn_config.py app:app
 ```
