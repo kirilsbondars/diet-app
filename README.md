@@ -43,6 +43,6 @@ python3 diet-app/src/app.py
 ## Gunicorn
 
 ```console
-kirils@KirilsPC:~$ cd /diet-app/src
-kirils@KirilsPC:~$ gunicorn --config gunicorn_config.py app:app
+cd /diet-app/src
+gunicorn --config gunicorn_config.py app:app
 ```
