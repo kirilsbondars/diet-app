@@ -1,9 +1,10 @@
 from flask import render_template, request, redirect, url_for, flash
 from pulp import LpProblem, LpMinimize, LpVariable, lpSum, value
-from src.models.models import Meal, user_meal, db, blacklisted_meals
 from datetime import datetime, timedelta, date as d
 from sqlalchemy import insert
 from flask_login import current_user
+
+from models.models import Meal, user_meal, db, blacklisted_meals
 
 
 def create_menu_view():

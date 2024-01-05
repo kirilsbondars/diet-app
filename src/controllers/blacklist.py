@@ -1,7 +1,8 @@
 from flask import render_template, redirect, url_for, flash, request
 from flask_login import current_user
-from src.models.models import blacklisted_meals, Meal
-from src.models.models import db
+
+from models.models import blacklisted_meals, Meal
+from models.models import db
 
 
 def view():

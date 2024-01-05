@@ -1,6 +1,7 @@
 from flask import Blueprint
 from flask_login import login_required
-from src.controllers.auth import profile, sing_up, login, logout
+
+from controllers.auth import profile, sing_up, login, logout
 
 auth_blueprint = Blueprint('auth', __name__)
 
