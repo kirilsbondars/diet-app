@@ -1,13 +1,16 @@
-from src.models.models import db, Meal, User, user_meal
 from flask_bcrypt import Bcrypt
 from datetime import datetime
 from sqlalchemy import insert, select
 import csv
+import os
+
+from models.models import db, Meal, User, user_meal
 
 bcrypt = Bcrypt()
 
 
-def import_meals(csv_filename='models/meals.csv'):  # change file name
+def import_meals():
+    csv_filename = os.path.join(os.path.dirname(__file__), 'meals.csv')
     if Meal.query.first() is None:
         print("Importing meals...")
 

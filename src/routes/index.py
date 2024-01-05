@@ -1,5 +1,6 @@
 from flask import Blueprint
-from src.controllers.index import render_page_index
+
+from controllers.index import render_page_index
 
 index_blueprint = Blueprint('index', __name__)
 
