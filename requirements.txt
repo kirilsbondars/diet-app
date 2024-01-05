@@ -6,3 +6,4 @@ Bootstrap-Flask==2.3.2
 PyMySQL==1.1.0
 SQLAlchemy==2.0.23
 PuLP==2.7.0
+Gunicorn==21.2.0
