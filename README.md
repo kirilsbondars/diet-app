@@ -23,10 +23,12 @@ pip3 install -r requirements.txt
 ## Set up MySQL
 ```console
 sudo mysql
-mysql> CREATE DATABASE diet_app;
-mysql> CREATE USER 'diet_app_user'@'localhost' IDENTIFIED BY '123';
-mysql> GRANT ALL PRIVILEGES ON *.* TO 'diet_app_user'@'localhost' WITH GRANT OPTION;
-mysql> exit;
+```
+```mysql
+CREATE DATABASE diet_app;
+CREATE USER 'diet_app_user'@'localhost' IDENTIFIED BY '123';
+GRANT ALL PRIVILEGES ON *.* TO 'diet_app_user'@'localhost' WITH GRANT OPTION;
+exit;
 ```
 ## Change config.py
 ```console
