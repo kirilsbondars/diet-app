@@ -1,7 +1,8 @@
 from flask import Blueprint
 from flask_login import login_required
-from src.controllers.menu import create_menu_view
-from src.controllers.history import history
+
+from controllers.menu import create_menu_view
+from controllers.history import history
 
 menu_blueprint = Blueprint('menu', __name__)
 

@@ -1,7 +1,8 @@
 from flask import render_template, redirect, url_for, request
 from flask_login import current_user
-from src.models.models import db, Meal, user_meal, blacklisted_meals
 from datetime import datetime, timedelta
+
+from models.models import db, Meal, user_meal, blacklisted_meals
 
 
 def history():

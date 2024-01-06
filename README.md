@@ -7,6 +7,28 @@ Grupas dalībnieki:
 - Miks Šics
 - Katrīna Kate Mālniece
 
+# Development Windows
+## Install programs
+```console
+git clone https://github.com/kirilsbondars/diet-app
+cd diet-app/src
+pip install virtualenv
+virtualenv venv
+venv\Scripts\activate
+pip3 install -r requirements.txt
+```
+## Set up MySQL
+```mysql
+CREATE DATABASE diet_app;
+CREATE USER 'diet_app_user'@'localhost' IDENTIFIED BY '123';
+GRANT ALL PRIVILEGES ON *.* TO 'diet_app_user'@'localhost' WITH GRANT OPTION;
+```
+
+## Run Flask
+```console
+python app.py
+```
+
 # Instalācijas instrukcija (Ubuntu 22.04 LTS)
 ## Install programs
 ```console
@@ -15,7 +37,7 @@ sudo apt install python3 git gunicorn mysql-server python3-flask python3-pip pyt
 ## Clone git
 ```console
 git clone https://github.com/kirilsbondars/diet-app
-cd diet-app
+cd diet-app/src
 python3 -m venv .venv
 . .venv/bin/activate
 pip3 install -r requirements.txt
@@ -23,10 +45,12 @@ pip3 install -r requirements.txt
 ## Set up MySQL
 ```console
 sudo mysql
-mysql> CREATE DATABASE diet_app;
-mysql> CREATE USER 'diet_app_user'@'localhost' IDENTIFIED BY '123';
-mysql> GRANT ALL PRIVILEGES ON *.* TO 'diet_app_user'@'localhost' WITH GRANT OPTION;
-mysql> exit;
+```
+```mysql
+CREATE DATABASE diet_app;
+CREATE USER 'diet_app_user'@'localhost' IDENTIFIED BY '123';
+GRANT ALL PRIVILEGES ON *.* TO 'diet_app_user'@'localhost' WITH GRANT OPTION;
+exit;
 ```
 ## Change config.py
 ```console
