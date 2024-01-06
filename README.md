@@ -46,3 +46,4 @@ python3 diet-app/src/app.py
 cd /diet-app/src
 gunicorn --config gunicorn_config.py app:app
 ```
+

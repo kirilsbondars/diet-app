@@ -11,16 +11,19 @@
 | [Meta Nutrition - Meal Planner](https://www.metnu.com/) |	<ul><li>Ērti lietojams UI</li><li>Iebūvētas receptes</li><li>Plaša datubāze ar produktiem / to uzturvielu informāciju</li><li>Iespēja izmantot personalizētus diētas plānus</li><li>Iebūvēta statistikas funkcionalitāte</li></ul>	| <ul><li>Vairāk pielāgota tieši optimālu recepšu atrašanai nevis optimālu produktu kombināciju.</li><li>Daļa funkcionalitātes pieejama tikai maksas versijā</li></ul>
 # Tehniskais risinājums
 ## Prasības
-| Nr. 	| Lietotāju stāsts 	| Prioritāte 	|
-|-----	|------------------	|------------	|
-|1.|Lietotājs vēlas ielogoties, jo grib tik klat saviem datiem|S|
-|2.|Lietotājs vēlas reģistrēties, jo grib, lai viņa dati saglabājas|S|
-|3.|Lietotājs vēlas izveidot ēdienkarti, jo grib saplānot savas ēdienreizes|M|
-|4.|Lietotājs vēlas, lai tiek piedāvāti jauni ēdieni, jo negrib ēst vienu un to pašu|C|
-|5.|Lietotājs vēlas iegūt optimālo ēdienkarti, jo grib minimizēt ēdiena izmaksas|M|
-|6.|Lietotājs vēlas iespēju izvēlēties produktu preferences, jo lietotājam var būt alerģijas vai dietāri ierobežojumi|S|
-|7.|Lietotājs grib ievadīt datus par sevi, jo grib iegūt personalizēto kaloriju un uzturvielu daudzumu|S|
-|8.|Lietotājs grib, lai ēdieniem būtu bildes, jo tā ir vieglāk uztvert|C|
+| Nr. 	 | Lietotāju stāsts 	                                                                                                | Prioritāte 	 |
+|-------|-------------------------------------------------------------------------------------------------------------------|--------------|
+| 1.    | Lietotājs vēlas ielogoties, jo grib tik klat saviem datiem                                                        | S            |
+| 2.    | Lietotājs vēlas reģistrēties, jo grib, lai viņa dati saglabājas                                                   | S            |
+| 3.    | Lietotājs vēlas izveidot ēdienkarti, jo grib saplānot savas ēdienreizes                                           | M            |
+| 4.    | Lietotājs vēlas, lai tiek piedāvāti jauni ēdieni, jo negrib ēst vienu un to pašu                                  | C            |
+| 5.    | Lietotājs vēlas iegūt optimālo ēdienkarti, jo grib minimizēt ēdiena izmaksas                                      | M            |
+| 6.    | Lietotājs vēlas iespēju izvēlēties produktu preferences, jo lietotājam var būt alerģijas vai dietāri ierobežojumi | S            |
+| 7.    | Lietotājs grib ievadīt datus par sevi, jo grib iegūt personalizēto kaloriju un uzturvielu daudzumu                | S            |
+| 8.    | Lietotājs grib, lai ēdieniem būtu bildes, jo tā ir vieglāk uztvert                                                | C            |
+| 9.    | Lietotājs grib, lai būtu edienu melnraksts, jo viņam nepatik dāži edieni                                          | C            |
+| 10.   | Administrators vēlas pievienot jaunus ēdienus, jo grib, lai lietotājiem būtu vairāk ēdienu no kuriem izvēlēties   | M            |
+| 11.   | Administrators vēlas apskatīt informāciju par lietotājiem, jo grib, zināt informāciju par lietotājiem sistēma     | C            |
 ## Algoritms
 ## Konceptu modelis
 ![Konceptu modelis](/images/konceptu_modelis.png)
