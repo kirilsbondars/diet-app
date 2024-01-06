@@ -15,7 +15,7 @@
 |-------|-------------------------------------------------------------------------------------------------------------------|--------------|
 | 1.    | Lietotājs vēlas ielogoties, jo grib tik klat saviem datiem                                                        | S            |
 | 2.    | Lietotājs vēlas reģistrēties, jo grib, lai viņa dati saglabājas                                                   | S            |
-| 3.    | Lietotājs vēlas izveidot ēdienkarti, jo grib saplānot savas ēdienreizes                                           | M            |
+| 3.    | Lietotājs vēlas izvelēties uzturvielu daudzumu savā ēdienkartē, jo pielāgot ēdienkarti savām vajadzībām           | S            |
 | 4.    | Lietotājs vēlas, lai tiek piedāvāti jauni ēdieni, jo negrib ēst vienu un to pašu                                  | C            |
 | 5.    | Lietotājs vēlas iegūt optimālo ēdienkarti, jo grib minimizēt ēdiena izmaksas                                      | M            |
 | 6.    | Lietotājs vēlas iespēju izvēlēties produktu preferences, jo lietotājam var būt alerģijas vai dietāri ierobežojumi | S            |
