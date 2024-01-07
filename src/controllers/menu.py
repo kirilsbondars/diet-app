@@ -3,11 +3,13 @@ from pulp import LpProblem, LpMinimize, LpVariable, lpSum, value
 from datetime import datetime, timedelta, date as d
 from sqlalchemy import insert
 from flask_login import current_user
+import time
 
 from models.models import Meal, user_meal, db, blacklisted_meals
 
 
 def create_menu_view():
+    start_time = time.time()
     user = current_user
     errors = {}
 
@@ -61,6 +63,9 @@ def create_menu_view():
 
                 db.session.commit()
 
+                end_time = time.time()
+                elapsed_time = end_time - start_time
+                print(f"The algorithm took {elapsed_time} seconds to complete.")
                 return redirect(url_for('menu.history', date=date))
             else:
                 errors['menu'] = 'No optimal menu found that match your preferences. Please change your preferences!'

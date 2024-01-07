@@ -4,8 +4,11 @@ from datetime import datetime, timedelta
 
 from models.models import db, Meal, user_meal, blacklisted_meals
 
+import time
 
 def history():
+    start_time = time.time()
+
     date_str = request.args.get('date')
     if date_str is None:
         date = datetime.today().date()
@@ -47,6 +50,9 @@ def history():
     next_date = date + timedelta(days=1)
     today = datetime.today().date()
 
+    end_time = time.time()
+    elapsed_time = end_time - start_time
+    print(f"The history page took {elapsed_time} seconds to complete.")
     return render_template('menu/history.html',
                            today=today,
                            prev_date=prev_date,

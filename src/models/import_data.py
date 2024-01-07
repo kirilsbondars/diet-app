@@ -10,7 +10,7 @@ bcrypt = Bcrypt()
 
 
 def import_meals():
-    csv_filename = os.path.join(os.path.dirname(__file__), 'meals.csv')
+    csv_filename = os.path.join(os.path.dirname(__file__), 'meals_400.csv')
     if Meal.query.first() is None:
         print("Importing meals...")
 
