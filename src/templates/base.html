@@ -12,11 +12,10 @@
     {% from 'bootstrap5/nav.html' import render_nav_item %}
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="navbar-nav mr-auto">
-            {{ render_nav_item('index.render_page_index', 'Index') }}
             {{ render_nav_item('auth.login', 'Login') }}
             {{ render_nav_item('auth.sing_up', 'Sing up') }}
             {{ render_nav_item('auth.logout', 'Log out') }}
-            {{ render_nav_item('menu.create_menu_view', 'Menu') }}
+            {{ render_nav_item('menu.create_menu_view', 'Create Menu') }}
             {{ render_nav_item('menu.history', 'History') }}
             {{ render_nav_item('auth.profile', 'Profile') }}
             {{ render_nav_item('blacklist.view', 'Blacklist') }}
