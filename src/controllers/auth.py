@@ -43,6 +43,27 @@ def profile():
         current_user.min_carbohydrates = min_carbohydrates
         current_user.max_carbohydrates = max_carbohydrates
 
+        if 'min_calories' in request.form:
+            # Capture nutrient information from the form
+            min_calories = float(request.form.get("min_calories"))
+            max_calories = float(request.form.get("max_calories"))
+            min_fats = float(request.form.get("min_fats"))
+            max_fats = float(request.form.get("max_fats"))
+            min_proteins = float(request.form.get("min_proteins"))
+            max_proteins = float(request.form.get("max_proteins"))
+            min_carbohydrates = float(request.form.get("min_carbohydrates"))
+            max_carbohydrates = float(request.form.get("max_carbohydrates"))
+
+            # Update the current user's nutrient data
+            current_user.min_calories = min_calories
+            current_user.max_calories = max_calories
+            current_user.min_fats = min_fats
+            current_user.max_fats = max_fats
+            current_user.min_proteins = min_proteins
+            current_user.max_proteins = max_proteins
+            current_user.min_carbohydrates = min_carbohydrates
+            current_user.max_carbohydrates = max_carbohydrates
+
         db.session.commit()
 
         flash('Your data has been saved.', 'success')

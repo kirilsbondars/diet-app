@@ -8,7 +8,7 @@ user_meal = db.Table('user_meal',
                      db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
                      db.Column('meal_id', db.Integer, db.ForeignKey('meal.id'), primary_key=True),
                      db.Column('date', db.Date, primary_key=True),
-                     db.Column('portion', Float(12, False, 2), nullable=False),
+                     db.Column('portion', db.Integer, nullable=False)
                      )
 
 blacklisted_meals = db.Table('blacklisted_meals',
@@ -21,6 +21,7 @@ class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(250), unique=True, nullable=False)
     password = db.Column(db.String(250), nullable=False)
+    is_admin = db.Column(db.Boolean, default=False)
 
     name = db.Column(db.String(250), nullable=False)
     surname = db.Column(db.String(250), nullable=False)
