@@ -1,31 +1,36 @@
-id;name;image_src;price;calories;proteins;fats;carbohydrates;gluten_free;vegan;vegetarian;dairy_free;for_breakfast;for_lunch;for_dinner
-1;Vegetable lasagne;1.png;1.17;144;4.8;4.22;30.9;FALSE;FALSE;TRUE;FALSE;FALSE;TRUE;TRUE
-2;Lasagne with minced beef;2.png;1.17;156;9.74;4.84;25.35;FALSE;FALSE;FALSE;FALSE;FALSE;TRUE;TRUE
-3;Apple;3.png;0.14;48.3;0;0;21.8;TRUE;TRUE;TRUE;TRUE;TRUE;TRUE;TRUE
-4;Orange;4.jpg;0.35;42.7;1.1;0.1;8.5;TRUE;TRUE;TRUE;TRUE;TRUE;TRUE;TRUE
-5;Banana;5.jpg;0.21;90.6;1.2;0.2;20.3;TRUE;TRUE;TRUE;TRUE;TRUE;TRUE;TRUE
-6;Fruit salad;6.jpg;0.28;67.5;0.9;0.4;14;TRUE;TRUE;TRUE;TRUE;TRUE;FALSE;FALSE
-7;Smoothie with blueberries and banana;7.jpg;1.29;77.2;1.5;1.6;13;TRUE;TRUE;TRUE;TRUE;TRUE;FALSE;FALSE
-8;Yoghurt smoothie with banana, strawberries and muesli;8.jpeg;0.95;81.3;3.25;2.4;10.7;TRUE;TRUE;TRUE;TRUE;TRUE;FALSE;FALSE
-9;Muesli with chocolate, banana, raisin;9.jpg;0.31;451;8.5;16.3;64.5;TRUE;TRUE;TRUE;TRUE;TRUE;TRUE;FALSE
-10;Bean salad, with tuna, with oil;10.jpg;0.82;88.4;6;2.9;8.2;TRUE;FALSE;FALSE;TRUE;FALSE;TRUE;TRUE
-11;Caesar salad;11.jpg;0.96;126;2.8;9.2;7.1;FALSE;FALSE;TRUE;FALSE;FALSE;TRUE;TRUE
-12;Beetroot salad, with sour cream and mayonnaise;12.webp;0.32;54.9;1.6;2;6.7;TRUE;FALSE;TRUE;FALSE;FALSE;TRUE;TRUE
-13;Greek salad;13.jpg;0.91;67.4;3.3;4.5;2.8;TRUE;FALSE;TRUE;FALSE;FALSE;TRUE;TRUE
-14;Caesar salad, with chicken;14.jpg;1.32;128;6;8.3;2.8;FALSE;FALSE;FALSE;FALSE;FALSE;TRUE;TRUE
-15;Rice, with vegetables;15.jpg;0.53;116;2.5;2.3;20.6;TRUE;TRUE;TRUE;TRUE;FALSE;TRUE;TRUE
-16;Raisins;16.jpg;0.62;283;3;1;63;TRUE;TRUE;TRUE;TRUE;TRUE;TRUE;TRUE
-17;Almonds;17.webp;0.8;635;21.1;55.8;7;TRUE;TRUE;TRUE;TRUE;TRUE;TRUE;TRUE
-18;Pistachio nuts;18.webp;0.32;606;21.6;50.3;12.3;TRUE;TRUE;TRUE;TRUE;TRUE;TRUE;TRUE
-19;Cashew nuts;19.webp;0.58;594;18.8;45.2;26;TRUE;TRUE;TRUE;TRUE;TRUE;TRUE;TRUE
-20;Egg, boiled;20.jpg;0.2;144;12.5;10.3;0.3;TRUE;FALSE;FALSE;TRUE;TRUE;TRUE;TRUE
-21;Egg, fried, with oil;21.jpg;0.2;194;13.8;15.3;0.33;TRUE;FALSE;FALSE;TRUE;TRUE;TRUE;TRUE
-22;Pancakes;22.jpg;0.39;222;7.9;10.2;24.1;FALSE;FALSE;TRUE;FALSE;TRUE;FALSE;FALSE
-23;Potato pancakes;23.jpg;0.32;261;13.2;18.1;11.1;TRUE;FALSE;TRUE;FALSE;TRUE;TRUE;TRUE
-24;Pumpkin pancakes;24.jpg;0.37;235;7.6;7.8;33;FALSE;FALSE;TRUE;FALSE;TRUE;TRUE;TRUE
-25;Mashed potatoes;25.jpg;0.12;76;2.4;0.6;15;TRUE;FALSE;TRUE;FALSE;TRUE;TRUE;TRUE
-26;Chicken Kiev;26.jpeg;0.73;302;15;23;8;FALSE;FALSE;FALSE;FALSE;FALSE;TRUE;TRUE
-27;Chicken-rice curry;27.jpg;0.87;121;9.3;4;11.6;TRUE;FALSE;FALSE;FALSE;FALSE;TRUE;TRUE
-28;Chicken-vegetable soup;28.jpg;0.96;62;4;2.6;5.5;TRUE;FALSE;FALSE;TRUE;FALSE;TRUE;TRUE
-29;Dumplings, with chicken, cheese;29.jpg;1.05;192;13;6;20;FALSE;FALSE;FALSE;FALSE;FALSE;TRUE;TRUE
-30;Borscht;30.jpg;1.17;55;4;1.5;5.7;TRUE;FALSE;FALSE;TRUE;FALSE;TRUE;TRUE
+id;name;image_src;price;calories;proteins;fats;carbohydrates;gluten_free;vegan;vegetarian;dairy_free
+1;Vegetable lasagne;1.png;1.17;144.0;4.8;4.22;30.9;False;False;True;False
+2;Lasagne with minced beef;2.png;1.17;156.0;9.74;4.84;25.35;False;False;False;False
+3;Apple;3.png;0.14;48.3;0.0;0.0;21.8;True;True;True;True
+4;Orange;4.jpg;0.35;42.7;1.1;0.1;8.5;True;True;True;True
+5;Banana;5.jpg;0.21;90.6;1.2;0.2;20.3;True;True;True;True
+6;Fruit salad;6.jpg;0.28;67.5;0.9;0.4;14.0;True;True;True;True
+7;Smoothie with blueberries and banana;7.jpg;1.29;77.2;1.5;1.6;13.0;True;True;True;True
+8;Yoghurt smoothie with banana, strawberries and muesli;8.jpeg;0.95;81.3;3.25;2.4;10.7;True;True;True;True
+9;Muesli with chocolate, banana, raisin;9.jpg;0.31;451.0;8.5;16.3;64.5;True;True;True;True
+10;Bean salad, with tuna, with oil;10.jpg;0.82;88.4;6.0;2.9;8.2;True;False;False;True
+11;Caesar salad;11.jpg;0.96;126.0;2.8;9.2;7.1;False;False;True;False
+12;Beetroot salad, with sour cream and mayonnaise;12.webp;0.32;54.9;1.6;2.0;6.7;True;False;True;False
+13;Greek salad;13.jpg;0.91;67.4;3.3;4.5;2.8;True;False;True;False
+14;Caesar salad, with chicken;14.jpg;1.32;128.0;6.0;8.3;2.8;False;False;False;False
+15;Rice, with vegetables;15.jpg;0.53;116.0;2.5;2.3;20.6;True;True;True;True
+16;Raisins;16.jpg;0.62;283.0;3.0;1.0;63.0;True;True;True;True
+17;Almonds;17.webp;0.8;635.0;21.1;55.8;7.0;True;True;True;True
+18;Pistachio nuts;18.webp;0.32;606.0;21.6;50.3;12.3;True;True;True;True
+19;Cashew nuts;19.webp;0.58;594.0;18.8;45.2;26.0;True;True;True;True
+20;Egg, boiled;20.jpg;0.2;144.0;12.5;10.3;0.3;True;False;False;True
+21;Egg, fried, with oil;21.jpg;0.2;194.0;13.8;15.3;0.33;True;False;False;True
+22;Pancakes;22.jpg;0.39;222.0;7.9;10.2;24.1;False;False;True;False
+23;Potato pancakes;23.jpg;0.32;261.0;13.2;18.1;11.1;True;False;True;False
+24;Pumpkin pancakes;24.jpg;0.37;235.0;7.6;7.8;33.0;False;False;True;False
+25;Mashed potatoes;25.jpg;0.12;76.0;2.4;0.6;15.0;True;False;True;False
+26;Chicken Kiev;26.jpeg;0.73;302.0;15.0;23.0;8.0;False;False;False;False
+27;Chicken-rice curry;27.jpg;0.87;121.0;9.3;4.0;11.6;True;False;False;False
+28;Chicken-vegetable soup;28.jpg;0.96;62.0;4.0;2.6;5.5;True;False;False;True
+29;Dumplings, with chicken, cheese;29.jpg;1.05;192.0;13.0;6.0;20.0;False;False;False;False
+30;Borscht;30.jpg;1.17;55.0;4.0;1.5;5.7;True;False;False;True
+31;Cottage cheese 9%;31.jpg;0.20;177.0;20.0;9.0;4.0;True;False;True;False
+32;Cottage cheese 0.5%;32.jpg;0.36;96.0;19.0;0.3;4.0;True;False;True;False
+33;Chicken breast;33.webp;0.54;165.0;31.0;3.6;0.0;True;False;False;True
+34;Pasta;34.jpg;0.2;157;5.8;0.9;31;False;True;True;True
+35;Hamburger;35.jpg;0.3;238;11;13.8;16;False;False;False;True

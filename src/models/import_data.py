@@ -51,13 +51,13 @@ def import_test_user():
             vegan=False,
             vegetarian=False,
             dairy_free=False,
-            min_calories=1800,
-            max_calories=2500,
+            min_calories=1500,
+            max_calories=2220,
             min_proteins=50,
-            max_proteins=150,
-            min_fats=100,
+            max_proteins=200,
+            min_fats=50,
             max_fats=200,
-            min_carbohydrates=100,
+            min_carbohydrates=50,
             max_carbohydrates=200
         )
         db.session.add(test_user)
