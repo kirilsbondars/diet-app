@@ -33,5 +33,50 @@
 ## Programmatūras apraksts
 # Novērtējums
 ## Novērtēšanas plāns
+Mērķis ir novērtēt ēdienkartes izveides un parādīšanas laiku lietotājam atkarībā no tā, cik daudz ēdienu ir datubāzē.
+
+Ieejas mainīgie:
+- Ēdienu skaits datubāzē (N)
+  - 100, 200, 300, 400 ēdieni
+- Testēšanas vide (Ubuntu serveris 22.04 LTS Azure)
+- Uzturvielu un kaloriju daudzums (testa lietotāja dati)
+
+Novērtēšanas mēri:
+- Izpildes un parādīšanas laiks sekundēs (t)
 ## Novērtēšanas rezultāti un to analīze
+Katrs mērījums tika atkārtots piecas reizes un tika aprēķināta vidējā vērtība. 
+### Visi mērījumi
+| Nr. 	| N   	| t, s        	|
+|-----	|-----	|-------------	|
+| 1.  | 100 | 0.033261061 |
+| 2.  | 100 | 0.035756826 |
+| 3.  | 100 | 0.036137581 |
+| 4.  | 100 | 0.032201529 |
+| 5.  | 100 | 0.036095619 |
+| 6.  | 200 | 0.05114603  |
+| 7.  | 200 | 0.047989845 |
+| 8.  | 200 | 0.048549175 |
+| 9.  | 200 | 0.054720163 |
+| 10. | 200 | 0.051140547 |
+| 11. | 300 | 0.059136868 |
+| 12. | 300 | 0.064473629 |
+| 13. | 300 | 0.060349703 |
+| 14. | 300 | 0.062695265 |
+| 15. | 300 | 0.067826509 |
+| 16. | 400 | 0.074854851 |
+| 17. | 400 | 0.074888229 |
+| 18. | 400 | 0.075597286 |
+| 19. | 400 | 0.072670937 |
+| 20. | 400 | 0.077696085 |
+
+### Rezultāti
+| Nr. 	| N   	| Vidējais laik, s        	|
+|-----	|-----	|-------------	|
+| 1. | 100 | 0.034339249 |
+| 2. | 200 | 0.047700167 |
+| 3. | 300 | 0.059559202 |
+| 4. | 400 | 0.073167562 |
+
+![Grafiks](/images/grafiks.png)
+
 # Secinājumi
