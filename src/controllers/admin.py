@@ -34,27 +34,43 @@ def user_details(user_id):
 
 def add_meal():
     if request.method == 'POST':
-        # Extract data from form
+        name = request.form['name']
+        price = request.form['price']
+        calories = request.form['calories']
+        proteins = request.form['proteins']
+        fats = request.form['fats']
+        carbohydrates = request.form['carbohydrates']
+        gluten_free = request.form.get('gluten_free') == 'on'
+        vegan = request.form.get('vegan') == 'on'
+        vegetarian = request.form.get('vegetarian') == 'on'
+        dairy_free = request.form.get('dairy_free') == 'on'
+
+        image = request.files['image']
+        filename = secure_filename(image.filename) if image else None
+        if filename:
+            image_path = os.path.join('static/images', filename)
+            image.save(image_path)
+
         new_meal = Meal(
-            name=request.form['name'],
-            image_src=1,
-            price=request.form['price'],
-            calories=request.form['calories'],
-            proteins=request.form['proteins'],
-            fats=request.form['fats'],
-            carbohydrates=request.form['carbohydrates'],
-            gluten_free=request.form.get('gluten_free') == 'on',
-            vegan=request.form.get('vegan') == 'on',
-            vegetarian=request.form.get('vegetarian') == 'on',
-            dairy_free=request.form.get('dairy_free') == 'on',
+            name=name,
+            image_src=filename,
+            price=price,
+            calories=calories,
+            proteins=proteins,
+            fats=fats,
+            carbohydrates=carbohydrates,
+            gluten_free=gluten_free,
+            vegan=vegan,
+            vegetarian=vegetarian,
+            dairy_free=dairy_free,
         )
+
         db.session.add(new_meal)
         db.session.commit()
         flash('Meal added successfully!')
         return redirect(url_for('admin.admin_panel'))
-    # Show the form for creating a new meal
-    return render_template('menu/add_meal.html')
 
+    return render_template('menu/add_meal.html')
 
 def edit_meal(meal_id):
     meal = Meal.query.get_or_404(meal_id)
