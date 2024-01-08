@@ -9,11 +9,11 @@ from models.models import User, db, Meal
 @login_required
 def admin_panel():
     if not current_user.is_admin:
-        flash('Access denied: You must be an admin to view this page.')
-        return redirect(url_for('index.render_page_index'))
+        flash('Access denied: You must be an admin to view this page.', 'danger')
+        return redirect(url_for('menu.create_menu_view'))
     users = User.query.all()
     meals = Meal.query.all()
-    return render_template('menu/admin-panel.html', users=users, meals=meals)
+    return render_template('admin/admin-panel.html', users=users, meals=meals)
 
 
 def delete_user(user_id):
@@ -21,14 +21,14 @@ def delete_user(user_id):
     if user:
         db.session.delete(user)
         db.session.commit()
-        flash('User deleted successfully.')
+        flash('User deleted successfully.', 'success')
     return redirect(url_for('admin.admin_panel'))
 
 
 def user_details(user_id):
     user = User.query.get(user_id)
     if user:
-        return render_template('menu/user_details.html', user=user)
+        return render_template('admin/user_details.html', user=user)
     return redirect(url_for('admin.admin_panel'))
 
 
@@ -67,10 +67,10 @@ def add_meal():
 
         db.session.add(new_meal)
         db.session.commit()
-        flash('Meal added successfully!')
+        flash('Meal added successfully!', 'success')
         return redirect(url_for('admin.admin_panel'))
 
-    return render_template('menu/add_meal.html')
+    return render_template('admin/add_meal.html')
 
 def edit_meal(meal_id):
     meal = Meal.query.get_or_404(meal_id)
@@ -97,15 +97,15 @@ def edit_meal(meal_id):
             meal.image_src = filename
 
         db.session.commit()
-        flash('Meal updated successfully!')
+        flash('Meal updated successfully!', 'success')
         return redirect(url_for('admin.admin_panel'))
 
-    return render_template('menu/edit_meal.html', meal=meal)
+    return render_template('admin/edit_meal.html', meal=meal)
 
 
 def delete_meal(meal_id):
     meal = Meal.query.get_or_404(meal_id)
     db.session.delete(meal)
     db.session.commit()
-    flash('Meal deleted successfully.')
+    flash('Meal deleted successfully.', 'success')
     return redirect(url_for('admin.admin_panel'))
