@@ -70,13 +70,19 @@ Katrs mērījums tika atkārtots piecas reizes un tika aprēķināta vidējā v�
 | 20. | 400 | 0.077696085 |
 
 ### Rezultāti
-| Nr. 	| N   	| Vidējais laik, s        	|
+| Nr. 	| N   	| Vidējais laiks, s        	|
 |-----	|-----	|-------------	|
 | 1. | 100 | 0.034339249 |
 | 2. | 200 | 0.047700167 |
 | 3. | 300 | 0.059559202 |
 | 4. | 400 | 0.073167562 |
 
+<br>
+
 ![Grafiks](/images/grafiks.png)
+
+Redzams, ka palielinoties ēdienu skaitam datubāzē, pieaug ēdienkartes izveides un parādīšanas laiks lietotājam. Toties visi šie izmērītie laiki ir nelieli, tāpēc lietotājs tos īsti nevar pamanīt vai precīzi noteikt, kurš brīdis ir bijis ilgāks.  
+
+Kopumā algoritms izmērītajiem ēdienu daudzumiem darbojas ļoti labi, jo spēj ātri (lietotājam gandrīz nemanāmi) izveidot ēdienkarti.            
 
 # Secinājumi
