@@ -8,7 +8,7 @@ user_meal = db.Table('user_meal',
                      db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
                      db.Column('meal_id', db.Integer, db.ForeignKey('meal.id'), primary_key=True),
                      db.Column('date', db.Date, primary_key=True),
-                     db.Column('portion', db.Integer, nullable=False)
+                     db.Column('portion', Float(12, False, 2), nullable=False)
                      )
 
 blacklisted_meals = db.Table('blacklisted_meals',
@@ -31,6 +31,7 @@ class User(UserMixin, db.Model):
     height = db.Column(Float(12, False, 2), nullable=False)
     gender = db.Column(db.Enum('Male', 'Female'), nullable=False)
 
+    recommended_nutrients = db.Column(db.Boolean, nullable=True, default=False)
     min_calories = db.Column(Float(12, False, 2), nullable=True)
     max_calories = db.Column(Float(12, False, 2), nullable=True)
     min_proteins = db.Column(Float(12, False, 2), nullable=True)

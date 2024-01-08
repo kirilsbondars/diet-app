@@ -82,12 +82,12 @@
 
         <h3>Nutrient Information</h3>
         <div class="form-group form-check">
-            <input type="checkbox" class="form-check-input" id="useOptimalValues" name="use_optimal_values" checked>
-            <label class="form-check-label" for="useOptimalValues">Use optimal values calculated by algorithm</label>
+            <input type="checkbox" class="form-check-input" id="recommended_nutrients" name="recommended_nutrients" {% if current_user.recommended_nutrients %} checked {% endif %}>
+            <label class="form-check-label" for="recommended_nutrients">Use optimal values calculated by algorithm</label>
         </div>
 
-        <div class="mb-4">
-            <div id="nutrientInformation" style="display: none;">
+        <div>
+            <div id="nutrient_information" style="display: {% if current_user.recommended_nutrients %} none; {% else %} 'block' {% endif %}">
                 <div class="row">
                     <div class="col">
                         <label for="min_calories">Minimum Calories (kcal):</label>
@@ -138,30 +138,31 @@
                 </div>
             </div>
 
-            <div class="d-grid gap-2 col-2 mx-auto">
+            <div class="d-flex justify-content-center mt-4">
                 <button type="submit" class="btn btn-primary">Update profile</button>
-                <button type="reset" class="btn btn-secondary">Cancel</button>
+                <button type="reset" class="btn btn-secondary ms-2">Cancel</button>
             </div>
-            </div>
-        </form>
+        </div>
+    </form>
 </div>
 
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-    var checkbox = document.getElementById('useOptimalValues');
-    var nutrientInformation = document.getElementById('nutrientInformation');
+    document.addEventListener("DOMContentLoaded", function() {
+        let checkbox = document.getElementById('recommended_nutrients');
+        let nutrientInformation = document.getElementById('nutrient_information');
 
-    // Function to toggle the display of nutrient information
-    function toggleNutrientInformation() {
-        nutrientInformation.style.display = checkbox.checked ? 'none' : 'block';
-    }
+        // Function to toggle the display of nutrient information
+        function toggleNutrientInformation() {
+            nutrientInformation.style.display = checkbox.checked ? 'none' : 'block';
+        }
 
-    // Event listener for checkbox changes
-    checkbox.addEventListener('change', toggleNutrientInformation);
+        // Event listener for checkbox changes
+        checkbox.addEventListener('change', toggleNutrientInformation);
 
-    // Initial check to set the correct display state
-    toggleNutrientInformation();
-});
+        // Initial check to set the correct display state
+        toggleNutrientInformation();
+    });
 </script>
+
 {% endblock %}
 
