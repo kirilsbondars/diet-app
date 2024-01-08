@@ -1,5 +1,5 @@
 from flask import render_template, request, redirect, url_for, flash
-from pulp import LpProblem, LpMinimize, LpVariable, lpSum, value
+from pulp import LpProblem, LpMinimize, LpVariable, lpSum, value, PULP_CBC_CMD
 from datetime import datetime, timedelta, date as d
 from sqlalchemy import insert
 from flask_login import current_user
@@ -20,14 +20,27 @@ def create_menu_view():
         # gets inputs
         date = datetime.strptime(request.form['date'], '%Y-%m-%d').date()
         n_days_ago = int(request.form['n_days_ago'])
-        min_calories = float(request.form['min_calories'])
-        max_calories = float(request.form['max_calories'])
-        min_fats = float(request.form['min_fats'])
-        max_fats = float(request.form['max_fats'])
-        min_proteins = float(request.form['min_proteins'])
-        max_proteins = float(request.form['max_proteins'])
-        min_carbohydrates = float(request.form['min_carbohydrates'])
-        max_carbohydrates = float(request.form['max_carbohydrates'])
+
+        # uses profile nutrients data if checked
+        use_profile_nutrients = bool(request.form.get('use_profile_nutrients'))
+        if use_profile_nutrients:
+            min_calories = user.min_calories
+            max_calories = user.max_calories
+            min_fats = user.min_fats
+            max_fats = user.max_fats
+            min_proteins = user.min_proteins
+            max_proteins = user.max_proteins
+            min_carbohydrates = user.min_carbohydrates
+            max_carbohydrates = user.max_carbohydrates
+        else:
+            min_calories = float(request.form['min_calories'])
+            max_calories = float(request.form['max_calories'])
+            min_fats = float(request.form['min_fats'])
+            max_fats = float(request.form['max_fats'])
+            min_proteins = float(request.form['min_proteins'])
+            max_proteins = float(request.form['max_proteins'])
+            min_carbohydrates = float(request.form['min_carbohydrates'])
+            max_carbohydrates = float(request.form['max_carbohydrates'])
 
         # gets meal ids from last n days
         exclude_meal_ids = get_last_n_days_meal_ids(user.id, date, n_days_ago)
@@ -158,7 +171,7 @@ def generate_menu(meals, min_calories, max_calories, min_fats, max_fats, min_pro
     prob += lpSum([meal_vars[meal.id] for meal in meals]) <= max_meal_size
 
     # Solve the problem
-    prob.solve()
+    prob.solve(PULP_CBC_CMD(msg=0))
 
     # print("The total cost of this balanced diet is: ${}".format(round(value(prob.objective), 2)))
     # print("The total calories of this balanced diet is: {}".format(
@@ -196,11 +209,18 @@ def validate_menu(meals_portions, min_calories, max_calories, min_fats, max_fats
         total_proteins += meal.proteins * portion
         total_carbohydrates += meal.carbohydrates * portion
 
+    total_cost = round(total_cost, 2)
     total_calories = round(total_calories)
-    total_fats = round(total_fats)
-    total_proteins = round(total_proteins)
-    total_carbohydrates = round(total_carbohydrates)
-    print('>>>>>>>', total_calories, total_fats, total_proteins, total_carbohydrates)
+    total_fats = round(total_fats,1)
+    total_proteins = round(total_proteins,1)
+    total_carbohydrates = round(total_carbohydrates,1)
+
+    print('>>>>>>> Algorithm Results:')
+    print('>>>>>>> Total Cost:', total_cost)
+    print('>>>>>>> Total Calories:', total_calories)
+    print('>>>>>>> Total Fats:', total_fats)
+    print('>>>>>>> Total Proteins:', total_proteins)
+    print('>>>>>>> Total Carbohydrates:', total_carbohydrates)
 
     if len(meals_portions) > max_meal_size:
         return False
