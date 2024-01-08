@@ -24,59 +24,68 @@
                 </select>
             </div>
 
-            <div class="row mb-3">
-                <label for="min_calories" class="col-3 col-form-label">Calories min:</label>
-                <div class="col-9">
-                    <input type="number" class="form-control" id="min_calories" name="min_calories" min="1" value="{{ form_data.min_calories if form_data and form_data.min_calories else current_user.min_calories }}" required>
-                </div>
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" value="" id="use_profile_nutrients" checked>
+                <label class="form-check-label" for="use_profile_nutrients">
+                    Use profile nutrients data
+                </label>
             </div>
 
-            <div class="row mb-3">
-                <label for="max_calories" class="col-3 col-form-label">Calories max:</label>
-                <div class="col-9">
-                    <input type="number" class="form-control" id="max_calories" name="max_calories" min="1" value="{{ form_data.max_calories if form_data and form_data.max_calories else current_user.max_calories }}" required>
+            <div id="nutrient_fields" style="display: none">
+                <div class="row mb-3">
+                    <label for="min_calories" class="col-3 col-form-label">Calories min:</label>
+                    <div class="col-9">
+                        <input type="number" class="form-control" id="min_calories" name="min_calories" min="1" value="{{ form_data.min_calories if form_data and form_data.min_calories else current_user.min_calories }}" required>
+                    </div>
                 </div>
-            </div>
 
-            <div class="row mb-3">
-                <label for="min_proteins" class="col-3 col-form-label">Proteins min:</label>
-                <div class="col-9">
-                    <input type="number" class="form-control" id="min_proteins" name="min_proteins" min="1" value="{{ form_data.min_proteins if form_data and form_data.min_proteins else current_user.min_proteins }}" required>
+                <div class="row mb-3">
+                    <label for="max_calories" class="col-3 col-form-label">Calories max:</label>
+                    <div class="col-9">
+                        <input type="number" class="form-control" id="max_calories" name="max_calories" min="1" value="{{ form_data.max_calories if form_data and form_data.max_calories else current_user.max_calories }}" required>
+                    </div>
                 </div>
-            </div>
 
-            <div class="row mb-3">
-                <label for="max_proteins" class="col-3 col-form-label">Proteins max:</label>
-                <div class="col-9">
-                    <input type="number" class="form-control" id="max_proteins" name="max_proteins" min="1" value="{{ form_data.max_proteins if form_data and form_data.max_proteins else current_user.max_proteins }}" required>
+                <div class="row mb-3">
+                    <label for="min_proteins" class="col-3 col-form-label">Proteins min:</label>
+                    <div class="col-9">
+                        <input type="number" class="form-control" id="min_proteins" name="min_proteins" min="1" value="{{ form_data.min_proteins if form_data and form_data.min_proteins else current_user.min_proteins }}" required>
+                    </div>
                 </div>
-            </div>
 
-            <div class="row mb-3">
-                <label for="min_fats" class="col-3 col-form-label">Fats min:</label>
-                <div class="col-9">
-                    <input type="number" class="form-control" id="min_fats" name="min_fats" min="1" value="{{ form_data.min_fats if form_data and form_data.min_fats else current_user.min_fats }}" required>
+                <div class="row mb-3">
+                    <label for="max_proteins" class="col-3 col-form-label">Proteins max:</label>
+                    <div class="col-9">
+                        <input type="number" class="form-control" id="max_proteins" name="max_proteins" min="1" value="{{ form_data.max_proteins if form_data and form_data.max_proteins else current_user.max_proteins }}" required>
+                    </div>
                 </div>
-            </div>
 
-            <div class="row mb-3">
-                <label for="max_fats" class="col-3 col-form-label">Fats max:</label>
-                <div class="col-9">
-                    <input type="number" class="form-control" id="max_fats" name="max_fats" min="1" value="{{ form_data.max_fats if form_data and form_data.max_fats else current_user.max_fats }}" required>
+                <div class="row mb-3">
+                    <label for="min_fats" class="col-3 col-form-label">Fats min:</label>
+                    <div class="col-9">
+                        <input type="number" class="form-control" id="min_fats" name="min_fats" min="1" value="{{ form_data.min_fats if form_data and form_data.min_fats else current_user.min_fats }}" required>
+                    </div>
                 </div>
-            </div>
 
-            <div class="row mb-3">
-                <label for="min_carbohydrates" class="col-3 col-form-label">Carbohydrates min:</label>
-                <div class="col-9">
-                    <input type="number" class="form-control" id="min_carbohydrates" name="min_carbohydrates" min="1" value="{{ form_data.min_carbohydrates if form_data and form_data.min_carbohydrates else current_user.min_carbohydrates }}" required>
+                <div class="row mb-3">
+                    <label for="max_fats" class="col-3 col-form-label">Fats max:</label>
+                    <div class="col-9">
+                        <input type="number" class="form-control" id="max_fats" name="max_fats" min="1" value="{{ form_data.max_fats if form_data and form_data.max_fats else current_user.max_fats }}" required>
+                    </div>
                 </div>
-            </div>
 
-            <div class="row mb-3">
-                <label for="max_carbohydrates" class="col-3 col-form-label">Carbohydrates max:</label>
-                <div class="col-9">
-                    <input type="number" class="form-control" id="max_carbohydrates" name="max_carbohydrates" min="1" value="{{ form_data.max_carbohydrates if form_data and form_data.max_carbohydrates else current_user.max_carbohydrates }}" required>
+                <div class="row mb-3">
+                    <label for="min_carbohydrates" class="col-3 col-form-label">Carbohydrates min:</label>
+                    <div class="col-9">
+                        <input type="number" class="form-control" id="min_carbohydrates" name="min_carbohydrates" min="1" value="{{ form_data.min_carbohydrates if form_data and form_data.min_carbohydrates else current_user.min_carbohydrates }}" required>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label for="max_carbohydrates" class="col-3 col-form-label">Carbohydrates max:</label>
+                    <div class="col-9">
+                        <input type="number" class="form-control" id="max_carbohydrates" name="max_carbohydrates" min="1" value="{{ form_data.max_carbohydrates if form_data and form_data.max_carbohydrates else current_user.max_carbohydrates }}" required>
+                    </div>
                 </div>
             </div>
 
@@ -95,4 +104,15 @@
             </div>
         </form>
     </div>
+
+    <script>
+        document.getElementById('use_profile_nutrients').addEventListener('change', function() {
+            let nutrientFields = document.getElementById('nutrient_fields');
+            if (this.checked) {
+                nutrientFields.style.display = 'none';
+            } else {
+                nutrientFields.style.display = 'block';
+            }
+        });
+    </script>
 {% endblock %}
