@@ -80,62 +80,88 @@
             <label for="dairy-free">Dairy-free</label><br>
         </div>
 
-        <div class="mb-4">
-            <h3>Nutrient Information</h3>
-            <div class="row">
-                <div class="col">
-                    <label for="min_calories">Minimum Calories (kcal):</label>
-                    <input type="number" step="any" class="form-control" id="min_calories" name="min_calories"
-                           value="{{ current_user.min_calories }}" required>
-                </div>
-                <div class="col">
-                    <label for="max_calories">Maximum Calories (kcal):</label>
-                    <input type="number" step="any" class="form-control" id="max_calories" name="max_calories"
-                           value="{{ current_user.max_calories }}" required>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <label for="min_fats">Minimum Fats (g):</label>
-                    <input type="number" step="any" class="form-control" id="min_fats" name="min_fats"
-                           value="{{ current_user.min_fats }}" required>
-                </div>
-                <div class="col">
-                    <label for="max_fats">Maximum Fats (g):</label>
-                    <input type="number" step="any" class="form-control" id="max_fats" name="max_fats"
-                           value="{{ current_user.max_fats }}" required>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <label for="min_proteins">Minimum Proteins (g):</label>
-                    <input type="number" step="any" class="form-control" id="min_proteins" name="min_proteins"
-                           value="{{ current_user.min_proteins }}" required>
-                </div>
-                <div class="col">
-                    <label for="max_proteins">Maximum Proteins (g):</label>
-                    <input type="number" step="any" class="form-control" id="max_proteins" name="max_proteins"
-                           value="{{ current_user.max_proteins }}" required>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <label for="min_carbohydrates">Minimum Carbohydrates (g):</label>
-                    <input type="number" step="any" class="form-control" id="min_carbohydrates"
-                           name="min_carbohydrates" value="{{ current_user.min_carbohydrates }}" required>
-                </div>
-                <div class="col">
-                    <label for="max_carbohydrates">Maximum Carbohydrates (g):</label>
-                    <input type="number" step="any" class="form-control" id="max_carbohydrates"
-                           name="max_carbohydrates" value="{{ current_user.max_carbohydrates }}" required>
-                </div>
-            </div>
+        <h3>Nutrient Information</h3>
+        <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="useOptimalValues" name="use_optimal_values" checked>
+            <label class="form-check-label" for="useOptimalValues">Use optimal values calculated by algorithm</label>
         </div>
 
-        <div class="d-grid gap-2 col-2 mx-auto">
-            <button type="submit" class="btn btn-primary">Update profile</button>
-            <button type="reset" class="btn btn-secondary">Cancel</button>
-        </div>
-    </form>
+        <div class="mb-4">
+            <div id="nutrientInformation" style="display: none;">
+                <div class="row">
+                    <div class="col">
+                        <label for="min_calories">Minimum Calories (kcal):</label>
+                        <input type="number" step="any" class="form-control" id="min_calories" name="min_calories"
+                               value="{{ current_user.min_calories }}" required>
+                    </div>
+                    <div class="col">
+                        <label for="max_calories">Maximum Calories (kcal):</label>
+                        <input type="number" step="any" class="form-control" id="max_calories" name="max_calories"
+                               value="{{ current_user.max_calories }}" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label for="min_fats">Minimum Fats (g):</label>
+                        <input type="number" step="any" class="form-control" id="min_fats" name="min_fats"
+                               value="{{ current_user.min_fats }}" required>
+                    </div>
+                    <div class="col">
+                        <label for="max_fats">Maximum Fats (g):</label>
+                        <input type="number" step="any" class="form-control" id="max_fats" name="max_fats"
+                               value="{{ current_user.max_fats }}" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label for="min_proteins">Minimum Proteins (g):</label>
+                        <input type="number" step="any" class="form-control" id="min_proteins" name="min_proteins"
+                               value="{{ current_user.min_proteins }}" required>
+                    </div>
+                    <div class="col">
+                        <label for="max_proteins">Maximum Proteins (g):</label>
+                        <input type="number" step="any" class="form-control" id="max_proteins" name="max_proteins"
+                               value="{{ current_user.max_proteins }}" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label for="min_carbohydrates">Minimum Carbohydrates (g):</label>
+                        <input type="number" step="any" class="form-control" id="min_carbohydrates"
+                               name="min_carbohydrates" value="{{ current_user.min_carbohydrates }}" required>
+                    </div>
+                    <div class="col">
+                        <label for="max_carbohydrates">Maximum Carbohydrates (g):</label>
+                        <input type="number" step="any" class="form-control" id="max_carbohydrates"
+                               name="max_carbohydrates" value="{{ current_user.max_carbohydrates }}" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-grid gap-2 col-2 mx-auto">
+                <button type="submit" class="btn btn-primary">Update profile</button>
+                <button type="reset" class="btn btn-secondary">Cancel</button>
+            </div>
+            </div>
+        </form>
 </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var checkbox = document.getElementById('useOptimalValues');
+    var nutrientInformation = document.getElementById('nutrientInformation');
+
+    // Function to toggle the display of nutrient information
+    function toggleNutrientInformation() {
+        nutrientInformation.style.display = checkbox.checked ? 'none' : 'block';
+    }
+
+    // Event listener for checkbox changes
+    checkbox.addEventListener('change', toggleNutrientInformation);
+
+    // Initial check to set the correct display state
+    toggleNutrientInformation();
+});
+</script>
 {% endblock %}
+

@@ -79,10 +79,6 @@
               <td>{{ user.email }}</td>
           </tr>
           <tr>
-              <th>Password</th>
-              <td>{{ user.password }}</td>
-          </tr>
-          <tr>
               <th>Name</th>
               <td>{{ user.name }}</td>
           </tr>
@@ -91,16 +87,16 @@
               <td>{{ user.surname }}</td>
           </tr>
           <tr>
-              <th>Age</th>
-              <td>{{ user.age }}</td>
+              <th>Birthday</th>
+              <td>{{ user.date_of_birth }}</td>
           </tr>
           <tr>
               <th>Weight</th>
-              <td>{{ user.weight }}</td>
+              <td>{{ user.weight }}kg</td>
           </tr>
           <tr>
               <th>Height</th>
-              <td>{{ user.height }}</td>
+              <td>{{ user.height }}cm</td>
           </tr>
           <tr>
               <th>Gender</th>
@@ -108,19 +104,19 @@
           </tr>
           <tr>
               <th>Calories</th>
-              <td>{{ user.calories }}</td>
+              <td>{{ user.min_calories }} - {{ user.max_calories }}</td>
           </tr>
           <tr>
               <th>Proteins</th>
-              <td>{{ user.proteins }}</td>
+              <td>{{ user.min_proteins }} - {{ user.max_proteins }}</td>
           </tr>
           <tr>
               <th>Fats</th>
-              <td>{{ user.fats }}</td>
+              <td>{{ user.min_fats }} - {{ user.max_fats }}</td>
           </tr>
           <tr>
               <th>Carbohydrates</th>
-              <td>{{ user.carbohydrates }}</td>
+              <td>{{ user.min_carbohydrates }} - {{ user.max_carbohydrates }}</td>
           </tr>
           <tr>
               <th>Gluten Free</th>
