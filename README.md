@@ -7,34 +7,67 @@ Grupas dalībnieki:
 - Miks Šics
 - Katrīna Kate Mālniece
 
-# Instalācijas instrukcija (Ubuntu 22.04 LTS)
-## Clone rep
+# Development Windows
+## Install programs
 ```console
-kirils@KirilsPC:~$ sudo apt update
-kirils@KirilsPC:~$ sudo apt install python3 git gunicorn python-flask, mysql
-kirils@KirilsPC:~$ git clone https://github.com/kirilsbondars/diet-app
-kirils@KirilsPC:~$ cd diet-app
-kirils@KirilsPC:~/diet-app$ pip3 install -r requirements.txt
+git clone https://github.com/kirilsbondars/diet-app
+cd diet-app/src
+pip install virtualenv
+virtualenv venv
+venv\Scripts\activate
+pip3 install -r requirements.txt
 ```
-setup mysql change file config to be able to connect to mysql
+## Set up MySQL
+```mysql
+CREATE DATABASE diet_app;
+CREATE USER 'diet_app_user'@'localhost' IDENTIFIED BY '123';
+GRANT ALL PRIVILEGES ON *.* TO 'diet_app_user'@'localhost' WITH GRANT OPTION;
+```
+
+## Run Flask
+```console
+python app.py
+```
+
+# Instalācijas instrukcija (Ubuntu 22.04 LTS)
+## Install programs
+```console
+sudo apt install python3 git gunicorn mysql-server python3-flask python3-pip python3-venv -y
+```
+## Clone git
+```console
+git clone https://github.com/kirilsbondars/diet-app
+cd diet-app/src
+python3 -m venv .venv
+. .venv/bin/activate
+pip3 install -r requirements.txt
+```
+## Set up MySQL
+```console
+sudo mysql
+```
+```mysql
+CREATE DATABASE diet_app;
+CREATE USER 'diet_app_user'@'localhost' IDENTIFIED BY '123';
+GRANT ALL PRIVILEGES ON *.* TO 'diet_app_user'@'localhost' WITH GRANT OPTION;
+exit;
+```
+## Change config.py
+```console
+nano diet-app/src/config.py
+```
+edit config.py content
+```python
+SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://diet_app_user:123@localhost/diet_app'
+```
 ## Test Flask
 ```console
-kirils@KirilsPC:~/diet-app$ cd src
-kirils@KirilsPC:~/diet-app/src$ flask --app app run
+python3 diet-app/src/app.py
 ```
 ## Gunicorn
-```
-import os
-
-workers = int(os.environ.get('GUNICORN_PROCESSES', '2'))
-threads = int(os.environ.get('GUNICORN_THREADS', '4'))
-bind = os.environ.get('GUNICORN_BIND', '0.0.0.0:8080')
-
-forwarded_allow_ips = '*'
-
-secure_scheme_headers = { 'X-Forwarded-Proto': 'https' }
-```
 
 ```console
+cd /diet-app/src
 gunicorn --config gunicorn_config.py app:app
 ```
+

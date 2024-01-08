@@ -1,6 +1,7 @@
 from flask import Blueprint
 from flask_login import login_required
-from src.controllers.blacklist import view, add, remove
+
+from controllers.blacklist import view, add, remove
 
 blacklist_blueprint = Blueprint('blacklist', __name__, url_prefix='/blacklist')
 

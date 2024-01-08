@@ -1,13 +1,16 @@
-from src.models.models import db, Meal, User, user_meal
 from flask_bcrypt import Bcrypt
 from datetime import datetime
 from sqlalchemy import insert, select
 import csv
+import os
+
+from models.models import db, Meal, User, user_meal
 
 bcrypt = Bcrypt()
 
 
-def import_meals(csv_filename='models/meals.csv'):  # change file name
+def import_meals():
+    csv_filename = os.path.join(os.path.dirname(__file__), 'meals.csv')
     if Meal.query.first() is None:
         print("Importing meals...")
 
@@ -48,13 +51,13 @@ def import_test_user():
             vegan=False,
             vegetarian=False,
             dairy_free=False,
-            min_calories=1800,
-            max_calories=2500,
+            min_calories=1500,
+            max_calories=2220,
             min_proteins=50,
-            max_proteins=150,
-            min_fats=100,
+            max_proteins=200,
+            min_fats=50,
             max_fats=200,
-            min_carbohydrates=100,
+            min_carbohydrates=50,
             max_carbohydrates=200
         )
         db.session.add(test_user)

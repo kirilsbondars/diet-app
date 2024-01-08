@@ -3,7 +3,7 @@ from flask_login import login_user, logout_user, current_user
 from flask_bcrypt import Bcrypt
 from datetime import datetime
 
-from src.models.models import db, User
+from models.models import db, User
 
 bcrypt = Bcrypt()
 

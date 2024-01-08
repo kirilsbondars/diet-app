@@ -1,16 +1,13 @@
-from config import PYTHONPATH
-
 from flask import Flask
 from flask_login import LoginManager
 from flask_bootstrap import Bootstrap5
 
-from routes.index import index_blueprint
 from routes.auth import auth_blueprint
 from routes.menu import menu_blueprint
 from routes.admin import admin_blueprint
 from routes.blacklist import blacklist_blueprint
-from src.models.models import db, User
-from src.models.import_data import import_data
+from models.models import db, User
+from models.import_data import import_data
 
 
 def create_app():
@@ -39,7 +36,6 @@ def create_app():
 
 app = create_app()
 
-app.register_blueprint(index_blueprint)
 app.register_blueprint(auth_blueprint)
 app.register_blueprint(menu_blueprint)
 app.register_blueprint(admin_blueprint)
