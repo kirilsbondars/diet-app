@@ -27,7 +27,7 @@ def create_app():
 
     Bootstrap5(app)
 
-    #fill db
+    # fill db
     with app.app_context():
         import_data()
 
