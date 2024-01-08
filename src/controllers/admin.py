@@ -1,5 +1,7 @@
+import os
 from flask import render_template, redirect, url_for, flash, request
 from flask_login import login_required, current_user
+from werkzeug.utils import secure_filename
 
 from src.models.models import User, db, Meal
 
@@ -71,12 +73,12 @@ def edit_meal(meal_id):
         meal.for_lunch = 'for_lunch' in request.form
         meal.for_dinner = 'for_dinner' in request.form
 
-        # if 'image' in request.files:
-        #     image = request.files['image']
-        #     if image.filename != '':
-        #         filename = secure_filename(image.filename)
-        #         image.save(os.path.join('path/to/save/image', filename))
-        #         meal.image_src = url_for('static', filename='path/to/save/image/' + filename)
+        image = request.files['image']
+        if image:
+            filename = secure_filename(image.filename)
+            image_path = os.path.join('static/images', filename)
+            image.save(image_path)
+            meal.image_src = filename
 
         db.session.commit()
         flash('Meal updated successfully!')
