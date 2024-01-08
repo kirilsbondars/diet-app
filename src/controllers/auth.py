@@ -10,38 +10,39 @@ bcrypt = Bcrypt()
 
 def profile():
     if request.method == "POST":
-        name = request.form.get("name")
-        surname = request.form.get("surname")
-        gender = request.form.get("gender")
-        date_of_birth = datetime.strptime(request.form.get("date_of_birth"), "%Y-%m-%d").date()
-        weight = request.form.get("weight")
-        height = request.form.get("height")
-        gluten_free = request.form.get("gluten-free") == 'on'
-        vegan = request.form.get("vegan") == 'on'
-        vegetarian = request.form.get("vegetarian") == 'on'
-        dairy_free = request.form.get("dairy-free") == 'on'
+        current_user.name = request.form.get("name")
+        current_user.surname = request.form.get("surname")
+        current_user.gender = request.form.get("gender")
+        current_user.date_of_birth = datetime.strptime(request.form.get("date_of_birth"), "%Y-%m-%d").date()
+        current_user.weight = request.form.get("weight")
+        current_user.height = request.form.get("height")
+        current_user.gluten_free = request.form.get("gluten-free") == 'on'
+        current_user.vegan = request.form.get("vegan") == 'on'
+        current_user.vegetarian = request.form.get("vegetarian") == 'on'
+        current_user.dairy_free = request.form.get("dairy-free") == 'on'
+        current_user.recommended_nutrients = request.form.get("recommended_nutrients") == 'on'
+        print(current_user.recommended_nutrients)
 
-        current_user.name = name
-        current_user.surname = surname
-        current_user.gender = gender
-        current_user.date_of_birth = date_of_birth
-        current_user.weight = weight
-        current_user.height = height
-        current_user.gluten_free = gluten_free
-        current_user.vegan = vegan
-        current_user.vegetarian = vegetarian
-        current_user.dairy_free = dairy_free
-
-        (min_calories, max_calories, min_fats, max_fats, min_proteins, max_proteins, min_carbohydrates,
-         max_carbohydrates) = calculate_min_max_nutrients(weight, height, date_of_birth, gender)
-        current_user.min_calories = min_calories
-        current_user.max_calories = max_calories
-        current_user.min_fats = min_fats
-        current_user.max_fats = max_fats
-        current_user.min_proteins = min_proteins
-        current_user.max_proteins = max_proteins
-        current_user.min_carbohydrates = min_carbohydrates
-        current_user.max_carbohydrates = max_carbohydrates
+        if current_user.recommended_nutrients:
+            (min_calories, max_calories, min_fats, max_fats, min_proteins, max_proteins, min_carbohydrates,
+             max_carbohydrates) = calculate_min_max_nutrients(current_user.weight, current_user.height, current_user.date_of_birth, current_user.gender)
+            current_user.min_calories = min_calories
+            current_user.max_calories = max_calories
+            current_user.min_fats = min_fats
+            current_user.max_fats = max_fats
+            current_user.min_proteins = min_proteins
+            current_user.max_proteins = max_proteins
+            current_user.min_carbohydrates = min_carbohydrates
+            current_user.max_carbohydrates = max_carbohydrates
+        else:
+            current_user.min_calories = float(request.form.get("min_calories"))
+            current_user.max_calories = float(request.form.get("max_calories"))
+            current_user.min_fats = float(request.form.get("min_fats"))
+            current_user.max_fats = float(request.form.get("max_fats"))
+            current_user.min_proteins = float(request.form.get("min_proteins"))
+            current_user.max_proteins = float(request.form.get("max_proteins"))
+            current_user.min_carbohydrates = float(request.form.get("min_carbohydrates"))
+            current_user.max_carbohydrates = float(request.form.get("max_carbohydrates"))
 
         db.session.commit()
 
@@ -103,7 +104,7 @@ def sing_up():
                     date_of_birth=date_of_birth, weight=weight, height=height, gluten_free=gluten_free, vegan=vegan,
                     vegetarian=vegetarian, dairy_free=dairy_free, min_calories=min_calories, max_calories=max_calories,
                     min_fats=min_fats, max_fats=max_fats, min_proteins=min_proteins, max_proteins=max_proteins,
-                    min_carbohydrates=min_carbohydrates, max_carbohydrates=max_carbohydrates)
+                    min_carbohydrates=min_carbohydrates, max_carbohydrates=max_carbohydrates, recommended_nutrients=True)
         db.session.add(user)
         db.session.commit()
 

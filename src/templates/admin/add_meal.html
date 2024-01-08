@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add New Meal</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            display: grid;
+            grid-gap: 10px;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type=text],
+        input[type=number],
+        input[type=file],
+        input[type=submit],
+        button {
+            width: 100%;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+        }
+        input[type=submit],
+        button {
+            background-color: #5cb85c;
+            color: white;
+            border-color: #4cae4c;
+        }
+        input[type=submit]:hover,
+        button:hover {
+            background-color: #449d44;
+        }
+        .checkbox-group {
+            display: flex;
+            justify-content: start;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        .checkbox-group input {
+            width: auto;
+        }
+        .checkbox-group label {
+            margin: 0;
+        }
+        .back-button {
+            background-color: #6c757d;
+            border-color: #6c757d;
+            text-align: center;
+            display: inline-block;
+            padding: 8px 12px;
+            text-decoration: none;
+            color: white;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+        .back-button:hover {
+            background-color: #5a6268;
+        }
+        .current-image {
+            height: 100px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Add New Meal</h1>
+    <form action="{{ url_for('admin.add_meal') }}" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="image">Image:</label>
+            <input type="file" id="image" name="image">
+        </div>
+
+        <div class="form-group">
+            <label for="price">Price:</label>
+            <input type="number" id="price" name="price" step="0.01" required>
+        </div>
+
+        <div class="form-group">
+            <label for="calories">Calories:</label>
+            <input type="number" id="calories" name="calories" step="0.01" required>
+        </div>
+
+        <div class="form-group">
+            <label for="proteins">Proteins:</label>
+            <input type="number" id="proteins" name="proteins" step="0.01" required>
+        </div>
+
+        <div class="form-group">
+            <label for="fats">Fats:</label>
+            <input type="number" id="fats" name="fats" step="0.01" required>
+        </div>
+
+        <div class="form-group">
+            <label for="carbohydrates">Carbohydrates:</label>
+            <input type="number" id="carbohydrates" name="carbohydrates" step="0.01" required>
+        </div>
+
+        <div class="checkbox-group">
+            <input type="checkbox" id="gluten_free" name="gluten_free">
+            <label for="gluten_free">Gluten Free</label>
+
+            <input type="checkbox" id="vegan" name="vegan">
+            <label for="vegan">Vegan</label>
+
+            <input type="checkbox" id="vegetarian" name="vegetarian">
+            <label for="vegetarian">Vegetarian</label>
+
+            <input type="checkbox" id="dairy_free" name="dairy_free">
+            <label for="dairy_free">Dairy Free</label>
+
+<!--            <input type="checkbox" id="for_breakfast" name="for_breakfast">-->
+<!--            <label for="for_breakfast">For Breakfast</label>-->
+
+<!--            <input type="checkbox" id="for_lunch" name="for_lunch">-->
+<!--            <label for="for_lunch">For Lunch</label>-->
+
+<!--            <input type="checkbox" id="for_dinner" name="for_dinner">-->
+<!--            <label for="for_dinner">For Dinner</label>-->
+        </div>
+
+        <input type="submit" value="Add Meal" class="btn btn-primary">
+    </form>
+    <a href="{{ url_for('admin.admin_panel') }}" class="back-button">Back to Admin Panel</a>
+</div>
+</body>
+</html>

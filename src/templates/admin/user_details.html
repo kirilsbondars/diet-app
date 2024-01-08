@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Details</title>
+      <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #b4b4b4;
+            color: #fff;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            margin: 0 5px;
+        }
+        .button:hover {
+            opacity: 0.8;
+        }
+        .delete-button {
+            background-color: #dc3545;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+      <h1>User Details</h1>
+      <table>
+          <tr>
+              <th>ID</th>
+              <td>{{ user.id }}</td>
+          </tr>
+          <tr>
+              <th>Email</th>
+              <td>{{ user.email }}</td>
+          </tr>
+          <tr>
+              <th>Name</th>
+              <td>{{ user.name }}</td>
+          </tr>
+          <tr>
+              <th>Surname</th>
+              <td>{{ user.surname }}</td>
+          </tr>
+          <tr>
+              <th>Birthday</th>
+              <td>{{ user.date_of_birth }}</td>
+          </tr>
+          <tr>
+              <th>Weight</th>
+              <td>{{ user.weight }}kg</td>
+          </tr>
+          <tr>
+              <th>Height</th>
+              <td>{{ user.height }}cm</td>
+          </tr>
+          <tr>
+              <th>Gender</th>
+              <td>{{ user.gender }}</td>
+          </tr>
+          <tr>
+              <th>Calories</th>
+              <td>{{ user.min_calories }} - {{ user.max_calories }}</td>
+          </tr>
+          <tr>
+              <th>Proteins</th>
+              <td>{{ user.min_proteins }} - {{ user.max_proteins }}</td>
+          </tr>
+          <tr>
+              <th>Fats</th>
+              <td>{{ user.min_fats }} - {{ user.max_fats }}</td>
+          </tr>
+          <tr>
+              <th>Carbohydrates</th>
+              <td>{{ user.min_carbohydrates }} - {{ user.max_carbohydrates }}</td>
+          </tr>
+          <tr>
+              <th>Gluten Free</th>
+              <td>{{ user.gluten_free }}</td>
+          </tr>
+          <tr>
+              <th>Vegan</th>
+              <td>{{ user.vegan }}</td>
+          </tr>
+          <tr>
+              <th>Vegetarian</th>
+              <td>{{ user.vegetarian }}</td>
+          </tr>
+          <tr>
+              <th>Dairy Free</th>
+              <td>{{ user.dairy_free }}</td>
+          </tr>
+      </table>
+      <div class="button-container">
+          <a href="{{ url_for('admin.admin_panel') }}" class="button">Back to Admin Panel</a>
+          <form action="{{ url_for('admin.delete_user', user_id=user.id) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this user?');" style="display: inline;">
+              <input type="hidden" name="_method" value="DELETE">
+              <button type="submit" class="button delete-button">Delete This User</button>
+          </form>
+      </div>
+    </div>
+</body>
+</html>

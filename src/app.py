@@ -4,6 +4,7 @@ from flask_bootstrap import Bootstrap5
 
 from routes.auth import auth_blueprint
 from routes.menu import menu_blueprint
+from routes.admin import admin_blueprint
 from routes.blacklist import blacklist_blueprint
 from models.models import db, User
 from models.import_data import import_data
@@ -37,6 +38,7 @@ app = create_app()
 
 app.register_blueprint(auth_blueprint)
 app.register_blueprint(menu_blueprint)
+app.register_blueprint(admin_blueprint)
 app.register_blueprint(blacklist_blueprint)
 
 

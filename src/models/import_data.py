@@ -58,7 +58,8 @@ def import_test_user():
             min_fats=50,
             max_fats=200,
             min_carbohydrates=50,
-            max_carbohydrates=200
+            max_carbohydrates=200,
+            is_admin=True
         )
         db.session.add(test_user)
         db.session.commit()

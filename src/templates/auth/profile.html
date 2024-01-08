@@ -1,79 +1,168 @@
 {%  extends 'base.html' %}
 
 {% block head %}
-    <title>Profile</title>
+<title>Profile</title>
 {% endblock %}
 
 {% block body %}
-    <div class="container w-50 p-3">
+<div class="container w-50 p-3">
 
-        <h1 class="mx-auto text-center p-2">Profile</h1>
-        <form method="POST">
+    <h1 class="mx-auto text-center p-2">Profile</h1>
+    <form method="POST">
 
-            <div class="form-group mb-2">
-                <label for="staticEmail">Email:</label>
-                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="{{ current_user.email }}">
+        <div class="form-group mb-2">
+            <label for="staticEmail">Email:</label>
+            <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                   value="{{ current_user.email }}">
+        </div>
+
+        <div class="form-group mb-2">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" id="name" name="name" value="{{ current_user.name }}" required>
+        </div>
+
+        <div class="form-group mb-2">
+            <label for="surname">Surname:</label>
+            <input type="text" class="form-control" id="surname" name="surname" value="{{ current_user.surname }}"
+                   required>
+        </div>
+
+        <div class="form-group mb-2">
+            <label for="gender">Gender:</label>
+            <select class="form-control" id="gender" name="gender">
+                <option value="Female" {% if current_user.gender==
+                'Female' %} selected {% endif %}>Female</option>
+                <option value="Male" {% if current_user.gender==
+                'Male' %} selected {% endif %}>Male</option>
+            </select>
+        </div>
+
+        <div class="form-group mb-2">
+            <label for="date_of_birth">Date of birth: </label>
+            <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" min="1900-01-01"
+                   value="{{ current_user.date_of_birth }}" required>
+        </div>
+
+        <div class="form-group mb-2">
+            <label for="weight">Weight:</label>
+            <div class="input-group">
+                <input type="number" class="form-control" id="weight" name="weight" min="1" max="500"
+                       value="{{ current_user.weight }}" required>
+                <div class="input-group-append">
+                    <span class="input-group-text">kg</span>
+                </div>
             </div>
+        </div>
 
-            <div class="form-group mb-2">
-                <label for="name">Name:</label>
-                <input type="text" class="form-control" id="name" name="name" value="{{ current_user.name }}" required>
+        <div class="form-group mb-2">
+            <label for="height">Height:</label>
+            <div class="input-group">
+                <input type="number" class="form-control" id="height" name="height" min="1" max="250"
+                       value="{{ current_user.height }}" required>
+                <div class="input-group-append">
+                    <span class="input-group-text">cm</span>
+                </div>
             </div>
+        </div>
 
-            <div class="form-group mb-2">
-                <label for="surname">Surname:</label>
-                <input type="text" class="form-control" id="surname" name="surname" value="{{ current_user.surname }}" required>
-            </div>
+        <div class="form-group mb-4">
+            <label for="food-preferences">Food Preferences:</label><br>
+            <input type="checkbox" id="gluten-free" name="gluten-free" {% if current_user.gluten_free %} checked {%
+                   endif %}>
+            <label for="gluten-free">Gluten-free</label><br>
+            <input type="checkbox" id="vegan" name="vegan" {% if current_user.vegan %} checked {% endif %}>
+            <label for="vegan">Vegan</label><br>
+            <input type="checkbox" id="vegetarian" name="vegetarian" {% if current_user.vegetarian %} checked {% endif
+                   %}>
+            <label for="vegetarian">Vegetarian</label><br>
+            <input type="checkbox" id="dairy-free" name="dairy-free" {% if current_user.dairy_free %} checked {% endif
+                   %}>
+            <label for="dairy-free">Dairy-free</label><br>
+        </div>
 
-            <div class="form-group mb-2">
-                <label for="gender">Gender:</label>
-                <select class="form-control" id="gender" name="gender">
-                    <option value="Female" {% if current_user.gender == 'Female' %} selected {% endif %}>Female</option>
-                    <option value="Male" {% if current_user.gender == 'Male' %} selected {% endif %}>Male</option>
-                </select>
-            </div>
+        <h3>Nutrient Information</h3>
+        <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="recommended_nutrients" name="recommended_nutrients" {% if current_user.recommended_nutrients %} checked {% endif %}>
+            <label class="form-check-label" for="recommended_nutrients">Use optimal values calculated by algorithm</label>
+        </div>
 
-            <div class="form-group mb-2">
-                <label for="date_of_birth">Date of birth: </label>
-                <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" min="1900-01-01" value="{{ current_user.date_of_birth }}" required>
-            </div>
-
-            <div class="form-group mb-2">
-                <label for="weight">Weight:</label>
-                <div class="input-group">
-                    <input type="number" class="form-control" id="weight" name="weight" min="1" max="500" value="{{ current_user.weight }}" required>
-                    <div class="input-group-append">
-                        <span class="input-group-text">kg</span>
+        <div>
+            <div id="nutrient_information" style="display: {% if current_user.recommended_nutrients %} none; {% else %} 'block' {% endif %}">
+                <div class="row">
+                    <div class="col">
+                        <label for="min_calories">Minimum Calories (kcal):</label>
+                        <input type="number" step="any" class="form-control" id="min_calories" name="min_calories"
+                               value="{{ current_user.min_calories }}" required>
+                    </div>
+                    <div class="col">
+                        <label for="max_calories">Maximum Calories (kcal):</label>
+                        <input type="number" step="any" class="form-control" id="max_calories" name="max_calories"
+                               value="{{ current_user.max_calories }}" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label for="min_fats">Minimum Fats (g):</label>
+                        <input type="number" step="any" class="form-control" id="min_fats" name="min_fats"
+                               value="{{ current_user.min_fats }}" required>
+                    </div>
+                    <div class="col">
+                        <label for="max_fats">Maximum Fats (g):</label>
+                        <input type="number" step="any" class="form-control" id="max_fats" name="max_fats"
+                               value="{{ current_user.max_fats }}" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label for="min_proteins">Minimum Proteins (g):</label>
+                        <input type="number" step="any" class="form-control" id="min_proteins" name="min_proteins"
+                               value="{{ current_user.min_proteins }}" required>
+                    </div>
+                    <div class="col">
+                        <label for="max_proteins">Maximum Proteins (g):</label>
+                        <input type="number" step="any" class="form-control" id="max_proteins" name="max_proteins"
+                               value="{{ current_user.max_proteins }}" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label for="min_carbohydrates">Minimum Carbohydrates (g):</label>
+                        <input type="number" step="any" class="form-control" id="min_carbohydrates"
+                               name="min_carbohydrates" value="{{ current_user.min_carbohydrates }}" required>
+                    </div>
+                    <div class="col">
+                        <label for="max_carbohydrates">Maximum Carbohydrates (g):</label>
+                        <input type="number" step="any" class="form-control" id="max_carbohydrates"
+                               name="max_carbohydrates" value="{{ current_user.max_carbohydrates }}" required>
                     </div>
                 </div>
             </div>
 
-            <div class="form-group mb-2">
-                <label for="height">Height:</label>
-                <div class="input-group">
-                    <input type="number" class="form-control" id="height" name="height" min="1" max="250" value="{{ current_user.height }}" required>
-                    <div class="input-group-append">
-                        <span class="input-group-text">cm</span>
-                    </div>
-                </div>
+            <div class="d-flex justify-content-center mt-4">
+                <button type="submit" class="btn btn-primary">Update profile</button>
+                <button type="reset" class="btn btn-secondary ms-2">Cancel</button>
             </div>
+        </div>
+    </form>
+</div>
 
-            <div class="form-group mb-4">
-                <label for="food-preferences">Food Preferences:</label><br>
-                <input type="checkbox" id="gluten-free" name="gluten-free" {% if current_user.gluten_free %} checked {% endif %}>
-                <label for="gluten-free">Gluten-free</label><br>
-                <input type="checkbox" id="vegan" name="vegan" {% if current_user.vegan %} checked {% endif %}>
-                <label for="vegan">Vegan</label><br>
-                <input type="checkbox" id="vegetarian" name="vegetarian" {% if current_user.vegetarian %} checked {% endif %}>
-                <label for="vegetarian">Vegetarian</label><br>
-                <input type="checkbox" id="dairy-free" name="dairy-free" {% if current_user.dairy_free %} checked {% endif %}>
-                <label for="dairy-free">Dairy-free</label><br>
-            </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        let checkbox = document.getElementById('recommended_nutrients');
+        let nutrientInformation = document.getElementById('nutrient_information');
 
-            <div class="d-grid gap-2 col-2 mx-auto">
-              <button type="submit" class="btn btn-primary">Update profile</button>
-              <button type="reset" class="btn btn-secondary">Cancel</button>
-            </div>
-        </form>
-    </div>
+        // Function to toggle the display of nutrient information
+        function toggleNutrientInformation() {
+            nutrientInformation.style.display = checkbox.checked ? 'none' : 'block';
+        }
+
+        // Event listener for checkbox changes
+        checkbox.addEventListener('change', toggleNutrientInformation);
+
+        // Initial check to set the correct display state
+        toggleNutrientInformation();
+    });
+</script>
+
 {% endblock %}
+
