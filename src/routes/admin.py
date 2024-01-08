@@ -1,5 +1,5 @@
 from flask import Blueprint
-from src.controllers.admin import admin_panel, delete_user, user_details, add_meal, edit_meal, delete_meal
+from controllers.admin import admin_panel, delete_user, user_details, add_meal, edit_meal, delete_meal
 from flask_login import login_required
 
 admin_blueprint = Blueprint('admin', __name__)

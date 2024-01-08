@@ -3,7 +3,7 @@ from flask import render_template, redirect, url_for, flash, request
 from flask_login import login_required, current_user
 from werkzeug.utils import secure_filename
 
-from src.models.models import User, db, Meal
+from models.models import User, db, Meal
 
 
 @login_required
