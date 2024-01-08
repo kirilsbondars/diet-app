@@ -7,6 +7,12 @@ Grupas dalībnieki:
 - Miks Šics
 - Katrīna Kate Mālniece
 
+# Risinājuma apskatīšana
+Risinājuma mājaslapa: https://www.diet.id.lv/ 
+<br><br> Testa lietotājs
+<br>email: `test@test.test`, password: `123`
+
+
 # Development Windows
 ## Install programs
 ```console
