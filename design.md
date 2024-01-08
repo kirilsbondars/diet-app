@@ -13,15 +13,15 @@
 ## Prasības
 | Nr. 	 | Lietotāju stāsts 	                                                                                                | Prioritāte 	 |
 |-------|-------------------------------------------------------------------------------------------------------------------|--------------|
-| 1.    | Lietotājs vēlas ielogoties, jo grib tik klat saviem datiem                                                        | S            |
+| 1.    | Lietotājs vēlas ielogoties, jo grib tik klāt saviem datiem                                                        | S            |
 | 2.    | Lietotājs vēlas reģistrēties, jo grib, lai viņa dati saglabājas                                                   | S            |
 | 3.    | Lietotājs vēlas izvelēties uzturvielu daudzumu savā ēdienkartē, jo pielāgot ēdienkarti savām vajadzībām           | S            |
-| 4.    | Lietotājs vēlas, lai tiek piedāvāti jauni ēdieni, jo negrib ēst vienu un to pašu                                  | C            |
+| 4.    | Lietotājs vēlas jaunu ēdienu piedāvājumus, jo negrib ēst vienu un to pašu                                         | C            |
 | 5.    | Lietotājs vēlas iegūt optimālo ēdienkarti, jo grib minimizēt ēdiena izmaksas                                      | M            |
-| 6.    | Lietotājs vēlas iespēju izvēlēties produktu preferences, jo lietotājam var būt alerģijas vai dietāri ierobežojumi | S            |
-| 7.    | Lietotājs grib ievadīt datus par sevi, jo grib iegūt personalizēto kaloriju un uzturvielu daudzumu                | S            |
-| 8.    | Lietotājs grib, lai ēdieniem būtu bildes, jo tā ir vieglāk uztvert                                                | C            |
-| 9.    | Lietotājs grib, lai būtu edienu melnraksts, jo viņam nepatik dāži edieni                                          | C            |
+| 6.    | Lietotājs vēlas iespēju izvēlēties produktu preferences, jo lietotājam var būt alerģijas vai uztura ierobežojumi  | S            |
+| 7.    | Lietotājs vēlas ievadīt datus par sevi, jo grib iegūt personalizēto kaloriju un uzturvielu daudzumu                | S            |
+| 8.    | Lietotājs vēlas, lai ēdieniem būtu bildes, jo tā ir vieglāk uztvert                                                | C            |
+| 9.    | Lietotājs vēlas, lai būtu nevēlamo ēdienu melnais saraksts, jo ir ēdieni, kas viņam negaršo                                          | C            |
 | 10.   | Administrators vēlas pievienot jaunus ēdienus, jo grib, lai lietotājiem būtu vairāk ēdienu no kuriem izvēlēties   | M            |
 | 11.   | Administrators vēlas apskatīt informāciju par lietotājiem, jo grib, zināt informāciju par lietotājiem sistēma     | C            |
 ## Algoritms
