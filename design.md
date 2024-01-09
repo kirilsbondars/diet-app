@@ -1,4 +1,13 @@
 # Ievads
+| Grupas dalībnieks     	| Izdarītie darbi                                                         	|
+|-----------------------	|-------------------------------------------------------------------------	|
+| Elizabete Citskovska  	| Testa datu izveide, datu importēšanas funkcijas rakstīšana, mājaslapas veidošana (sign up, profile). Dokumentācijas rakstīšana (novērtēšana, secinājumi u.c.) un informācijas atlasīšana plakātam.                                                                        	|
+| Kirils Bondars        	| Grupas vadītājs, izveidoja projekta struktūru, datubāzi un mājaslapas skici. Veidoja mājaslapu (create menu, blacklist logs, ēdienu pievienošana un attēlu pievienošana ēdieniem u.c.), uzrakstīja algoritmu ēdienkartei, veica pārējo grupas dalībnieku kodu revīziju un labošanu. Rakstīja dokumentāciju, pievienoja instrukcijas tam, kā var instalēt risinājumu, izveidoja tehnoloģiju stekus.  	|
+| Dmitrijs Sizovs       	| Veidoja mājaslapu (history logs, admin panelis, uzturvielu pievienošana profilam).                                                                        	|
+| Artūrs Zvirgzdiņš     	| Veidoja mājaslapu (admin panelis, profile un login problēmu labošana, navbar).                                                                         	|
+| Miks Šics             	| Veidoja mājaslapu (login logs, create menu dizains), dokumentāciju (algoritma blokshēmas veidošana, programmatūras apraksts u.c.) un atlasīja informāciju plakātam.                                                                      	|
+| Katrīna Kate Mālniece 	| Testa datu izveide, kaloriju un uzturvielu ģenerēšanas funkcijas rakstīšana, dokumentācijas veidošana (ievads, secinājumi) un plakāta izveide.                                                                      	|
+
 ## Problēmas nostādne
 ## Darba un novērtēšanas mērķis
 # Līdzīgo risinājumu pārskats
