@@ -38,7 +38,7 @@ Mērķis ir novērtēt ēdienkartes izveides un parādīšanas laiku lietotājam
 Ieejas mainīgie:
 - Ēdienu skaits datubāzē (N)
   - 100, 200, 300, 400 ēdieni
-- Testēšanas vide - Standard B2s (2 vcpus, 4 GiB memory), Ubuntu serveris 22.04 LTS
+- Testēšanas vide - Azure Standard B2s (2 vcpus, 4 GiB memory), Ubuntu serveris 22.04 LTS
 - Uzturvielu un kaloriju daudzums (testa lietotāja dati)
 
 Novērtēšanas mēri:
