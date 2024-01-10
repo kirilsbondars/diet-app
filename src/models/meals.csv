@@ -5,9 +5,9 @@ id;name;image_src;price;calories;proteins;fats;carbohydrates;gluten_free;vegan;v
 4;Orange;4.jpg;0.35;42.7;1.1;0.1;8.5;True;True;True;True
 5;Banana;5.jpg;0.21;90.6;1.2;0.2;20.3;True;True;True;True
 6;Fruit salad;6.jpg;0.28;67.5;0.9;0.4;14.0;True;True;True;True
-7;Smoothie with blueberries and banana;7.jpg;1.29;77.2;1.5;1.6;13.0;True;True;True;True
+7;Smoothie with blueberries and banana;7.jpg;1.29;77.2;1.5;1.6;13.0;True;True;True;False
 8;Yoghurt smoothie with banana, strawberries and muesli;8.jpeg;0.95;81.3;3.25;2.4;10.7;True;True;True;True
-9;Muesli with chocolate, banana, raisin;9.jpg;0.31;451.0;8.5;16.3;64.5;True;True;True;True
+9;Muesli with chocolate, banana, raisin;9.jpg;0.31;451.0;8.5;16.3;64.5;True;True;True;False
 10;Bean salad, with tuna, with oil;10.jpg;0.82;88.4;6.0;2.9;8.2;True;False;False;True
 11;Caesar salad;11.jpg;0.96;126.0;2.8;9.2;7.1;False;False;True;False
 12;Beetroot salad, with sour cream and mayonnaise;12.webp;0.32;54.9;1.6;2.0;6.7;True;False;True;False
