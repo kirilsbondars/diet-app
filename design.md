@@ -34,6 +34,22 @@
 | 10.   | Administrators vēlas pievienot jaunus ēdienus, jo grib, lai lietotājiem būtu vairāk ēdienu no kuriem izvēlēties   | M            |
 | 11.   | Administrators vēlas apskatīt informāciju par lietotājiem, jo grib, zināt informāciju par lietotājiem sistēma     | C            |
 ## Algoritms
+![Algoritms](/images/Algoritms.png)
+
+Algoritms uzsāk savu darbību, kad lietotājs izvēlas uzsākt ēdienkartes ģenerēšanu. Pirms ģenerēšanas, lietotājam ir iespēja vai nu manuāli ievadīt datus par nepieciešamajām uzturvielām, vai arī pēc noklusējuma par tām iegūt datus no profila, un algoritms attiecīgi pārbauda, kurš no abiem datu avotiem ir izvēlēts. Kad ir saņemtas nepieciešamo uzturvielu vērtības, tiek izgūti visi pieejamie ēdieni, lietotāja preferences (kā arī ēdieni, ko lietotājs ir ielicis melnajā sarakstā) kā arī informācija par iepriekšējo dienu ēdienkaršu ēdieniem.
+
+Kad visa informācija ir iegūta, algoritms pārbauda vai eksistē ēdieni, kas atbilstu uzstādītajām prasībām (iekļautos preferencēs / nebūtu melnajā sarakstā u.tml). Ja atbilstoši ēdieni netiek atrasti, tiek izvadīts kļūdas paziņojums. Ja tie tiek atrasti, tiek veikta optimālas ēdienkartes ģenerēšana. Lai to īstenotu, tika izmantots lineārās programmēšanas minimizācijas modelis / algoritms, kas atrasts vietnē "neos Guide" https://neos-guide.org/case-studies/om/the-diet-problem/ (minimizācijas izpilde tika īstenota ar Python PuLP bibliotēkas palīdzību)
+
+Attiecīgā LP modeļa / algoritma matemātiskais noformulējums:
+
+![LP Algoritma matemātiskais noformulējums](/images/Algoritms-mat.png)
+
+Fmin = 0, Fmax = 5 visiem ēdieniem
+Uzturvielu daudzums Aij un cena ci ir uz/par 100g ēdiena
+Porciju daudzums Xi ir skaitlis no 0 līdz 5, kas attiecīgi apzīmē 0g - 500g
+
+Pēc algoritma izpildes vēl tiek veikta beidzamā pārbaude, kas nosaka, vai nav pieļauta kāda kļūda un uzturvielu daudzumi patiešām iekļaujas nepieciešamajos intervālos. Ja kāds no daudzumiem tomēr neiekļaujas, tiek izvadīts kļūdas paziņojums. Ja ar uzturvielu daudzumiem viss ir kārtībā, ģenerētā ēdienkarte tiek izvadīta lietotājam.
+
 ## Konceptu modelis
 ![Konceptu modelis](/images/konceptu_modelis.png)
 ## Tehnoloģiju steks
@@ -95,3 +111,10 @@ Redzams, ka palielinoties ēdienu skaitam datubāzē, pieaug ēdienkartes izveid
 Kopumā algoritms izmērītajiem ēdienu daudzumiem darbojas ļoti labi, jo spēj ātri (lietotājam gandrīz nemanāmi) izveidot ēdienkarti.            
 
 # Secinājumi
+Projekta laikā tika izstrādāts risinājums, kurā tika veiksmīgi īstenoti visi iepriekš definētie lietotāju stāsti. Risinājums nodrošina visas būtiskākās pamata vajadzības / funkcionalitāti, kā arī labu bāzi lietotāja saskarnei. 
+
+Veicot risinājuma novērtēšanu tika konstatēts, ka arī izvēlētais ģenerēšanas algoritms strādā samērā efektīvi, un veiksmīgi nodrošina vienu no svarīgākajām pamatfunkcionalitātes darbībām (kā arī nodrošina šīs funkcionalitātes ātrdarbību). 
+
+Papildus veiksmīgai risinājuma izstrādei, projekta laikā ievērojami tika attīstītas arī visu dalībnieku prasmes, gan produktu / pakalpojumu izveidē / plānošanā, gan pašā izstrādes procesā ar Python Flask satvaru, gan arī komandas sadarbībā un GitHub  pareizā pielietošanā. Kopumā projekts bija labs ievads šāda veida risinājumu veidošanā un palīdzēja savienot dažādas studiju laikā apskatītās (kā arī pilnībā jaunas) prakses. Projekta laikā arī nācās samērā regulāri praktizēt pielāgošanās prasmes un veikt nepieciešamos labojumus, kad izstrādes laikā tika konstatēta to nepieciešamība. 
+
+Ja risinājumu attīstītu tālāk, varētu uzlabot saskarnes dizainu un kopējo risinājuma prezentāciju. Kā arī būtu iespējams papildināt risinājumu ar vēl citām alternatīvām preferencēm un uzstādāmiem ierobežojumiem ēdienkartes ģenerēšanai. Papildus varētu uzlabot ēdienu savstarpējo sinerģiju, ģenerējot ēdienkarti, kā arī kompleksākiem ēdieniem pievienot iespēju apskatīt to receptes. Labi būtu arī ģenerēt ēdienus specifiskām ēdienreizēm, nevis visus vienā lielā ēdienkartē. 
