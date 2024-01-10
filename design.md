@@ -56,6 +56,10 @@ Pēc algoritma izpildes vēl tiek veikta beidzamā pārbaude, kas nosaka, vai na
 ![Tehnoloģiju steks - servera puse](/images/tehnologiju_steks_servera_puse.png)
 ![Tehnoloģiju steks - klienta puse](/images/tehnologiju_steks_klienta_puse.png)
 ## Programmatūras apraksts
+Programmatūras pirmkots ir atrodams GitHub: https://github.com/kirilsbondars/diet-app.git
+
+Instalācijas instrukcija pa soļiem pieejama failā README.md. Papildus arī risinājumu iespējams izmēģināt / apskatīt bez instalācijas, izmantojot uzstādīto mājaslapu https://www.diet.id.lv/ (testa lietotājam var piekļūt ar attiecīgo login informāciju: email: test@test.test, password: 123)
+
 # Novērtējums
 ## Novērtēšanas plāns
 Mērķis ir novērtēt ēdienkartes izveides un parādīšanas laiku lietotājam atkarībā no tā, cik daudz ēdienu ir datubāzē.
