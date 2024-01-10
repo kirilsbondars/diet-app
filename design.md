@@ -9,7 +9,9 @@
 | Katrīna Kate Mālniece 	| Testa datu izveide, kaloriju un uzturvielu ģenerēšanas funkcijas rakstīšana, dokumentācijas veidošana (ievads, secinājumi) un plakāta izveide.                                                                      	|
 
 ## Problēmas nostādne
+Veselīgs un sabalansēts uzturs ir svarīgs labai veselībai, tomēr sekot līdzi uzņemto kaloriju, olbaltumvielu, ogļhidrātu un tauku daudzumam var būt sarežģīti. Katra cilvēka ķermeņa īpašības un dzīvesveids ir atšķirīgi, kā arī neviens negribētu ēst vienus un tos pašus ēdienus katru dienu, tāpēc nav iespējams atrast kādu universālu ēdienu, ko cilvēks varētu ēst katru dienu.
 ## Darba un novērtēšanas mērķis
+Darba mērķis ir izstrādāt web risinājumu, kas ļauj lietotājam vieglā un ērtā veidā izveidot personalizētu ēdienkarti katrai dienai. Šis risinājums atvieglotu lietotāju ikdienu - vairs nebūtu jāplāno katra ēdienreize un jāseko līdzi tam, vai ir uzņemts atbilstošs daudzums kaloriju un uzturvielu. Darba novērtēšana ļaus saprast to, cik ātri tiek izveidota un parādīta ēdienkarte, atkarībā no ēdienu skaita datubāzē.
 # Līdzīgo risinājumu pārskats
 | Risinājums | Pozitīvās īpašības | Trūkumi |
 | --- | --- | --- |
