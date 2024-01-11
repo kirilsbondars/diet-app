@@ -5,11 +5,13 @@
 | Kirils Bondars        	| Grupas vadītājs, izveidoja projekta struktūru, datubāzi un mājaslapas skici. Veidoja mājaslapu (create menu, blacklist logs, ēdienu pievienošana un attēlu pievienošana ēdieniem u.c.), uzrakstīja algoritmu ēdienkartei, veica pārējo grupas dalībnieku kodu revīziju un labošanu. Rakstīja dokumentāciju, pievienoja instrukcijas tam, kā var instalēt risinājumu, izveidoja tehnoloģiju stekus.  	|
 | Dmitrijs Sizovs       	| Veidoja mājaslapu (history logs, admin panelis, uzturvielu pievienošana profilam).                                                                        	|
 | Artūrs Zvirgzdiņš     	| Veidoja mājaslapu (admin panelis, profile un login problēmu labošana, navbar).                                                                         	|
-| Miks Šics             	| Veidoja mājaslapu (login logs, create menu dizains), dokumentāciju (algoritma blokshēmas veidošana, programmatūras apraksts u.c.) un atlasīja informāciju plakātam.                                                                      	|
+| Miks Šics             	| Veidoja mājaslapu (login logs, create menu dizains), dokumentāciju (algoritma blokshēmas / apraksta veidošana, programmatūras apraksts, secinājumi u.c.) un atlasīja informāciju plakātam.                                                                      	|
 | Katrīna Kate Mālniece 	| Testa datu izveide, kaloriju un uzturvielu ģenerēšanas funkcijas rakstīšana, dokumentācijas veidošana (ievads, secinājumi) un plakāta izveide.                                                                      	|
 
 ## Problēmas nostādne
+Veselīgs un sabalansēts uzturs ir svarīgs labai veselībai, tomēr sekot līdzi uzņemto kaloriju, olbaltumvielu, ogļhidrātu un tauku daudzumam var būt sarežģīti. Katra cilvēka ķermeņa īpašības un dzīvesveids ir atšķirīgi, kā arī neviens negribētu ēst vienus un tos pašus ēdienus katru dienu, tāpēc nav iespējams atrast kādu universālu ēdienu, ko cilvēks varētu ēst katru dienu.
 ## Darba un novērtēšanas mērķis
+Darba mērķis ir izstrādāt web risinājumu, kas ļauj lietotājam vieglā un ērtā veidā izveidot personalizētu ēdienkarti katrai dienai. Šis risinājums atvieglotu lietotāju ikdienu - vairs nebūtu jāplāno katra ēdienreize un jāseko līdzi tam, vai ir uzņemts atbilstošs daudzums kaloriju un uzturvielu. Darba novērtēšana ļaus saprast to, cik ātri tiek izveidota un parādīta ēdienkarte, atkarībā no ēdienu skaita datubāzē.
 # Līdzīgo risinājumu pārskats
 | Risinājums | Pozitīvās īpašības | Trūkumi |
 | --- | --- | --- |
@@ -56,6 +58,10 @@ Pēc algoritma izpildes vēl tiek veikta beidzamā pārbaude, kas nosaka, vai na
 ![Tehnoloģiju steks - servera puse](/images/tehnologiju_steks_servera_puse.png)
 ![Tehnoloģiju steks - klienta puse](/images/tehnologiju_steks_klienta_puse.png)
 ## Programmatūras apraksts
+Programmatūras pirmkots ir atrodams GitHub: https://github.com/kirilsbondars/diet-app.git
+
+Instalācijas instrukcija pa soļiem pieejama failā README.md. Papildus arī risinājumu iespējams izmēģināt / apskatīt bez instalācijas, izmantojot uzstādīto mājaslapu https://www.diet.id.lv/ (testa lietotājam var piekļūt ar attiecīgo login informāciju: email: test@test.test, password: 123)
+
 # Novērtējums
 ## Novērtēšanas plāns
 Mērķis ir novērtēt ēdienkartes izveides un parādīšanas laiku lietotājam atkarībā no tā, cik daudz ēdienu ir datubāzē.
