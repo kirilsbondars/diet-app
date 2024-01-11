@@ -45,30 +45,36 @@ def add_meal():
         vegetarian = request.form.get('vegetarian') == 'on'
         dairy_free = request.form.get('dairy_free') == 'on'
 
-        image = request.files['image']
-        filename = secure_filename(image.filename) if image else None
-        if filename:
+        image = request.files.get('image', None)
+        if image and image.filename:
+            filename = secure_filename(image.filename)
             image_path = os.path.join('static/images', filename)
             image.save(image_path)
+        else:
+            flash('An image is required.', 'danger')
+            return render_template('admin/add_meal.html')
 
-        new_meal = Meal(
-            name=name,
-            image_src=filename,
-            price=price,
-            calories=calories,
-            proteins=proteins,
-            fats=fats,
-            carbohydrates=carbohydrates,
-            gluten_free=gluten_free,
-            vegan=vegan,
-            vegetarian=vegetarian,
-            dairy_free=dairy_free,
-        )
+        if filename:
+            new_meal = Meal(
+                name=name,
+                image_src=filename,
+                price=price,
+                calories=calories,
+                proteins=proteins,
+                fats=fats,
+                carbohydrates=carbohydrates,
+                gluten_free=gluten_free,
+                vegan=vegan,
+                vegetarian=vegetarian,
+                dairy_free=dairy_free,
+            )
 
-        db.session.add(new_meal)
-        db.session.commit()
-        flash('Meal added successfully!', 'success')
-        return redirect(url_for('admin.admin_panel'))
+            db.session.add(new_meal)
+            db.session.commit()
+            flash('Meal added successfully!', 'success')
+            return redirect(url_for('admin.admin_panel'))
+        else:
+            flash('Image upload failed.', 'danger')
 
     return render_template('admin/add_meal.html')
 
