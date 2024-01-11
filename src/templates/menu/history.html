@@ -12,10 +12,10 @@
 
                 <form method="get">
                     <div class="input-group">
-                        <a class="btn btn-primary" href="{{ url_for('menu.history', date=prev_date) }}">&#8592; Previous Day</a>
+                        <a class="btn btn-primary" href="{{ url_for('menu.history', date=prev_date) }}">Previous Day</a>
                         <input type="date" aria-label="Date" class="form-control" id="date" name="date" value="{{ date }}" required>
                         <button class="btn btn-secondary" type="submit">Go to Date</button>
-                        <a class="btn btn-primary ml-3" href="{{ url_for('menu.history', date=next_date) }}" disabled>Next Day &#8594;</a>
+                        <a class="btn btn-primary ml-3" href="{{ url_for('menu.history', date=next_date) }}" disabled>Next Day</a>
                     </div>
                 </form>
             </div>

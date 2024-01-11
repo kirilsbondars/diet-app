@@ -33,4 +33,4 @@ id;name;image_src;price;calories;proteins;fats;carbohydrates;gluten_free;vegan;v
 32;Cottage cheese 0.5%;32.jpg;0.36;96.0;19.0;0.3;4.0;True;False;True;False
 33;Chicken breast;33.webp;0.54;165.0;31.0;3.6;0.0;True;False;False;True
 34;Pasta;34.jpg;0.2;157;5.8;0.9;31;False;True;True;True
-35;Hamburger;35.jpg;0.3;238;11;13.8;16;False;False;False;True
+35;Hamburger;35.webp;0.3;238;11;13.8;16;False;False;False;True

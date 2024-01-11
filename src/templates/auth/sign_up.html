@@ -5,92 +5,89 @@
 {% endblock %}
 
 {% block body %}
+    <div class="container">
+        <div class="col-lg-6 offset-lg-3">
 
-    <div class="container w-50 p-3">
+            <h1 class="mx-auto text-center p-2">Sign Up</h1>
+            <form method="POST">
+                <div class="form-group mb-2">
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" id="name" name="name" value="{{ form_data.name }}" required>
+                </div>
 
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <a href="login" type="button" class="btn btn-outline-secondary">Log in</a>
+                <div class="form-group mb-2">
+                    <label for="surname">Surname:</label>
+                    <input type="text" class="form-control" id="surname" name="surname" value="{{ form_data.surname }}" required>
+                </div>
+
+                <div class="form-group mb-2">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" name="email" value="{{ form_data.email }}" required>
+                    {% if errors.email %}
+                        <small class="form-text text-danger">{{ errors.email }}</small>
+                    {% endif %}
+                </div>
+
+                <div class="form-group mb-2">
+                    <label for="password">Password:</label>
+                    <input type="password" class="form-control" id="password" name="password" value="{{ form_data.password }}" required>
+                </div>
+
+                <div class="form-group mb-2">
+                    <label for="confirm-password">Confirm Password:</label>
+                    <input type="password" class="form-control" id="confirm-password" name="confirm-password" value="{{ form_data.confirm_password }}" required>
+                    {% if errors.confirm_password %}
+                        <small class="form-text text-danger">{{ errors.confirm_password }}</small>
+                    {% endif %}
+                </div>
+
+                <div class="form-group mb-2">
+                    <label for="gender">Gender:</label>
+                    <select class="form-control" id="gender" name="gender">
+                        <option value="Female">Female</option>
+                        <option value="Male">Male</option>
+                    </select>
+                </div>
+
+                <div class="form-group mb-2">
+                    <label for="date_of_birth">Date of birth:</label>
+                    <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" min="1900-01-01" max="2008-01-01" value="{{ form_data.date_of_birth }}" required>
+                </div>
+
+                <div class="form-group mb-2">
+                    <label for="weight">Weight:</label>
+                    <div class="input-group">
+                        <input type="number" class="form-control" id="weight" name="weight" min="1" max="150" value="{{ form_data.weight }}" required>
+                        <div class="input-group-append">
+                            <span class="input-group-text">kg</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group mb-2">
+                    <label for="height">Height:</label>
+                    <div class="input-group">
+                        <input type="number" class="form-control" id="height" name="height" min="1" max="250" value="{{ form_data.height }}" required>
+                        <div class="input-group-append">
+                            <span class="input-group-text">cm</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group mb-4">
+                    <label for="food-preferences">Food Preferences:</label><br>
+                    <input type="checkbox" id="gluten-free" name="gluten-free" {% if form_data.gluten_free %} checked {% endif %}>
+                    <label for="gluten-free">Gluten-free</label><br>
+                    <input type="checkbox" id="vegan" name="vegan" {% if form_data.vegan %} checked {% endif %}>
+                    <label for="vegan">Vegan</label><br>
+                    <input type="checkbox" id="vegetarian" name="vegetarian" {% if form_data.vegetarian %} checked {% endif %}>
+                    <label for="vegetarian">Vegetarian</label><br>
+                    <input type="checkbox" id="dairy-free" name="dairy-free" {% if form_data.dairy_free %} checked {% endif %}>
+                    <label for="dairy-free">Dairy-free</label><br>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Sign Up</button>
+            </form>
         </div>
-
-        <h1 class="mx-auto text-center p-2">Sign Up</h1>
-        <form method="POST">
-            <div class="form-group mb-2">
-                <label for="name">Name:</label>
-                <input type="text" class="form-control" id="name" name="name" value="{{ form_data.name }}" required>
-            </div>
-
-            <div class="form-group mb-2">
-                <label for="surname">Surname:</label>
-                <input type="text" class="form-control" id="surname" name="surname" value="{{ form_data.surname }}" required>
-            </div>
-
-            <div class="form-group mb-2">
-                <label for="email">Email:</label>
-                <input type="email" class="form-control" id="email" name="email" value="{{ form_data.email }}" required>
-                {% if errors.email %}
-                    <small class="form-text text-danger">{{ errors.email }}</small>
-                {% endif %}
-            </div>
-
-            <div class="form-group mb-2">
-                <label for="password">Password:</label>
-                <input type="password" class="form-control" id="password" name="password" value="{{ form_data.password }}" required>
-            </div>
-
-            <div class="form-group mb-2">
-                <label for="confirm-password">Confirm Password:</label>
-                <input type="password" class="form-control" id="confirm-password" name="confirm-password" value="{{ form_data.confirm_password }}" required>
-                {% if errors.confirm_password %}
-                    <small class="form-text text-danger">{{ errors.confirm_password }}</small>
-                {% endif %}
-            </div>
-
-            <div class="form-group mb-2">
-                <label for="gender">Gender:</label>
-                <select class="form-control" id="gender" name="gender">
-                    <option value="Female">Female</option>
-                    <option value="Male">Male</option>
-                </select>
-            </div>
-
-            <div class="form-group mb-2">
-                <label for="date_of_birth">Date of birth:</label>
-                <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" min="1900-01-01" max="2008-01-01" value="{{ form_data.date_of_birth }}" required>
-            </div>
-
-            <div class="form-group mb-2">
-                <label for="weight">Weight:</label>
-                <div class="input-group">
-                    <input type="number" class="form-control" id="weight" name="weight" min="1" max="150" value="{{ form_data.weight }}" required>
-                    <div class="input-group-append">
-                        <span class="input-group-text">kg</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group mb-2">
-                <label for="height">Height:</label>
-                <div class="input-group">
-                    <input type="number" class="form-control" id="height" name="height" min="1" max="250" value="{{ form_data.height }}" required>
-                    <div class="input-group-append">
-                        <span class="input-group-text">cm</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group mb-4">
-                <label for="food-preferences">Food Preferences:</label><br>
-                <input type="checkbox" id="gluten-free" name="gluten-free" {% if form_data.gluten_free %} checked {% endif %}>
-                <label for="gluten-free">Gluten-free</label><br>
-                <input type="checkbox" id="vegan" name="vegan" {% if form_data.vegan %} checked {% endif %}>
-                <label for="vegan">Vegan</label><br>
-                <input type="checkbox" id="vegetarian" name="vegetarian" {% if form_data.vegetarian %} checked {% endif %}>
-                <label for="vegetarian">Vegetarian</label><br>
-                <input type="checkbox" id="dairy-free" name="dairy-free" {% if form_data.dairy_free %} checked {% endif %}>
-                <label for="dairy-free">Dairy-free</label><br>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Sign Up</button>
-        </form>
     </div>
 {% endblock %}
