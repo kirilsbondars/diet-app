@@ -114,13 +114,15 @@ Katrs mērījums tika atkārtots piecas reizes, un tika aprēķināta vidējā v
 
 Redzams, ka, palielinoties ēdienu skaitam datubāzē, pieaug ēdienkartes izveides un parādīšanas laiks lietotājam. Toties visi šie izmērītie laiki ir nelieli, tāpēc lietotājs tos īsti nevar pamanīt vai precīzi noteikt, kurš brīdis ir bijis ilgāks.  
 
-Kopumā algoritms izmērītajiem ēdienu daudzumiem darbojas ļoti labi, jo spēj ātri (lietotājam gandrīz nemanāmi) izveidot ēdienkarti.            
+Ņemot vērā iegūtos rezultātus, var spriest, ka, turpinot papildināt datubāzi ar ēdieniem, palielināsies ēdienkartes izpildes un parādīšanas laiks. Kādā brīdi (pie ievērojami lielāka ēdiena daudzuma datubāzē) šis izpildes laiks varētu kļūt pārāk lēns un uzkrītošs lietotājam, tāpēc būtu jāveic dažādas darbības, lai uzlabotu algoritma veiktspēju.  
+
+Kopumā algoritms izmērītajiem ēdienu daudzumiem darbojas ļoti labi, jo spēj ātri (lietotājam gandrīz nemanāmi) izveidot ēdienkarti.         
 
 # Secinājumi
 Projekta laikā tika izstrādāts risinājums, kurā tika veiksmīgi īstenoti visi iepriekš definētie lietotāju stāsti. Risinājums nodrošina visas būtiskākās pamata vajadzības / funkcionalitāti, kā arī labu bāzi lietotāja saskarnei. 
 
-Veicot risinājuma novērtēšanu tika konstatēts, ka arī izvēlētais ģenerēšanas algoritms strādā samērā efektīvi un veiksmīgi nodrošina vienu no svarīgākajām pamatfunkcionalitātes darbībām (kā arī nodrošina šīs funkcionalitātes ātrdarbību). 
+Veicot risinājuma novērtēšanu tika konstatēts, ka izstrādātais algoritms strādā samērā efektīvi un veiksmīgi nodrošina pamatfunkcionalitāti (ēdienkartes izveidošanu), kā arī nodrošina šīs funkcionalitātes ātrdarbību. 
 
-Papildus veiksmīgai risinājuma izstrādei, projekta laikā ievērojami tika attīstītas arī visu dalībnieku prasmes gan produktu / pakalpojumu izveidē / plānošanā, gan pašā izstrādes procesā ar Python Flask satvaru, gan arī komandas sadarbībā un GitHub pareizā pielietošanā. Kopumā projekts bija labs ievads šāda veida risinājumu veidošanā un palīdzēja savienot dažādas studiju laikā apskatītās (kā arī pilnībā jaunas) prakses. Projekta laikā arī nācās samērā regulāri praktizēt pielāgošanās prasmes un veikt nepieciešamos labojumus, kad izstrādes laikā tika konstatēta to nepieciešamība. 
+Papildus veiksmīgai risinājuma izstrādei, projekta laikā ievērojami tika attīstītas arī visu dalībnieku prasmes gan produktu / pakalpojumu izveidē / plānošanā, gan pašā izstrādes procesā ar Python Flask satvaru, gan arī komandas sadarbībā un GitHub pareizā pielietošanā. Kopumā projekts bija labs ievads šāda veida risinājumu veidošanā un palīdzēja savienot dažādas studiju laikā apskatītās (kā arī pilnībā jaunas) prakses. Projekta laikā arī nācās samērā regulāri praktizēt pielāgošanās prasmes un veikt labojumus, kad izstrādes laikā tika konstatēta to nepieciešamība. 
 
-Ja risinājumu attīstītu tālāk, varētu uzlabot saskarnes dizainu un kopējo risinājuma prezentāciju. Kā arī būtu iespējams papildināt risinājumu ar vēl citām alternatīvām preferencēm un uzstādāmiem ierobežojumiem ēdienkartes ģenerēšanai. Papildus varētu uzlabot ēdienu savstarpējo sinerģiju, ģenerējot ēdienkarti, kā arī kompleksākiem ēdieniem pievienot iespēju apskatīt to receptes. Labi būtu arī ģenerēt ēdienus specifiskām ēdienreizēm, nevis visus vienā lielā ēdienkartē. 
+Ja risinājumu attīstītu tālāk, varētu uzlabot saskarnes dizainu un kopējo risinājuma prezentāciju. Kā arī būtu iespējams papildināt risinājumu ar vēl citām alternatīvām preferencēm un uzstādāmiem ierobežojumiem ēdienkartes ģenerēšanai. Papildus tam varētu ģenerēt ēdienus specifiskām ēdienreizēm (brokastīm, pusdienām, vakariņām), kā arī kompleksākiem ēdieniem pievienot iespēju apskatīt to receptes.  
