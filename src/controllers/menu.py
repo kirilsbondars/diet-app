@@ -21,26 +21,14 @@ def create_menu_view():
         date = datetime.strptime(request.form['date'], '%Y-%m-%d').date()
         n_days_ago = int(request.form['n_days_ago'])
 
-        # uses profile nutrients data if checked
-        use_profile_nutrients = bool(request.form.get('use_profile_nutrients'))
-        if use_profile_nutrients:
-            min_calories = user.min_calories
-            max_calories = user.max_calories
-            min_fats = user.min_fats
-            max_fats = user.max_fats
-            min_proteins = user.min_proteins
-            max_proteins = user.max_proteins
-            min_carbohydrates = user.min_carbohydrates
-            max_carbohydrates = user.max_carbohydrates
-        else:
-            min_calories = float(request.form['min_calories'])
-            max_calories = float(request.form['max_calories'])
-            min_fats = float(request.form['min_fats'])
-            max_fats = float(request.form['max_fats'])
-            min_proteins = float(request.form['min_proteins'])
-            max_proteins = float(request.form['max_proteins'])
-            min_carbohydrates = float(request.form['min_carbohydrates'])
-            max_carbohydrates = float(request.form['max_carbohydrates'])
+        min_calories = float(request.form['min_calories'])
+        max_calories = float(request.form['max_calories'])
+        min_fats = float(request.form['min_fats'])
+        max_fats = float(request.form['max_fats'])
+        min_proteins = float(request.form['min_proteins'])
+        max_proteins = float(request.form['max_proteins'])
+        min_carbohydrates = float(request.form['min_carbohydrates'])
+        max_carbohydrates = float(request.form['max_carbohydrates'])
 
         # gets meal ids from last n days
         exclude_meal_ids = get_last_n_days_meal_ids(user.id, date, n_days_ago)
