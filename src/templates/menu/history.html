@@ -54,11 +54,11 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="col-lg-2 col-md-2 text-center">
+                        <div class="col-lg-2 col-md-2 text-center mb-2 mb-md-0">
                             {% if meal.blacklisted %}
-                                <a class="btn btn-danger mb-sm-2" href="{{ url_for('blacklist.remove', meal_id=meal.meal.id, return_page='history', history_date=date)}}" role="button">Remove from blacklist</a>
+                                <a class="btn btn-danger me-md-2" href="{{ url_for('blacklist.remove', meal_id=meal.meal.id, return_page='history', history_date=date)}}" role="button">Remove from blacklist</a>
                             {% else %}
-                                <a class="btn btn-success mb-sm-2" href="{{ url_for('blacklist.add', meal_id=meal.meal.id, history_date=date) }}" role="button">Add to blacklist</a>
+                                <a class="btn btn-success me-md-2" href="{{ url_for('blacklist.add', meal_id=meal.meal.id, history_date=date) }}" role="button">Add to blacklist</a>
                             {% endif %}
                         </div>
                     </div>
