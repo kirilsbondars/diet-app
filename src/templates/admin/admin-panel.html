@@ -60,7 +60,7 @@
         .details-button {
             background-color: #007bff;
         }
-        .delete-button:hover, .details-button:hover, .btn-primary:hover {
+        .delete-button:hover, .details-button:hover, .btn-primary:hover, .btn:hover {
             opacity: 0.8;
         }
         .btn {
@@ -86,6 +86,7 @@
 </head>
 <body>
 <div class="container">
+    <a class="btn" type="button" href="{{ url_for('menu.create_menu_view') }}" style="display:inline">Main Menu</a>
     <h1>Users</h1>
     <table>
         <tr>
